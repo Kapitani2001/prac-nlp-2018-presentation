@@ -1416,129 +1416,133 @@ body:hover #navbar { opacity: 1; }
 
 <section class="slide" data-slide="22" data-clicks='[[{"spid": "interrupt", "cls": "entr", "delay": 0, "filter": "dissolve", "motion": "", "dur": "300"}]]' style="background:#0c1829;overflow:hidden">
   <style>
-    .pattern-bar {
-      width: calc(40pt * var(--scale));
-      height: calc(8pt * var(--scale));
-      background: #36639C;
-      border-radius: 4px;
-      animation: patternPulse 1.2s ease-in-out infinite;
-    }
-    .pattern-bar:nth-child(2) { animation-delay: 0.15s; }
-    .pattern-bar:nth-child(3) { animation-delay: 0.3s; }
-    .pattern-bar:nth-child(4) { animation-delay: 0.45s; }
-    .pattern-bar:nth-child(5) { animation-delay: 0.6s; }
-    .pattern-bar:nth-child(6) { animation-delay: 0.75s; }
-    .pattern-bar:nth-child(7) { animation-delay: 0.9s; }
-    .pattern-bar:nth-child(8) { animation-delay: 1.05s; }
-    @keyframes patternPulse {
-      0%, 100% { opacity: 0.4; transform: scaleX(0.7); }
-      50% { opacity: 1; transform: scaleX(1); }
-    }
-    /* After interrupt: bars freeze and crack */
-    .pattern-broken .pattern-bar {
-      animation: none !important;
-      opacity: 0.15 !important;
-      transform: scaleX(0.5) !important;
-      transition: all 0.6s ease;
-    }
-    .pattern-broken .pattern-bar:nth-child(4),
-    .pattern-broken .pattern-bar:nth-child(5) {
-      opacity: 0 !important;
-      transform: scaleX(0) translateY(10px) !important;
-    }
-    .crack-line {
+    .diag-bar {
       position: absolute;
-      width: 4px;
-      height: 0;
-      background: #AB292E;
-      left: 50%;
-      top: 10%;
-      transform: translateX(-50%);
-      transition: height 0.4s ease;
-      border-radius: 2px;
-      box-shadow: 0 0 12px rgba(171,41,46,0.6);
+      width: calc(70pt * var(--scale));
+      height: calc(6pt * var(--scale));
+      background: #36639C;
+      border-radius: 3px;
+      transform: rotate(-35deg);
+      transform-origin: left center;
+      animation: diagPulse 1.4s ease-in-out infinite;
     }
-    .pattern-broken .crack-line {
-      height: 80%;
+    .diag-bar:nth-child(1) { left: 6%; top: 20%; animation-delay: 0s; }
+    .diag-bar:nth-child(2) { left: 10%; top: 28%; animation-delay: 0.18s; }
+    .diag-bar:nth-child(3) { left: 14%; top: 36%; animation-delay: 0.36s; }
+    .diag-bar:nth-child(4) { left: 18%; top: 44%; animation-delay: 0.54s; }
+    .diag-bar:nth-child(5) { left: 22%; top: 52%; animation-delay: 0.72s; }
+    .diag-bar:nth-child(6) { left: 26%; top: 60%; animation-delay: 0.9s; }
+    .diag-bar:nth-child(7) { left: 30%; top: 68%; animation-delay: 1.08s; }
+    .diag-bar:nth-child(8) { left: 34%; top: 76%; animation-delay: 1.26s; }
+    @keyframes diagPulse {
+      0%, 100% { opacity: 0.3; width: calc(50pt * var(--scale)); }
+      50% { opacity: 1; width: calc(70pt * var(--scale)); }
+    }
+    /* BROKEN state */
+    .diag-broken .diag-bar {
+      animation: none !important;
+      transition: all 0.5s ease;
+    }
+    .diag-broken .diag-bar:nth-child(1),
+    .diag-broken .diag-bar:nth-child(2),
+    .diag-broken .diag-bar:nth-child(3) {
+      opacity: 0.12 !important;
+      transform: rotate(-35deg) translateX(-20px) !important;
+      width: calc(40pt * var(--scale)) !important;
+    }
+    .diag-broken .diag-bar:nth-child(4),
+    .diag-broken .diag-bar:nth-child(5) {
+      opacity: 0 !important;
+      width: 0 !important;
+      transform: rotate(-35deg) scaleX(0) !important;
+    }
+    .diag-broken .diag-bar:nth-child(6),
+    .diag-broken .diag-bar:nth-child(7),
+    .diag-broken .diag-bar:nth-child(8) {
+      opacity: 0.12 !important;
+      transform: rotate(-35deg) translateX(20px) !important;
+      width: calc(40pt * var(--scale)) !important;
+    }
+    /* Diagonal crack */
+    .diag-crack {
+      position: absolute;
+      left: 18%;
+      top: 15%;
+      width: calc(5pt * var(--scale));
+      height: 0;
+      background: linear-gradient(180deg, transparent, #AB292E, #AB292E, transparent);
+      transform: rotate(-35deg);
+      transform-origin: top center;
+      transition: height 0.5s ease;
+      border-radius: 3px;
+      box-shadow: 0 0 16px rgba(171,41,46,0.5);
+      z-index: 5;
+    }
+    .diag-broken .diag-crack {
+      height: 75%;
     }
   </style>
 
-  <!-- Background image subtle -->
+  <!-- Background image -->
   <div style="position:absolute;inset:0">
-    <img src="images/slide22_img0.jpg" style="width:100%;height:100%;object-fit:cover;opacity:0.15" loading="lazy">
-    <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(12,24,41,0.85),rgba(12,24,41,0.7))"></div>
+    <img src="images/slide22_img0.jpg" style="width:100%;height:100%;object-fit:cover;opacity:0.12" loading="lazy">
+    <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(12,24,41,0.9),rgba(12,24,41,0.75))"></div>
   </div>
 
   <!-- Title -->
-  <div style="position:absolute;left:6%;top:5%;width:88%;z-index:3">
+  <div style="position:absolute;left:50%;top:5%;width:45%;z-index:10">
     <p><span style="font-size:calc(26.0pt * var(--scale));color:#fff"><b>Pattern Interrupt</b></span></p>
   </div>
 
   <!-- Behavior label -->
-  <div style="position:absolute;left:6%;top:16%;width:35%;z-index:3">
-    <div style="background:rgba(54,99,156,0.2);border:1px solid rgba(54,99,156,0.3);border-radius:8px;padding:calc(6pt * var(--scale)) calc(10pt * var(--scale));text-align:center">
-      <span style="font-size:calc(14.0pt * var(--scale));color:#5b8ec2"><b>Behavior Pattern</b></span>
+  <div style="position:absolute;left:50%;top:16%;width:40%;z-index:10">
+    <div style="background:rgba(54,99,156,0.15);border:1px solid rgba(54,99,156,0.25);border-radius:8px;padding:calc(6pt * var(--scale)) calc(10pt * var(--scale))">
+      <span style="font-size:calc(13.0pt * var(--scale));color:#5b8ec2"><b>Behavior Pattern</b></span>
+      <p style="margin-top:calc(3pt * var(--scale))"><span style="font-size:calc(10.0pt * var(--scale));color:rgba(255,255,255,0.5)">A repeating sequence — the same response, over and over</span></p>
     </div>
   </div>
 
-  <!-- Animated pattern bars (the repeating behavior) -->
-  <div id="patternContainer22" style="position:absolute;left:10%;top:28%;width:calc(44pt * var(--scale));z-index:2;display:flex;flex-direction:column;gap:calc(4pt * var(--scale));align-items:center">
-    <div class="pattern-bar"></div>
-    <div class="pattern-bar"></div>
-    <div class="pattern-bar"></div>
-    <div class="pattern-bar"></div>
-    <div class="pattern-bar"></div>
-    <div class="pattern-bar"></div>
-    <div class="pattern-bar"></div>
-    <div class="pattern-bar"></div>
-    <div class="crack-line"></div>
+  <!-- Diagonal pattern bars -->
+  <div id="diagContainer22" style="position:absolute;inset:0;z-index:2">
+    <div class="diag-bar"></div>
+    <div class="diag-bar"></div>
+    <div class="diag-bar"></div>
+    <div class="diag-bar"></div>
+    <div class="diag-bar"></div>
+    <div class="diag-bar"></div>
+    <div class="diag-bar"></div>
+    <div class="diag-bar"></div>
+    <div class="diag-crack"></div>
   </div>
 
-  <!-- Right side: explanation text (always visible) -->
-  <div style="position:absolute;left:38%;top:28%;width:55%;z-index:3">
-    <div style="border-left:3px solid #36639C;padding-left:calc(12pt * var(--scale));margin-bottom:calc(10pt * var(--scale))">
-      <p><span style="font-size:calc(13.0pt * var(--scale));color:rgba(255,255,255,0.8);line-height:1.6">A behavior pattern repeats automatically — the same sequence, the same response, over and over.</span></p>
+  <!-- INTERRUPT card (click to reveal) -->
+  <div class="shape anim-hidden" data-spid="interrupt" style="position:absolute;left:50%;top:38%;width:45%;z-index:10;opacity:0;visibility:hidden">
+    <div style="background:#AB292E;border-radius:12px;padding:calc(14pt * var(--scale)) calc(18pt * var(--scale));box-shadow:0 6px 28px rgba(171,41,46,0.45)">
+      <p style="margin-bottom:calc(8pt * var(--scale))"><span style="font-size:calc(24.0pt * var(--scale));color:#fff;letter-spacing:2px"><b>INTERRUPT!</b></span></p>
+      <p><span style="font-size:calc(11.0pt * var(--scale));color:rgba(255,255,255,0.85);line-height:1.6">Break the pattern. Insert something unexpected.<br>The behavior stops — and the interrupt becomes part of a new pattern.</span></p>
     </div>
   </div>
 
-  <!-- INTERRUPT reveal (click) -->
-  <div class="shape anim-hidden" data-spid="interrupt" style="position:absolute;left:38%;top:50%;width:55%;z-index:3;opacity:0;visibility:hidden">
-    <div style="background:#AB292E;border-radius:10px;padding:calc(12pt * var(--scale)) calc(16pt * var(--scale));box-shadow:0 4px 24px rgba(171,41,46,0.4)">
-      <p style="margin-bottom:calc(6pt * var(--scale))"><span style="font-size:calc(22.0pt * var(--scale));color:#fff"><b>INTERRUPT!</b></span></p>
-      <p><span style="font-size:calc(12.0pt * var(--scale));color:rgba(255,255,255,0.85);line-height:1.5">Break the pattern. Insert something unexpected. The behavior stops — and the interrupt becomes part of a new pattern.</span></p>
-    </div>
-  </div>
-
-  <!-- JS to trigger the pattern break when interrupt is revealed -->
+  <!-- JS: trigger break when interrupt appears -->
   <script>
   (function() {
-    var observer = new MutationObserver(function(mutations) {
-      mutations.forEach(function(m) {
-        if (m.type === 'attributes') {
-          var el = m.target;
-          if (el.dataset && el.dataset.spid === 'interrupt') {
-            var vis = window.getComputedStyle(el).visibility;
-            var container = document.getElementById('patternContainer22');
-            if (container) {
-              if (vis === 'visible' && parseFloat(window.getComputedStyle(el).opacity) > 0.5) {
-                container.classList.add('pattern-broken');
-              } else {
-                container.classList.remove('pattern-broken');
-              }
-            }
-          }
-        }
-      });
-    });
-    // Observe all slides for attribute changes
     setTimeout(function() {
       var slide = document.querySelector('[data-slide="22"]');
-      if (slide) {
-        slide.querySelectorAll('[data-spid]').forEach(function(el) {
-          observer.observe(el, { attributes: true, attributeFilter: ['style', 'class'] });
-        });
-      }
-    }, 500);
+      if (!slide) return;
+      var intEl = slide.querySelector('[data-spid="interrupt"]');
+      var container = document.getElementById('diagContainer22');
+      if (!intEl || !container) return;
+      var obs = new MutationObserver(function() {
+        var vis = window.getComputedStyle(intEl).visibility;
+        var op = parseFloat(window.getComputedStyle(intEl).opacity);
+        if (vis === 'visible' && op > 0.3) {
+          container.classList.add('diag-broken');
+        } else {
+          container.classList.remove('diag-broken');
+        }
+      });
+      obs.observe(intEl, { attributes: true, attributeFilter: ['style','class'] });
+    }, 600);
   })();
   </script>
 </section>
