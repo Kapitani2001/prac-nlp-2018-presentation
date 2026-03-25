@@ -1330,10 +1330,11 @@ body:hover #navbar { opacity: 1; }
 </section>
 
 <section class="slide" data-slide="20" data-clicks='[[{"spid":"msg","cls":"entr","delay":0,"filter":"dissolve","motion":"","dur":"300"}]]'>
-  <!-- Background image — full figure, not cropped -->
-  <div style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:0">
-    <img src="images/slide20_img0.jpg" style="width:100%;height:100%;object-fit:contain;object-position:right center" loading="lazy">
-    <div style="position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(180deg,rgba(12,24,41,0.75) 0%,rgba(26,39,68,0.6) 40%,rgba(12,24,41,0.8) 100%)"></div>
+  <!-- Dark base background -->
+  <div style="position:absolute;inset:0;background:linear-gradient(135deg,#0c1829 0%,#1a2744 50%,#0f1f3a 100%);z-index:0"></div>
+  <!-- Businessman image — right side, scaled to show full body -->
+  <div style="position:absolute;right:2%;top:5%;width:35%;height:90%;z-index:0">
+    <img src="images/slide20_img0.jpg" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;opacity:0.35" loading="lazy">
   </div>
 
   <!-- Title -->
