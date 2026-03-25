@@ -1158,42 +1158,32 @@ body:hover #navbar { opacity: 1; }
 <section class="slide" data-slide="15" data-clicks='[[{"spid": "passing", "cls": "entr", "delay": 0, "filter": "fade", "motion": "", "dur": "600"}], [{"spid": "excellence", "cls": "entr", "delay": 0, "filter": "fade", "motion": "", "dur": "600"}]]'>
   <div style="position:absolute;top:0;left:0;width:100%;height:5px;background:linear-gradient(90deg,#0060A2,#36639C)"></div>
 
-  <div style="position:absolute;left:6%;top:6%;width:88%">
-    <p><span style="font-size:calc(26.0pt * var(--scale));color:#1a2744"><b>Excellence</b></span></p>
+  <div style="position:absolute;left:6%;top:8%;width:88%">
+    <p><span style="font-size:calc(28.0pt * var(--scale));color:#1a2744"><b>Excellence</b></span></p>
   </div>
 
   <!-- Scale bar -->
-  <div style="position:absolute;left:8%;top:45%;width:84%;height:2%;background:linear-gradient(90deg,#e0e7ef,#0060A2);border-radius:4px"></div>
+  <div style="position:absolute;left:8%;top:50%;width:84%;height:calc(4pt * var(--scale));background:linear-gradient(90deg,#d0dbe8 0%,#0060A2 100%);border-radius:3px"></div>
+
   <!-- 0 label -->
-  <div style="position:absolute;left:8%;top:50%;"><span style="font-size:calc(14.0pt * var(--scale));color:#888"><b>0</b></span></div>
+  <div style="position:absolute;left:8%;top:54%"><span style="font-size:calc(16.0pt * var(--scale));color:#999"><b>0</b></span></div>
   <!-- 100 label -->
-  <div style="position:absolute;right:8%;top:50%;"><span style="font-size:calc(14.0pt * var(--scale));color:#888"><b>100</b></span></div>
-  <!-- Tick marks -->
-  <div style="position:absolute;left:29%;top:43%;width:1px;height:5%;background:#ccc"></div>
-  <div style="position:absolute;left:50%;top:43%;width:1px;height:5%;background:#ccc"></div>
-  <div style="position:absolute;left:71%;top:43%;width:1px;height:5%;background:#ccc"></div>
+  <div style="position:absolute;right:8%;top:54%"><span style="font-size:calc(16.0pt * var(--scale));color:#999"><b>100</b></span></div>
 
-  <!-- Passing marker at ~80% -->
-  <div class="shape anim-hidden" data-spid="passing" style="position:absolute;left:73%;top:26%;width:16%;text-align:center;opacity:0;visibility:hidden">
-    <div style="background:#f7f9fc;border:2px solid #0060A2;border-radius:10px;padding:calc(6pt * var(--scale)) calc(10pt * var(--scale))">
-      <p><span style="font-size:calc(16.0pt * var(--scale));color:#0060A2"><b>Passing</b></span></p>
-      <p><span style="font-size:calc(11.0pt * var(--scale));color:#888">~80%</span></p>
+  <!-- Passing — ABOVE the line, near the 80 mark (right side) -->
+  <div class="shape anim-hidden" data-spid="passing" style="position:absolute;left:72%;top:30%;width:18%;text-align:center;opacity:0;visibility:hidden">
+    <div style="background:#f7f9fc;border:2px solid #0060A2;border-radius:10px;padding:calc(8pt * var(--scale)) calc(10pt * var(--scale))">
+      <p><span style="font-size:calc(18.0pt * var(--scale));color:#0060A2"><b>Passing</b></span></p>
     </div>
-    <div style="width:2px;height:calc(12pt * var(--scale));background:#0060A2;margin:0 auto"></div>
+    <div style="width:2px;height:calc(16pt * var(--scale));background:#0060A2;margin:calc(2pt * var(--scale)) auto 0"></div>
   </div>
 
-  <!-- Excellence marker at ~50% -->
-  <div class="shape anim-hidden" data-spid="excellence" style="position:absolute;left:42%;top:26%;width:16%;text-align:center;opacity:0;visibility:hidden">
-    <div style="background:linear-gradient(135deg,#0060A2,#36639C);border-radius:10px;padding:calc(6pt * var(--scale)) calc(10pt * var(--scale));box-shadow:0 3px 12px rgba(0,96,162,0.3)">
-      <p><span style="font-size:calc(16.0pt * var(--scale));color:#fff"><b>Excellence</b></span></p>
-      <p><span style="font-size:calc(11.0pt * var(--scale));color:rgba(255,255,255,0.7)">~50%</span></p>
+  <!-- Excellence — BELOW the line, near the middle -->
+  <div class="shape anim-hidden" data-spid="excellence" style="position:absolute;left:42%;top:58%;width:18%;text-align:center;opacity:0;visibility:hidden">
+    <div style="width:2px;height:calc(16pt * var(--scale));background:#36639C;margin:0 auto calc(2pt * var(--scale))"></div>
+    <div style="background:linear-gradient(135deg,#0060A2,#36639C);border-radius:10px;padding:calc(8pt * var(--scale)) calc(10pt * var(--scale));box-shadow:0 3px 12px rgba(0,96,162,0.3)">
+      <p><span style="font-size:calc(18.0pt * var(--scale));color:#fff"><b>Excellence</b></span></p>
     </div>
-    <div style="width:2px;height:calc(12pt * var(--scale));background:#36639C;margin:0 auto"></div>
-  </div>
-
-  <!-- Bottom insight -->
-  <div style="position:absolute;left:10%;top:72%;width:80%;text-align:center">
-    <p><span style="font-size:calc(13.0pt * var(--scale));color:#666;font-style:italic">You don't need perfection to achieve excellence.</span></p>
   </div>
 </section>
 
