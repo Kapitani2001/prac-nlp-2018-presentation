@@ -1329,12 +1329,11 @@ body:hover #navbar { opacity: 1; }
   </div>
 </section>
 
-<section class="slide" data-slide="20" data-clicks='[[{"spid":"msg","cls":"entr","delay":0,"filter":"dissolve","motion":"","dur":"300"}]]'>
-  <!-- Dark base background -->
-  <div style="position:absolute;inset:0;background:linear-gradient(135deg,#0c1829 0%,#1a2744 50%,#0f1f3a 100%);z-index:0"></div>
-  <!-- Businessman image — right side, scaled to show full body -->
-  <div style="position:absolute;right:2%;top:5%;width:35%;height:90%;z-index:0">
-    <img src="images/slide20_img0.jpg" style="width:100%;height:100%;object-fit:contain;object-position:center bottom;opacity:0.35" loading="lazy">
+<section class="slide" data-slide="20" data-clicks='[[{"spid":"msg","cls":"entr","delay":0,"filter":"fade","motion":"","dur":"800"}]]'>
+  <!-- Full-bleed scenic background -->
+  <div style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:0">
+    <img src="images/slide20_img0.jpg" style="width:100%;height:100%;object-fit:cover" loading="lazy">
+    <div style="position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(180deg,rgba(12,24,41,0.75) 0%,rgba(26,39,68,0.6) 40%,rgba(12,24,41,0.8) 100%)"></div>
   </div>
 
   <!-- Title -->
@@ -1345,7 +1344,7 @@ body:hover #navbar { opacity: 1; }
   <!-- Decorative line under title -->
   <div style="position:absolute;left:30%;top:22%;width:40%;height:2px;background:linear-gradient(90deg,transparent,#5b8ec2,transparent);z-index:2"></div>
 
-  <!-- Big inspiring message (frosted glass card) — centered like before -->
+  <!-- Big inspiring message (frosted glass card) -->
   <div class="shape anim-hidden" data-spid="msg" style="position:absolute;left:8%;top:30%;width:84%;min-height:40%;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;z-index:2">
     <div style="background:rgba(255,255,255,0.1);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-radius:14px;border:1px solid rgba(255,255,255,0.18);padding:calc(20pt * var(--scale)) calc(28pt * var(--scale));text-align:center;box-shadow:0 8px 32px rgba(0,0,0,0.3)">
       <p style="margin-bottom:calc(10pt * var(--scale))"><span style="font-size:calc(14.0pt * var(--scale));color:#8badd4;text-transform:uppercase;letter-spacing:2px">Make them so</span></p>
@@ -1356,14 +1355,21 @@ body:hover #navbar { opacity: 1; }
 </section>
 
 <section class="slide" data-slide="21" data-clicks='[[{"spid": "p1", "cls": "entr", "delay": 0, "filter": "fade", "motion": "", "dur": "600"}], [{"spid": "p2", "cls": "entr", "delay": 0, "filter": "fade", "motion": "", "dur": "600"}], [{"spid": "p3", "cls": "entr", "delay": 0, "filter": "fade", "motion": "", "dur": "600"}], [{"spid": "p4", "cls": "entr", "delay": 0, "filter": "fade", "motion": "", "dur": "600"}], [{"spid": "p5", "cls": "entr", "delay": 0, "filter": "fade", "motion": "", "dur": "600"}]]' style="background:#111;overflow:hidden">
-  <div style="position:absolute;inset:0">
-    <img src="images/slide21_img0.jpg" style="width:100%;height:100%;object-fit:cover;opacity:0.3" loading="lazy">
-    <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,0,0,0.6),rgba(0,0,0,0.4))"></div>
+  <!-- Dark gradient base -->
+  <div style="position:absolute;inset:0;background:linear-gradient(135deg,#0c1829 0%,#1a2744 50%,#0f1f3a 100%)"></div>
+
+  <!-- Businessman image — right side, full body in a narrow container -->
+  <div style="position:absolute;right:3%;top:3%;width:25%;height:94%;z-index:1">
+    <img src="images/slide21_img0.jpg" style="width:100%;height:100%;object-fit:contain;object-position:bottom center;opacity:0.4" loading="lazy">
   </div>
-  <div style="position:absolute;left:6%;top:5%;width:88%;z-index:2">
+
+  <!-- Title -->
+  <div style="position:absolute;left:6%;top:5%;width:60%;z-index:2">
     <p><span style="font-size:calc(24.0pt * var(--scale));color:#fff"><b>Principles for Success</b></span></p>
   </div>
-  <div style="position:absolute;left:6%;top:18%;width:52%;z-index:2;display:flex;flex-direction:column;gap:calc(5pt * var(--scale))">
+
+  <!-- 5 principle cards -->
+  <div style="position:absolute;left:6%;top:18%;width:55%;z-index:2;display:flex;flex-direction:column;gap:calc(5pt * var(--scale))">
     
     <div class="shape anim-hidden" data-spid="p1" style="position:relative;opacity:0;visibility:hidden">
       <div style="background:rgba(255,255,255,0.1);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-radius:10px;border:1px solid rgba(255,255,255,0.12);padding:calc(8pt * var(--scale)) calc(12pt * var(--scale));display:flex;align-items:center;gap:calc(10pt * var(--scale))">
