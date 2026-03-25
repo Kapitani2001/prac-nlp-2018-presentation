@@ -1463,23 +1463,23 @@ body:hover #navbar { opacity: 1; }
       transform: rotate(-35deg) translateX(20px) !important;
       width: calc(40pt * var(--scale)) !important;
     }
-    /* Diagonal crack — opposite direction to bars, slashing across */
+    /* Diagonal crack — from top-right to bottom-left, crossing the bars */
     .diag-crack {
       position: absolute;
-      left: 5%;
-      top: 50%;
-      width: 0;
-      height: calc(5pt * var(--scale));
-      background: linear-gradient(90deg, transparent, #AB292E 15%, #AB292E 85%, transparent);
-      transform: rotate(35deg) translateY(-50%);
-      transform-origin: left center;
-      transition: width 0.4s ease;
+      right: 60%;
+      top: 10%;
+      width: calc(5pt * var(--scale));
+      height: 0;
+      background: linear-gradient(180deg, transparent 0%, #AB292E 10%, #ff4444 50%, #AB292E 90%, transparent 100%);
+      transform: rotate(35deg);
+      transform-origin: top center;
+      transition: height 0.5s ease;
       border-radius: 3px;
-      box-shadow: 0 0 20px rgba(171,41,46,0.6), 0 0 40px rgba(171,41,46,0.3);
+      box-shadow: 0 0 20px rgba(171,41,46,0.7), 0 0 40px rgba(171,41,46,0.3);
       z-index: 5;
     }
     .diag-broken .diag-crack {
-      width: 50%;
+      height: 85%;
     }
   </style>
 
