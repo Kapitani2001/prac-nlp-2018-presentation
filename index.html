@@ -2,18 +2,18 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <title>Prac NLP 2018 — FasTrak NLP Practitioner Training</title>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%;overflow:hidden;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#0a0a1a;color:#fff}
-
-/* Slide container */
 .slides-container{height:100vh;width:100vw;position:relative;overflow:hidden}
-.slide{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.5s ease, transform 0.5s ease;transform:translateX(60px);padding:2rem}
+.slide{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.5s ease,transform 0.5s ease;transform:translateX(60px);padding:2rem 2rem 4rem 2rem}
 .slide.active{opacity:1;pointer-events:auto;transform:translateX(0)}
 .slide.prev{opacity:0;transform:translateX(-60px)}
-.slide-inner{max-width:900px;width:100%;text-align:left}
+.slide-inner{max-width:950px;width:100%;text-align:left;max-height:calc(100vh - 100px);overflow-y:auto;scrollbar-width:thin;padding-right:0.5rem}
+.slide-inner::-webkit-scrollbar{width:4px}
+.slide-inner::-webkit-scrollbar-thumb{background:rgba(0,0,0,0.2);border-radius:4px}
 
 /* Slide types */
 .slide-title,.slide-end{background:linear-gradient(135deg,#0c1829 0%,#1a2744 40%,#0f1f3a 100%);text-align:center}
@@ -24,21 +24,21 @@ html,body{height:100%;overflow:hidden;font-family:'Segoe UI',system-ui,-apple-sy
 .slide-content .topbar{position:absolute;top:0;left:0;width:100%;height:5px;background:#0060A2}
 
 /* Fragment animation */
-.fragment{opacity:0;transform:translateY(25px);transition:opacity 0.5s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94)}
+.fragment{opacity:0;transform:translateY(25px);transition:opacity 0.5s cubic-bezier(0.25,0.46,0.45,0.94),transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94)}
 .fragment.visible{opacity:1;transform:translateY(0)}
 .fragment.instant{transition:none}
 
 /* Typography */
-.slide-pre-title{margin-bottom:0.3em}
-.slide-main-title{margin:0.2em 0;font-weight:800;letter-spacing:-1px}
+.slide-pre-title{color:#9cb8d8;font-size:1.1rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:0.3em}
+.slide-main-title{font-size:2.8rem;font-weight:800;letter-spacing:-1px;margin:0.2em 0}
 .slide-heading{margin:0 0 0.6em 0;font-weight:700;color:#1a2744}
 .slide-title .slide-heading,.slide-section .slide-heading,.slide-end .slide-heading{color:#fff}
 .content-text{margin:0.4em 0;line-height:1.6;font-size:1.1rem}
-.content-note{line-height:1.5}
-.page-ref{font-weight:600}
+.content-note{font-size:0.9rem;opacity:0.85;margin:0.5em 0;line-height:1.5;font-style:italic}
+.page-ref{font-size:2.5rem;font-weight:600;opacity:0.8}
 
 /* Lists */
-.content-list{list-style:none;margin:0.5em 0 0.5em 0;padding:0}
+.content-list{list-style:none;margin:0.5em 0;padding:0}
 .content-list li{position:relative;padding:0.5em 0 0.5em 1.8em;font-size:1.05rem;line-height:1.5;border-bottom:1px solid rgba(0,0,0,0.06)}
 .content-list li:last-child{border-bottom:none}
 .content-list li::before{content:"";position:absolute;left:0;top:0.85em;width:8px;height:8px;border-radius:50%;background:#0060A2}
@@ -51,23 +51,20 @@ html,body{height:100%;overflow:hidden;font-family:'Segoe UI',system-ui,-apple-sy
 .slide-table th{background:#0060A2;color:#fff;font-weight:600}
 .slide-table tr:nth-child(even){background:#f5f8fc}
 
-/* Image placeholder */
-.img-placeholder{background:linear-gradient(135deg,#e8eef5,#d5dfe8);border-radius:12px;padding:2em;text-align:center;margin:1em 0;min-height:80px;display:flex;align-items:center;justify-content:center}
-.img-placeholder span{color:#7a8ea0;font-size:0.9rem;font-style:italic}
-.slide-section .img-placeholder,.slide-title .img-placeholder{background:linear-gradient(135deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03));border:1px solid rgba(255,255,255,0.1)}
-.slide-section .img-placeholder span,.slide-title .img-placeholder span{color:rgba(255,255,255,0.4)}
+/* Images */
+.slide img{display:block;margin:0 auto;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,0.08)}
+.slide-section img,.slide-title img{box-shadow:0 2px 20px rgba(0,0,0,0.3)}
 
-/* Navigation */
+/* Nav */
 .nav-bar{position:fixed;bottom:0;left:0;width:100%;background:rgba(10,10,26,0.92);backdrop-filter:blur(8px);padding:0.5em 1em;display:flex;align-items:center;justify-content:space-between;z-index:100;border-top:1px solid rgba(255,255,255,0.1)}
 .nav-bar button{background:none;border:1px solid rgba(255,255,255,0.2);color:#fff;padding:0.4em 1em;border-radius:6px;cursor:pointer;font-size:0.85rem;transition:background 0.2s}
 .nav-bar button:hover{background:rgba(255,255,255,0.1)}
 .nav-bar .slide-counter{font-size:0.85rem;color:rgba(255,255,255,0.6)}
 .progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#0060A2,#5b8ec2);z-index:101;transition:width 0.3s ease}
 
-/* Suggest Edit */
+/* Suggest */
 .suggest-btn{position:fixed;bottom:60px;right:1em;background:#0060A2;color:#fff;border:none;padding:0.5em 1em;border-radius:8px;cursor:pointer;font-size:0.85rem;z-index:100;box-shadow:0 2px 12px rgba(0,96,162,0.3);transition:transform 0.2s,background 0.2s}
 .suggest-btn:hover{transform:scale(1.05);background:#004d85}
-.slide-content .suggest-btn{background:#0060A2;color:#fff}
 .modal-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);z-index:200;align-items:center;justify-content:center}
 .modal-overlay.open{display:flex}
 .modal{background:#fff;border-radius:16px;padding:2em;max-width:480px;width:90%;color:#222;position:relative;box-shadow:0 20px 60px rgba(0,0,0,0.3)}
@@ -82,159 +79,113 @@ html,body{height:100%;overflow:hidden;font-family:'Segoe UI',system-ui,-apple-sy
 .modal .close-x{position:absolute;top:0.8em;right:1em;background:none;border:none;font-size:1.3rem;cursor:pointer;color:#999}
 .toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(20px);background:#1a8c4e;color:#fff;padding:0.7em 1.5em;border-radius:10px;font-size:0.9rem;opacity:0;transition:all 0.3s ease;z-index:300;pointer-events:none}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-
-/* Swipe hint */
 .swipe-hint{position:fixed;bottom:70px;left:50%;transform:translateX(-50%);background:rgba(255,255,255,0.15);color:#fff;padding:0.5em 1.2em;border-radius:20px;font-size:0.8rem;opacity:0;transition:opacity 0.5s;z-index:99;pointer-events:none}
 .swipe-hint.show{opacity:1}
 
-/* Scroll area for dense slides */
-.slide-inner{max-height:calc(100vh - 100px);overflow-y:auto;scrollbar-width:thin}
-.slide-inner::-webkit-scrollbar{width:4px}
-.slide-inner::-webkit-scrollbar-thumb{background:rgba(0,0,0,0.2);border-radius:4px}
-
-/* Mobile */
 @media(max-width:768px){
-  .slide{padding:1.2rem 1rem}
+  .slide{padding:1.2rem 1rem 4rem 1rem}
   .slide-inner{font-size:0.92rem}
   .slide-heading{font-size:1.4rem!important}
   .slide-main-title{font-size:2rem!important}
   .content-list li{padding-left:1.4em;font-size:0.95rem}
-  .nav-bar{padding:0.4em 0.6em}
-  .slide-table{font-size:0.8rem}
-  .slide-table th,.slide-table td{padding:0.4em 0.5em}
+  .slide img{max-height:300px!important}
 }
 @media(max-width:380px){
-  .slide{padding:1rem 0.7rem}
+  .slide{padding:1rem 0.7rem 4rem 0.7rem}
   .slide-heading{font-size:1.2rem!important}
-  .nav-bar button{padding:0.3em 0.6em;font-size:0.75rem}
 }
 </style>
 </head>
 <body>
-
 <div class="progress-bar" id="progressBar"></div>
 <div class="slides-container" id="slidesContainer">
-<section class="slide slide-title" data-slide="1">
-<div class="slide-inner">
-<div class="fragment"><p class="slide-pre-title" style="color:#9cb8d8;font-size:1.1rem;letter-spacing:2px;text-transform:uppercase;">Proudly welcomes you to...</p></div>
-<div class="fragment"><h1 class="slide-main-title" style="font-size:2.8rem;margin:0.3em 0;">The FasTrak™</h1></div>
+<section class="slide slide-title" data-slide="1"><div class="slide-inner"><div class="fragment"><p class="slide-pre-title">Proudly welcomes you to...</p></div>
+<div class="fragment"><h1 class="slide-main-title">The FasTrak™</h1></div>
 <div class="fragment"><p style="font-size:1.2rem;opacity:0.9;">NLP Coaching | NLP Practitioner Training</p></div>
-<div class="fragment"><p style="color:#5b8ec2;margin-top:1.5em;font-size:1.1rem;">Presented by Drs. Adriana &amp; Tad James</p></div>
-<div class="fragment"><p style="color:#5b8ec2;font-size:0.85rem;margin-top:0.5em;">Transform the Planet</p></div>
-</div>
-</section>
+<div class="fragment" style="margin:0.5em auto;"><img src="images/slide1_img0.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:149px;" alt="" loading="lazy"></div>
+<div class="fragment" style="margin:0.5em auto;"><img src="images/slide1_img1.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:124px;" alt="" loading="lazy"></div>
+<div class="fragment"><p style="color:#5b8ec2;margin-top:1em;font-size:1.1rem;">Presented by <span style="color:#36639C"><strong>Presented </strong></span><span style="color:#36639C"><strong>by Drs. </strong></span><span style="color:#36639C"><strong>Adriana &amp; Tad James</strong></span></p></div>
+<div class="fragment"><p style="color:#5b8ec2;font-size:0.85rem;margin-top:0.3em;">Transform the Planet</p></div></div></section>
 
-<section class="slide slide-content" data-slide="2">
-<div class="topbar"></div>
-<div class="slide-inner">
-<h2 class="fragment slide-heading">This is a <em>FasTrak</em>™ NLP Training</h2>
+<section class="slide slide-content" data-slide="2"><div class="topbar"></div><div class="slide-inner"><h2 class="fragment slide-heading">This is a <em>FasTrak</em>™ NLP Training</h2>
 <p class="fragment content-text" style=""><strong>Home Study</strong>:<strong> </strong>CD’s &amp; Reading 55 Hours</p>
 <p class="fragment content-text" style=""><strong>Completion of Test</strong>:  10 Hours</p>
 <p class="fragment content-text" style=""><strong>Live Training</strong>: 7 Days = 56  Hours</p>
 <p class="fragment content-text" style=""><strong>Homework</strong>: 14 Hours</p>
 <p class="fragment content-text" style="font-size:1.4rem;"><strong>TOTAL: </strong><strong>139 </strong><strong>Hours</strong></p>
-<p class="fragment content-text" style=""><strong>Time Line Therapy®</strong>:  139 Hours</p>
-<p class="fragment content-text" style=""><strong>NLP Coaching</strong>:<strong> </strong>139 Hours</p>
 <p class="fragment content-text" style=""><strong>NLP</strong>:  139 Hours</p>
 <p class="fragment content-text" style=""><strong>Hypnotherapy</strong>:  139 Hours</p>
-<div class="fragment"><div class="img-placeholder"><span>Visual / Diagram</span></div></div>
-</div>
-</section>
+<p class="fragment content-text" style=""><strong>Time Line Therapy®</strong>:  139 Hours</p>
+<p class="fragment content-text" style=""><strong>NLP Coaching</strong>:<strong> </strong>139 Hours</p>
+<div class="fragment" style="text-align:center;margin:0.8em 0;"><img src="images/slide2_img0.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:105px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-section" data-slide="3">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">Themes</h1></div>
-<div class="fragment"><div class="img-placeholder"><span>Visual / Diagram</span></div></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="3"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">Themes</h1></div>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide3_img0.jpg"  style="max-width:100%;height:auto;border-radius:8px;max-height:432px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-content" data-slide="4">
-<div class="topbar"></div>
-<div class="slide-inner">
-<h2 class="fragment slide-heading">Empowerment</h2>
+<section class="slide slide-content" data-slide="4"><div class="topbar"></div><div class="slide-inner"><h2 class="fragment slide-heading">Empowerment</h2>
 <p class="fragment content-text" style="color:#0060A2;font-size:1.4rem;"><span style="color:#0060A2"><strong>Cause</strong></span></p>
-<p class="fragment content-text" style="font-size:1.4rem;"><strong>Effect</strong></p>
-<p class="fragment content-text" style="color:#353D40;font-size:1.4rem;"><span style="color:#353D40"><strong>Reasons</strong></span></p>
-<p class="fragment content-text" style="color:#0060A2;font-size:1.4rem;"><span style="color:#0060A2"><strong>Effect</strong></span></p>
 <p class="fragment content-text" style="color:#0060A2;font-size:1.4rem;"><span style="color:#0060A2"><strong>&gt;</strong></span></p>
-<p class="fragment content-text" style="color:#353D40;font-size:1.4rem;"><span style="color:#353D40"><strong>vs.</strong></span></p>
+<p class="fragment content-text" style="font-size:1.4rem;"><strong>Effect</strong></p>
+<p class="fragment content-text" style="color:#0060A2;font-size:1.4rem;"><span style="color:#0060A2"><strong>Effect</strong></span></p>
 <p class="fragment content-text" style="color:#353D40;font-size:1.4rem;"><span style="color:#353D40"><strong>Results</strong></span></p>
+<p class="fragment content-text" style="color:#353D40;font-size:1.4rem;"><span style="color:#353D40"><strong>Reasons</strong></span></p>
+<p class="fragment content-text" style="color:#353D40;font-size:1.4rem;"><span style="color:#353D40"><strong>vs.</strong></span></p>
 <p class="fragment content-text" style="font-size:1.4rem;"><strong>= Empowerment</strong></p>
-</div>
-</section>
+</div></section>
 
-<section class="slide slide-content" data-slide="5">
-<div class="topbar"></div>
-<div class="slide-inner">
-<h2 class="fragment slide-heading" style="font-size:1.8rem;"><strong>Events</strong></h2>
-<p class="fragment content-text" style="">NLP Model of Communication</p>
+<section class="slide slide-content" data-slide="5"><div class="topbar"></div><div class="slide-inner"><h2 class="fragment slide-heading">NLP Model of Communication</h2>
+<p class="fragment content-text" style=""><strong>Events</strong></p>
 <p class="fragment content-text" style="color:#353D40;font-size:1.4rem;"><span style="color:#353D40"><strong>VAKOG</strong></span></p>
-<p class="fragment content-text" style="color:#353D40;font-size:1.4rem;"><span style="color:#353D40"><strong>11 </strong></span><span style="color:#353D40"><strong>Million BPS</strong></span></p>
 <p class="fragment content-text" style=""><strong>D</strong>elete</p>
 <p class="fragment content-text" style=""><strong>D</strong>istort </p>
 <p class="fragment content-text" style=""><strong>G</strong>eneralize</p>
+<p class="fragment content-text" style="color:#353D40;font-size:1.4rem;"><span style="color:#353D40"><strong>11 </strong></span><span style="color:#353D40"><strong>Million BPS</strong></span></p>
 <p class="fragment content-text" style="font-size:1.4rem;"><strong>State</strong></p>
 <p class="fragment content-text" style=""><strong>Behavior</strong></p>
-<div class="fragment"><div class="img-placeholder"><span>Visual / Diagram</span></div></div>
-</div>
-</section>
+<div class="fragment" style="text-align:center;margin:0.8em 0;"><img src="images/slide5_img1.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:500px;" alt="" loading="lazy"></div>
+<div class="fragment" style="text-align:center;margin:0.8em 0;"><img src="images/slide5_img5.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:200px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-section" data-slide="6">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">Our Internal Representations</h1></div>
-<div class="fragment"><div class="img-placeholder"><span>Visual / Diagram</span></div></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="6"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">Our Internal Representations</h1></div>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide6_img0.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:500px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-content" data-slide="7">
-<div class="topbar"></div>
-<div class="slide-inner">
-<h2 class="fragment slide-heading">Focus On What You Want!</h2>
+<section class="slide slide-content" data-slide="7"><div class="topbar"></div><div class="slide-inner"><h2 class="fragment slide-heading">Focus On What You Want!</h2>
 <ul class="content-list">
   <li class="fragment"><em>“Whether </em><em>you think you can or think you can&#x27;t - you are </em><em>right”</em></li>
-  <li class="fragment"><em>&quot;I have a  policy. I never listen to anyone explain why they can&#x27;t do </em><em>something“. </em>He added that he didn&#x27;t want to be convinced by them. </li>
 </ul>
 <p class="fragment content-text" style=""><strong>Henry Ford</strong></p>
-<p class="fragment content-note" style="font-size:0.9rem;opacity:0.8;margin:0.5em 0;"><strong>Michael Caine, </strong><strong>Actor</strong>Interviewed on Australian TelevisionRe: The secret of his success </p>
-<div class="fragment"><div class="img-placeholder"><span>Visual / Diagram</span></div></div>
-</div>
-</section>
+<ul class="content-list">
+  <li class="fragment"><em>&quot;I have a  policy. I never listen to anyone explain why they can&#x27;t do </em><em>something“. </em>He added that he didn&#x27;t want to be convinced by them. </li>
+</ul>
+<p class="fragment content-note"><strong>Michael Caine, </strong><strong>Actor</strong>Interviewed on Australian TelevisionRe: The secret of his success </p>
+<div class="fragment" style="text-align:center;margin:0.8em 0;"><img src="images/slide7_img0.jpg"  style="max-width:100%;height:auto;border-radius:8px;max-height:500px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-content" data-slide="8">
-<div class="topbar"></div>
-<div class="slide-inner">
-<h2 class="fragment slide-heading">Focus On What You Want!</h2>
+<section class="slide slide-content" data-slide="8"><div class="topbar"></div><div class="slide-inner"><h2 class="fragment slide-heading">Focus On What You Want!</h2>
 <ul class="content-list">
   <li class="fragment">You need to be in charge of your focus and your results.</li>
   <li class="fragment">“We ARE caring people, and you also need to know that we do not care about your excuses for not having your life the way you want it. We invite you to give up arguing for your limitations.</li>
 </ul>
 <p class="fragment content-text" style=""><strong><em>Tad James, </em></strong><strong><em>2005</em></strong></p>
-<div class="fragment"><div class="img-placeholder"><span>Visual / Diagram</span></div></div>
-</div>
-</section>
+<div class="fragment" style="text-align:center;margin:0.8em 0;"><img src="images/slide8_img0.jpg"  style="max-width:100%;height:auto;border-radius:8px;max-height:500px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-section" data-slide="9">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">Perception Is Projection</h1></div>
-<div class="fragment"><div class="img-placeholder"><span>Visual / Diagram</span></div></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="9"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">Perception Is Projection</h1></div>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide9_img0.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:500px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-content" data-slide="10">
-<div class="topbar"></div>
-<div class="slide-inner">
-<h2 class="fragment slide-heading">Neuro Transmitter</h2>
+<section class="slide slide-content" data-slide="10"><div class="topbar"></div><div class="slide-inner"><h2 class="fragment slide-heading">Neuro Transmitter</h2>
 <p class="fragment content-text" style=""><strong>Diagram of 2 Neurons</strong></p>
-<p class="fragment content-text" style=""><strong>Synaptic Gap</strong></p>
 <p class="fragment content-text" style="">Neuro Transmitter bathes every cell in the body!</p>
-<div class="fragment"><div class="img-placeholder"><span>Visual / Diagram</span></div></div>
-</div>
-</section>
+<p class="fragment content-text" style=""><strong>Synaptic Gap</strong></p>
+<div class="fragment" style="text-align:center;margin:0.8em 0;"><img src="images/slide10_img0.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:283px;" alt="" loading="lazy"></div>
+<div class="fragment" style="text-align:center;margin:0.8em 0;"><img src="images/slide10_img1.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:283px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-content" data-slide="11">
-<div class="topbar"></div>
-<div class="slide-inner">
-<h2 class="fragment slide-heading">Responsibility for Change</h2>
+<section class="slide slide-content" data-slide="11"><div class="topbar"></div><div class="slide-inner"><h2 class="fragment slide-heading">Responsibility for Change</h2>
 <ul class="content-list">
   <li class="fragment">Close the Eyes </li>
   <li class="fragment">Relax the muscles around the eyes </li>
@@ -242,22 +193,17 @@ html,body{height:100%;overflow:hidden;font-family:'Segoe UI',system-ui,-apple-sy
   <li class="fragment">Holding on to the Relaxation</li>
   <li class="fragment">Test them and make sure you can’t open them</li>
 </ul>
-<div class="fragment"><div class="img-placeholder"><span>Visual / Diagram</span></div></div>
-</div>
-</section>
+<div class="fragment" style="text-align:center;margin:0.8em 0;"><img src="images/slide11_img0.jpg"  style="max-width:100%;height:auto;border-radius:8px;max-height:500px;" alt="" loading="lazy"></div>
+<div class="fragment" style="text-align:center;margin:0.8em 0;"><img src="images/slide11_img1.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:90px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-content" data-slide="12">
-<div class="topbar"></div>
-<div class="slide-inner">
-<h2 class="fragment slide-heading">Re-inventing NLP</h2>
-<p class="fragment content-text" style="color:#36639C;"><span style="color:#36639C"><strong>NOT a “</strong></span><span style="color:#36639C"><strong>Do-To” </strong></span><span style="color:#36639C"><strong>but a “Do-With” process</strong></span></p>
+<section class="slide slide-content" data-slide="12"><div class="topbar"></div><div class="slide-inner"><h2 class="fragment slide-heading">Re-inventing NLP</h2>
 <p class="fragment content-text" style="color:#36639C;"><span style="color:#36639C"><strong>INDUCTION</strong></span></p>
-</div>
-</section>
+<p class="fragment content-text" style="color:#36639C;"><span style="color:#36639C"><strong>NOT a “</strong></span><span style="color:#36639C"><strong>Do-To” </strong></span><span style="color:#36639C"><strong>but a “Do-With” process</strong></span></p>
+<div class="fragment" style="text-align:center;margin:0.8em 0;"><img src="images/slide12_img0.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:266px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-content" data-slide="13">
-<div class="topbar"></div>
-<div class="slide-inner">
+<section class="slide slide-content" data-slide="13"><div class="topbar"></div><div class="slide-inner"><div class="fragment" style="text-align:center;margin:0.5em 0;"><img src="images/slide13_img0.jpg"  style="max-width:100%;height:auto;border-radius:8px;max-height:500px;" alt="" loading="lazy"></div>
 <h2 class="fragment slide-heading">Responsibility for Value</h2>
 <ul class="content-list">
   <li class="fragment">Client in Coaching</li>
@@ -267,157 +213,100 @@ html,body{height:100%;overflow:hidden;font-family:'Segoe UI',system-ui,-apple-sy
   <li class="fragment">When you purchase a Service</li>
   <li class="fragment">and … When you take a Training</li>
 </ul>
-<div class="fragment"><div class="img-placeholder"><span>Visual / Diagram</span></div></div>
-</div>
-</section>
+</div></section>
 
-<section class="slide slide-section" data-slide="14">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">The 4 Steps to Learning</h1></div>
-<div class="fragment"><div class="img-placeholder"><span>Visual / Diagram</span></div></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="14"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">The 4 Steps to Learning</h1></div>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide14_img0.jpg"  style="max-width:100%;height:auto;border-radius:8px;max-height:500px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-content" data-slide="15">
-<div class="topbar"></div>
-<div class="slide-inner">
-<h2 class="fragment slide-heading">Excellence</h2>
+<section class="slide slide-content" data-slide="15"><div class="topbar"></div><div class="slide-inner"><h2 class="fragment slide-heading">Excellence</h2>
 <p class="fragment content-text" style=""><strong>0</strong></p>
 <p class="fragment content-text" style=""><strong>100</strong></p>
-</div>
-</section>
+</div></section>
 
-<section class="slide slide-section" data-slide="16">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">How to <span style="color:#AB292E">NOT</span> Get Certified</h1></div>
-<div class="fragment"><div class="img-placeholder"><span>Visual / Diagram</span></div></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="16"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">How to <span style="color:#AB292E">NOT</span> Get Certified</h1></div>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide16_img0.jpg"  style="max-width:100%;height:auto;border-radius:8px;max-height:500px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-content" data-slide="17">
-<div class="topbar"></div>
-<div class="slide-inner">
-<h2 class="fragment slide-heading">Empowerment</h2>
+<section class="slide slide-content" data-slide="17"><div class="topbar"></div><div class="slide-inner"><h2 class="fragment slide-heading">Empowerment</h2>
 <p class="fragment content-text" style="color:#0060A2;font-size:1.4rem;"><span style="color:#0060A2"><strong>Cause</strong></span></p>
-<p class="fragment content-text" style="font-size:1.4rem;"><strong>Effect</strong></p>
-<p class="fragment content-text" style="color:#353D40;font-size:1.4rem;"><span style="color:#353D40"><strong>Reasons</strong></span></p>
-<p class="fragment content-text" style="color:#0060A2;font-size:1.4rem;"><span style="color:#0060A2"><strong>Effect</strong></span></p>
 <p class="fragment content-text" style="color:#0060A2;font-size:1.4rem;"><span style="color:#0060A2"><strong>&gt;</strong></span></p>
-<p class="fragment content-text" style="color:#353D40;font-size:1.4rem;"><span style="color:#353D40"><strong>vs.</strong></span></p>
+<p class="fragment content-text" style="font-size:1.4rem;"><strong>Effect</strong></p>
+<p class="fragment content-text" style="color:#0060A2;font-size:1.4rem;"><span style="color:#0060A2"><strong>Effect</strong></span></p>
 <p class="fragment content-text" style="color:#353D40;font-size:1.4rem;"><span style="color:#353D40"><strong>Results</strong></span></p>
+<p class="fragment content-text" style="color:#353D40;font-size:1.4rem;"><span style="color:#353D40"><strong>Reasons</strong></span></p>
+<p class="fragment content-text" style="color:#353D40;font-size:1.4rem;"><span style="color:#353D40"><strong>vs.</strong></span></p>
 <p class="fragment content-text" style="font-size:1.4rem;"><strong>= Empowerment</strong></p>
-</div>
-</section>
+</div></section>
 
-<section class="slide slide-section" data-slide="18">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">Operating Agreements</h1></div>
-<div class="fragment"><div class="img-placeholder"><span>Visual / Diagram</span></div></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="18"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">Operating Agreements</h1></div>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide18_img0.jpg"  style="max-width:100%;height:auto;border-radius:8px;max-height:500px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-title" data-slide="19">
-<div class="slide-inner">
-<div class="fragment"><p class="slide-pre-title" style="color:#9cb8d8;font-size:1.1rem;letter-spacing:2px;text-transform:uppercase;">Proudly welcomes you to...</p></div>
-<div class="fragment"><h1 class="slide-main-title" style="font-size:2.8rem;margin:0.3em 0;">The FasTrak™</h1></div>
+<section class="slide slide-title" data-slide="19"><div class="slide-inner"><div class="fragment"><p class="slide-pre-title">Proudly welcomes you to...</p></div>
+<div class="fragment"><h1 class="slide-main-title">The FasTrak™</h1></div>
 <div class="fragment"><p style="font-size:1.2rem;opacity:0.9;">NLP Coaching | NLP Practitioner Training</p></div>
-<div class="fragment"><p style="color:#5b8ec2;margin-top:1.5em;font-size:1.1rem;">Presented by Brad Greentree</p></div>
-<div class="fragment"><p style="color:#5b8ec2;font-size:0.85rem;margin-top:0.5em;">Transform the Planet</p></div>
-</div>
-</section>
+<div class="fragment" style="margin:0.5em auto;"><img src="images/slide19_img0.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:149px;" alt="" loading="lazy"></div>
+<div class="fragment" style="margin:0.5em auto;"><img src="images/slide19_img1.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:124px;" alt="" loading="lazy"></div>
+<div class="fragment"><p style="color:#5b8ec2;margin-top:1em;font-size:1.1rem;">Presented by <span style="color:#36639C"><strong>Brad </strong></span><span style="color:#36639C"><strong>Greentree</strong></span></p></div>
+<div class="fragment"><p style="color:#5b8ec2;font-size:0.85rem;margin-top:0.3em;">Transform the Planet</p></div></div></section>
 
-<section class="slide slide-section" data-slide="20">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">My Goals for the Training</h1></div>
-<div class="fragment"><div class="img-placeholder"><span>Visual / Diagram</span></div></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="20"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">My Goals for the Training</h1></div>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide20_img0.jpg"  style="max-width:100%;height:auto;border-radius:8px;max-height:500px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-section" data-slide="21">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">Principles for Success</h1></div>
-<div class="fragment"><div class="img-placeholder"><span>Visual / Diagram</span></div></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="21"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">Principles for Success</h1></div>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide21_img0.jpg"  style="max-width:100%;height:auto;border-radius:8px;max-height:500px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-section" data-slide="22">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">Pattern Interrupt</h1></div>
-<div class="fragment"><div class="img-placeholder"><span>Visual / Diagram</span></div></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="22"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">Pattern Interrupt</h1></div>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide22_img0.jpg"  style="max-width:100%;height:auto;border-radius:8px;max-height:500px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-section" data-slide="23">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">Achieving Outcomes</h1></div>
-<div class="fragment"><div class="img-placeholder"><span>Visual / Diagram</span></div></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="23"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">Achieving Outcomes</h1></div>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide23_img0.jpg"  style="max-width:100%;height:auto;border-radius:8px;max-height:500px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-section" data-slide="24">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">What is NLP?</h1></div>
+<section class="slide slide-section" data-slide="24"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">What is NLP?</h1></div>
 <div class="fragment"><p style="font-size:1.2rem;opacity:0.8;margin-top:0.8em;">Not a “Do To”, but a “Do With” process</p></div>
-</div>
-</section>
+</div></section>
 
-<section class="slide slide-section" data-slide="25">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;"><strong>We invented the </strong><strong><em>FasTrak</em></strong><strong>™ NLP </strong><strong>Training format …</strong></h1></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="25"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;"><strong>We invented the </strong><strong><em>FasTrak</em></strong><strong>™ NLP </strong><strong>Training format …</strong></h1></div>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide25_img0.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:345px;" alt="" loading="lazy"></div>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide25_img1.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:90px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-section" data-slide="26">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">Neuro Linguistic Programming</h1></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="26"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">Neuro Linguistic Programming</h1></div>
+</div></section>
 
-<section class="slide slide-section" data-slide="27">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">All…</h1></div>
+<section class="slide slide-section" data-slide="27"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">All…</h1></div>
 <div class="fragment"><p style="font-size:1.2rem;opacity:0.8;margin-top:0.8em;">… is Unconscious</p></div>
-</div>
-</section>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide27_img0.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:149px;" alt="" loading="lazy"></div>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide27_img1.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:145px;" alt="" loading="lazy"></div>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide27_img2.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:145px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-section" data-slide="28">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">Conscious Unconscious Integration</h1></div>
-<div class="fragment"><div class="img-placeholder"><span>Visual / Diagram</span></div></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="28"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">Conscious Unconscious Integration</h1></div>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide28_img0.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:500px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-section" data-slide="29">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">The Learning State</h1></div>
-<div class="fragment"><div class="img-placeholder"><span>Visual / Diagram</span></div></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="29"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">The Learning State</h1></div>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide29_img0.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:148px;" alt="" loading="lazy"></div>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide29_img1.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:90px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-section" data-slide="30">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">The Learning State</h1></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="30"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">The Learning State</h1></div>
+</div></section>
 
-<section class="slide slide-section" data-slide="31">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">NLP Presuppositions</h1></div>
-<div class="fragment"><div class="img-placeholder"><span>Visual / Diagram</span></div></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="31"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">NLP Presuppositions</h1></div>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide31_img0.jpg"  style="max-width:100%;height:auto;border-radius:8px;max-height:292px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-section" data-slide="32">
-<div class="slide-inner">
-<div class="fragment"><h2 class="page-ref" style="font-size:2.5rem;opacity:0.8;"><strong>Page 15</strong></h2></div>
-<div class="fragment"><p style="font-size:1rem;opacity:0.5;">Manual Reference</p></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="32"><div class="slide-inner"><div class="fragment"><h2 class="page-ref"><strong>Page 15</strong></h2></div>
+<div class="fragment"><img src="images/slide32_img0.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:127px;" alt="" loading="lazy"></div>
+<div class="fragment"><p style="font-size:1rem;opacity:0.5;">Manual Reference</p></div></div></section>
 
-<section class="slide slide-content" data-slide="33">
-<div class="topbar"></div>
-<div class="slide-inner">
-<h2 class="fragment slide-heading">Sensory Acuity</h2>
+<section class="slide slide-content" data-slide="33"><div class="topbar"></div><div class="slide-inner"><h2 class="fragment slide-heading">Sensory Acuity</h2>
 <ul class="content-list">
   <li class="fragment"><span style="color:#AB292E"><strong>Skin </strong></span><span style="color:#AB292E"><strong>Color </strong></span></li>
   <li class="fragment"><span style="color:#AB292E"><strong>Skin Tonus</strong></span></li>
@@ -425,577 +314,377 @@ html,body{height:100%;overflow:hidden;font-family:'Segoe UI',system-ui,-apple-sy
   <li class="fragment"><span style="color:#AB292E"><strong>Lower Lip Size</strong></span></li>
   <li class="fragment"><span style="color:#AB292E"><strong>Eyes</strong></span></li>
 </ul>
-<div class="fragment"><div class="img-placeholder"><span>Visual / Diagram</span></div></div>
-</div>
-</section>
+<div class="fragment" style="text-align:center;margin:0.8em 0;"><img src="images/slide33_img0.jpg"  style="max-width:100%;height:auto;border-radius:8px;max-height:500px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-section" data-slide="34">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">Sensory Acuity - Calibration</h1></div>
+<section class="slide slide-section" data-slide="34"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">Sensory Acuity - Calibration</h1></div>
 <div class="fragment"><p style="font-size:1.2rem;opacity:0.8;margin-top:0.8em;"><span style="color:#AB292E">Compare</span></p></div>
-<div class="fragment"><div class="img-placeholder"><span>Visual / Diagram</span></div></div>
-</div>
-</section>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide34_img0.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:376px;" alt="" loading="lazy"></div>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide34_img1.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:374px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-content" data-slide="35">
-<div class="topbar"></div>
-<div class="slide-inner">
-<h2 class="fragment slide-heading">Basis for All Exercises</h2>
+<section class="slide slide-content" data-slide="35"><div class="topbar"></div><div class="slide-inner"><h2 class="fragment slide-heading">Basis for All Exercises</h2>
 <p class="fragment content-text" style="font-size:1.4rem;"><strong>Client</strong></p>
 <p class="fragment content-text" style="">Use real situations</p>
 <p class="fragment content-text" style="">Only do NLP</p>
 <p class="fragment content-text" style="">Notice the Process, offer assistance to B Give feedback sandwich</p>
-<div class="fragment"><div class="img-placeholder"><span>Visual / Diagram</span></div></div>
-</div>
-</section>
+<div class="fragment" style="text-align:center;margin:0.8em 0;"><img src="images/slide35_img0.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:123px;" alt="" loading="lazy"></div>
+<div class="fragment" style="text-align:center;margin:0.8em 0;"><img src="images/slide35_img1.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:116px;" alt="" loading="lazy"></div>
+<div class="fragment" style="text-align:center;margin:0.8em 0;"><img src="images/slide35_img2.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:109px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-section" data-slide="36">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">Feedback Sandwich</h1></div>
-<div class="fragment"><div class="img-placeholder"><span>Visual / Diagram</span></div></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="36"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">Feedback Sandwich</h1></div>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide36_img0.jpg"  style="max-width:100%;height:auto;border-radius:8px;max-height:500px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-content" data-slide="37">
-<div class="topbar"></div>
-<div class="slide-inner">
-<h2 class="fragment slide-heading">Basis for All Exercises</h2>
+<section class="slide slide-content" data-slide="37"><div class="topbar"></div><div class="slide-inner"><h2 class="fragment slide-heading">Basis for All Exercises</h2>
 <p class="fragment content-text" style="font-size:1.4rem;"><strong>Client</strong></p>
 <p class="fragment content-text" style="">Use real situations</p>
 <p class="fragment content-text" style="">Only do NLP</p>
 <p class="fragment content-text" style="">Notice the Process, offer assistance to B Give feedback sandwich</p>
-<div class="fragment"><div class="img-placeholder"><span>Visual / Diagram</span></div></div>
-</div>
-</section>
+<div class="fragment" style="text-align:center;margin:0.8em 0;"><img src="images/slide37_img0.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:123px;" alt="" loading="lazy"></div>
+<div class="fragment" style="text-align:center;margin:0.8em 0;"><img src="images/slide37_img1.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:116px;" alt="" loading="lazy"></div>
+<div class="fragment" style="text-align:center;margin:0.8em 0;"><img src="images/slide37_img2.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:109px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-section" data-slide="38">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">Chair Position</h1></div>
+<section class="slide slide-section" data-slide="38"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">Chair Position</h1></div>
 <div class="fragment"><p style="font-size:1.2rem;opacity:0.8;margin-top:0.8em;"><span style="color:#D13F46">5 Minutes Each Person</span></p></div>
-</div>
-</section>
+</div></section>
 
-<section class="slide slide-section" data-slide="39">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">Sensory Acuity - Calibration</h1></div>
+<section class="slide slide-section" data-slide="39"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">Sensory Acuity - Calibration</h1></div>
 <div class="fragment"><p style="font-size:1.2rem;opacity:0.8;margin-top:0.8em;"><span style="color:#AB292E">Compare</span></p></div>
-<div class="fragment"><div class="img-placeholder"><span>Visual / Diagram</span></div></div>
-</div>
-</section>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide39_img0.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:376px;" alt="" loading="lazy"></div>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide39_img1.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:374px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-section" data-slide="40">
-<div class="slide-inner">
-<div class="fragment"><h2 class="page-ref" style="font-size:2.5rem;opacity:0.8;"><strong>Pages 16 - 21</strong></h2></div>
-<div class="fragment"><p style="font-size:1rem;opacity:0.5;">Manual Reference</p></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="40"><div class="slide-inner"><div class="fragment"><h2 class="page-ref"><strong>Pages 16 - 21</strong></h2></div>
+<div class="fragment"><img src="images/slide40_img0.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:127px;" alt="" loading="lazy"></div>
+<div class="fragment"><p style="font-size:1rem;opacity:0.5;">Manual Reference</p></div></div></section>
 
-<section class="slide slide-section" data-slide="41">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">Rapport</h1></div>
-<div class="fragment"><div class="img-placeholder"><span>Visual / Diagram</span></div></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="41"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">Rapport</h1></div>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide41_img0.jpg"  style="max-width:100%;height:auto;border-radius:8px;max-height:500px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-section" data-slide="42">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">4 Indicators of Rapport</h1></div>
-<div class="fragment"><div class="img-placeholder"><span>Visual / Diagram</span></div></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="42"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">4 Indicators of Rapport</h1></div>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide42_img0.jpg"  style="max-width:100%;height:auto;border-radius:8px;max-height:500px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-section" data-slide="43">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">Voice Matching</h1></div>
-<div class="fragment"><div class="img-placeholder"><span>Visual / Diagram</span></div></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="43"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">Voice Matching</h1></div>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide43_img0.jpg"  style="max-width:100%;height:auto;border-radius:8px;max-height:500px;" alt="" loading="lazy"></div>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide43_img1.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:31px;" alt="" loading="lazy"></div>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide43_img2.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:31px;" alt="" loading="lazy"></div>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide43_img3.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:31px;" alt="" loading="lazy"></div>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide43_img4.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:31px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-section" data-slide="44">
-<div class="slide-inner">
-<div class="fragment"><h2 class="page-ref" style="font-size:2.5rem;opacity:0.8;"><strong>Page 10</strong></h2></div>
-<div class="fragment"><p style="font-size:1rem;opacity:0.5;">Manual Reference</p></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="44"><div class="slide-inner"><div class="fragment"><h2 class="page-ref"><strong>Page 10</strong></h2></div>
+<div class="fragment"><img src="images/slide44_img0.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:127px;" alt="" loading="lazy"></div>
+<div class="fragment"><p style="font-size:1rem;opacity:0.5;">Manual Reference</p></div></div></section>
 
-<section class="slide slide-section" data-slide="45">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">Outcome Definition</h1></div>
+<section class="slide slide-section" data-slide="45"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">Outcome Definition</h1></div>
 <div class="fragment"><p style="font-size:1.2rem;opacity:0.8;margin-top:0.8em;">Repeat step 3 until done.</p></div>
-<div class="fragment"><div class="img-placeholder"><span>Visual / Diagram</span></div></div>
-</div>
-</section>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide45_img0.jpg"  style="max-width:100%;height:auto;border-radius:8px;max-height:500px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-section" data-slide="46">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">Remember!</h1></div>
+<section class="slide slide-section" data-slide="46"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">Remember!</h1></div>
 <div class="fragment"><p style="font-size:1.2rem;opacity:0.8;margin-top:0.8em;">Whenever you are doing NLP</p></div>
-<div class="fragment"><div class="img-placeholder"><span>Visual / Diagram</span></div></div>
-</div>
-</section>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide46_img0.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:500px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-section" data-slide="47">
-<div class="slide-inner">
-<div class="fragment"><h2 class="page-ref" style="font-size:2.5rem;opacity:0.8;"><strong>Page 35</strong></h2></div>
-<div class="fragment"><p style="font-size:1rem;opacity:0.5;">Manual Reference</p></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="47"><div class="slide-inner"><div class="fragment"><h2 class="page-ref"><strong>Page 35</strong></h2></div>
+<div class="fragment"><img src="images/slide47_img0.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:127px;" alt="" loading="lazy"></div>
+<div class="fragment"><p style="font-size:1rem;opacity:0.5;">Manual Reference</p></div></div></section>
 
-<section class="slide slide-section" data-slide="48">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">Linguistic Presuppositions</h1></div>
-<div class="fragment"><div class="img-placeholder"><span>Visual / Diagram</span></div></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="48"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">Linguistic Presuppositions</h1></div>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide48_img0.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:500px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-section" data-slide="49">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">Change</h1></div>
-<div class="fragment"><div class="img-placeholder"><span>Visual / Diagram</span></div></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="49"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">Change</h1></div>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide49_img0.jpg"  style="max-width:100%;height:auto;border-radius:8px;max-height:277px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-section" data-slide="50">
-<div class="slide-inner">
-<div class="fragment"><h2 class="page-ref" style="font-size:2.5rem;opacity:0.8;"><strong>Page 39</strong></h2></div>
-<div class="fragment"><p style="font-size:1rem;opacity:0.5;">Manual Reference</p></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="50"><div class="slide-inner"><div class="fragment"><h2 class="page-ref"><strong>Page 39</strong></h2></div>
+<div class="fragment"><img src="images/slide50_img0.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:127px;" alt="" loading="lazy"></div>
+<div class="fragment"><p style="font-size:1rem;opacity:0.5;">Manual Reference</p></div></div></section>
 
-<section class="slide slide-section" data-slide="51">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">Hierarchy of Ideas</h1></div>
-<div class="fragment"><div class="img-placeholder"><span>Visual / Diagram</span></div></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="51"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">Hierarchy of Ideas</h1></div>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide51_img0.jpg"  style="max-width:100%;height:auto;border-radius:8px;max-height:297px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-content" data-slide="52">
-<div class="topbar"></div>
-<div class="slide-inner">
-<h2 class="fragment slide-heading">Lateral Chunking</h2>
+<section class="slide slide-content" data-slide="52"><div class="topbar" style="background:#D13F46"></div><div class="slide-inner"><h2 class="fragment slide-heading" style="font-size:1.5rem;color:#D13F46;"><span style="color:#D13F46">“Lateral Chunking is the domain of the problem solver. If you want to be a great problem solver learn how to be a great lateral </span><span style="color:#D13F46">chunker</span><span style="color:#D13F46">.” </span><span style="color:#D13F46"><em>Adriana James, 2012</em></span></h2>
+<p class="fragment content-text" style="">Lateral Chunking</p>
 <p class="fragment content-text" style="color:#D13F46;"><span style="color:#D13F46">Higher Level Chunk</span></p>
 <p class="fragment content-text" style="color:#D13F46;font-size:1.4rem;"><span style="color:#D13F46">Lateral Chunk</span></p>
-<p class="fragment content-note" style="font-size:0.9rem;opacity:0.8;margin:0.5em 0;"><span style="color:#D13F46">“Lateral Chunking is the domain of the problem solver. If you want to be a great problem solver learn how to be a great lateral </span><span style="color:#D13F46">chunker</span><span style="color:#D13F46">.” </span><span style="color:#D13F46"><em>Adriana James, 2012</em></span></p>
-</div>
-</section>
+</div></section>
 
-<section class="slide slide-content" data-slide="53">
-<div class="topbar"></div>
-<div class="slide-inner">
-<h2 class="fragment slide-heading">Chunking Exercise</h2>
+<section class="slide slide-content" data-slide="53"><div class="topbar"></div><div class="slide-inner"><h2 class="fragment slide-heading">Chunking Exercise</h2>
+<p class="fragment content-text" style="">Takes direction from C</p>
 <p class="fragment content-text" style="">A</p>
 <p class="fragment content-text" style="">B</p>
-<p class="fragment content-text" style="">C</p>
 <p class="fragment content-text" style="">Listens for logical level shifts from A</p>
+<p class="fragment content-text" style="">C</p>
 <p class="fragment content-text" style="">Standing</p>
 <p class="fragment content-text" style="">Directs A by Chunking up or Down</p>
-<p class="fragment content-text" style="">Takes direction from C</p>
-</div>
-</section>
+</div></section>
 
-<section class="slide slide-section" data-slide="54">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">Opportunity work</h1></div>
-<div class="fragment"><div class="img-placeholder"><span>Visual / Diagram</span></div></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="54"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">Opportunity work</h1></div>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide54_img0.jpg"  style="max-width:100%;height:auto;border-radius:8px;max-height:500px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-section" data-slide="55">
-<div class="slide-inner">
-<div class="fragment"><h2 class="page-ref" style="font-size:2.5rem;opacity:0.8;"><strong>Pages 40-42</strong></h2></div>
-<div class="fragment"><p style="font-size:1rem;opacity:0.5;">Manual Reference</p></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="55"><div class="slide-inner"><div class="fragment"><h2 class="page-ref"><strong>Pages 40-42</strong></h2></div>
+<div class="fragment"><img src="images/slide55_img0.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:127px;" alt="" loading="lazy"></div>
+<div class="fragment"><p style="font-size:1rem;opacity:0.5;">Manual Reference</p></div></div></section>
 
-<section class="slide slide-section" data-slide="56">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">Milton Model</h1></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="56"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">Milton Model</h1></div>
+</div></section>
 
-<section class="slide slide-title" data-slide="57">
-<div class="slide-inner">
-<div class="fragment"><p class="slide-pre-title" style="color:#9cb8d8;font-size:1.1rem;letter-spacing:2px;text-transform:uppercase;">Proudly welcomes you to...</p></div>
-<div class="fragment"><h1 class="slide-main-title" style="font-size:2.8rem;margin:0.3em 0;">The FasTrak™</h1></div>
+<section class="slide slide-title" data-slide="57"><div class="slide-inner"><div class="fragment"><p class="slide-pre-title">Proudly welcomes you to...</p></div>
+<div class="fragment"><h1 class="slide-main-title">The FasTrak™</h1></div>
 <div class="fragment"><p style="font-size:1.2rem;opacity:0.9;">NLP Coaching | NLP Practitioner Training</p></div>
-<div class="fragment"><p style="color:#5b8ec2;margin-top:1.5em;font-size:1.1rem;">Presented by Brad Greentree</p></div>
-<div class="fragment"><p style="color:#5b8ec2;font-size:0.85rem;margin-top:0.5em;">Transform the Planet</p></div>
-</div>
-</section>
+<div class="fragment" style="margin:0.5em auto;"><img src="images/slide57_img0.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:149px;" alt="" loading="lazy"></div>
+<div class="fragment" style="margin:0.5em auto;"><img src="images/slide57_img1.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:124px;" alt="" loading="lazy"></div>
+<div class="fragment"><p style="color:#5b8ec2;margin-top:1em;font-size:1.1rem;">Presented by <span style="color:#36639C"><strong>Brad </strong></span><span style="color:#36639C"><strong>Greentree</strong></span></p></div>
+<div class="fragment"><p style="color:#5b8ec2;font-size:0.85rem;margin-top:0.3em;">Transform the Planet</p></div></div></section>
 
-<section class="slide slide-section" data-slide="58">
-<div class="slide-inner">
-<div class="fragment"><h2 class="page-ref" style="font-size:2.5rem;opacity:0.8;"><strong>Pages 43 - 44</strong></h2></div>
-<div class="fragment"><p style="font-size:1rem;opacity:0.5;">Manual Reference</p></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="58"><div class="slide-inner"><div class="fragment"><h2 class="page-ref"><strong>Pages 43 - 44</strong></h2></div>
+<div class="fragment"><img src="images/slide58_img0.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:127px;" alt="" loading="lazy"></div>
+<div class="fragment"><p style="font-size:1rem;opacity:0.5;">Manual Reference</p></div></div></section>
 
-<section class="slide slide-section" data-slide="59">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">Metaphor</h1></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="59"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">Metaphor</h1></div>
+</div></section>
 
-<section class="slide slide-content" data-slide="60">
-<div class="topbar"></div>
-<div class="slide-inner">
-<h2 class="fragment slide-heading">Metaphor Design</h2>
+<section class="slide slide-content" data-slide="60"><div class="topbar"></div><div class="slide-inner"><h2 class="fragment slide-heading">Metaphor Design</h2>
+<p class="fragment content-text" style="">Q2: What is another example of that?</p>
 <p class="fragment content-text" style="">No Conscious Connection</p>
 <p class="fragment content-text" style="">Q1: What is this an example of?</p>
-<p class="fragment content-text" style="">Q2: What is another example of that?</p>
-</div>
-</section>
+</div></section>
 
-<section class="slide slide-section" data-slide="61">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">Making Metaphors Work – 1 </h1></div>
+<section class="slide slide-section" data-slide="61"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">Making Metaphors Work – 1 </h1></div>
 <div class="fragment"><p style="font-size:1.2rem;opacity:0.8;margin-top:0.8em;">Developing Your Own Metaphors</p></div>
-<div class="fragment"><div class="img-placeholder"><span>Visual / Diagram</span></div></div>
-</div>
-</section>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide61_img0.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:500px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-section" data-slide="62">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">Making Metaphors Work – 2 </h1></div>
+<section class="slide slide-section" data-slide="62"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">Making Metaphors Work – 2 </h1></div>
 <div class="fragment"><p style="font-size:1.2rem;opacity:0.8;margin-top:0.8em;">Telling Metaphors to Clients</p></div>
-<div class="fragment"><div class="img-placeholder"><span>Visual / Diagram</span></div></div>
-</div>
-</section>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide62_img0.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:500px;" alt="" loading="lazy"></div>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide62_img1.jpg"  style="max-width:100%;height:auto;border-radius:8px;max-height:500px;" alt="" loading="lazy"></div>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide62_img2.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:90px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-content" data-slide="63">
-<div class="topbar"></div>
-<div class="slide-inner">
-<h2 class="fragment slide-heading">Metaphor Design</h2>
+<section class="slide slide-content" data-slide="63"><div class="topbar"></div><div class="slide-inner"><h2 class="fragment slide-heading">Metaphor Design</h2>
+<p class="fragment content-text" style="">Q2: What is another example of that?</p>
 <p class="fragment content-text" style="">No Conscious Connection</p>
 <p class="fragment content-text" style="">Q1: What is this an example of?</p>
-<p class="fragment content-text" style="">Q2: What is another example of that?</p>
-</div>
-</section>
+</div></section>
 
-<section class="slide slide-content" data-slide="64">
-<div class="topbar"></div>
-<div class="slide-inner">
-<h2 class="fragment slide-heading">Metaphors Example #1</h2>
-<p class="fragment content-note" style="font-size:0.9rem;opacity:0.8;margin:0.5em 0;">Taking a day off  &amp; getting better results afterwards because rested and happy	</p>
-<p class="fragment content-text" style="">Metaphor: </p>
+<section class="slide slide-content" data-slide="64"><div class="topbar"></div><div class="slide-inner"><h2 class="fragment slide-heading">Metaphors Example #1</h2>
 <p class="fragment content-text" style="">I like junk food, but I can&#x27;t eat it. </p>
-</div>
-</section>
-
-<section class="slide slide-content" data-slide="65">
-<div class="topbar"></div>
-<div class="slide-inner">
-<h2 class="fragment slide-heading">Metaphors Example #2</h2>
-<p class="fragment content-note" style="font-size:0.9rem;opacity:0.8;margin:0.5em 0;">I Learn new stuff, I get overwhelmed &amp; my mind starts to wander.</p>
-<p class="fragment content-note" style="font-size:0.9rem;opacity:0.8;margin:0.5em 0;">Being caught in a Tornado &amp; staying planted into the ground—Twister Football game gets pretty crazy, everybody seems to run around &amp; yet you know there was always a plan of action followed  trough to success.</p>
 <p class="fragment content-text" style="">Metaphor: </p>
-</div>
-</section>
+<p class="fragment content-note">Taking a day off  &amp; getting better results afterwards because rested and happy	</p>
+</div></section>
 
-<section class="slide slide-content" data-slide="66">
-<div class="topbar"></div>
-<div class="slide-inner">
-<h2 class="fragment slide-heading">Metaphors Example #3</h2>
-<p class="fragment content-note" style="font-size:0.9rem;opacity:0.8;margin:0.5em 0;">I am not good enough to ...do what I want to do.  e.g.:  Be a Trainer of NLP.</p>
-<p class="fragment content-note" style="font-size:0.9rem;opacity:0.8;margin:0.5em 0;">Olympics- one team-mate sick, 2nd team member comes in &amp; ends up winning gold.● Holding the right intention &amp; focus ● Little Engine That Could: <em>“</em><em>I think I can;  I know I can, I knew I </em><em>could!&quot;</em></p>
+<section class="slide slide-content" data-slide="65"><div class="topbar"></div><div class="slide-inner"><h2 class="fragment slide-heading">Metaphors Example #2</h2>
+<p class="fragment content-text" style="">I Learn new stuff, I get overwhelmed &amp; my mind starts to wander.</p>
 <p class="fragment content-text" style="">Metaphor: </p>
-</div>
-</section>
+<p class="fragment content-note">Being caught in a Tornado &amp; staying planted into the ground—Twister Football game gets pretty crazy, everybody seems to run around &amp; yet you know there was always a plan of action followed  trough to success.</p>
+</div></section>
 
-<section class="slide slide-content" data-slide="67">
-<div class="topbar"></div>
-<div class="slide-inner">
-<h2 class="fragment slide-heading">Metaphor Design</h2>
+<section class="slide slide-content" data-slide="66"><div class="topbar"></div><div class="slide-inner"><h2 class="fragment slide-heading">Metaphors Example #3</h2>
+<p class="fragment content-text" style="">I am not good enough to ...do what I want to do.  e.g.:  Be a Trainer of NLP.</p>
+<p class="fragment content-text" style="">Metaphor: </p>
+<p class="fragment content-note">Olympics- one team-mate sick, 2nd team member comes in &amp; ends up winning gold.● Holding the right intention &amp; focus ● Little Engine That Could: <em>“</em><em>I think I can;  I know I can, I knew I </em><em>could!&quot;</em></p>
+</div></section>
+
+<section class="slide slide-content" data-slide="67"><div class="topbar"></div><div class="slide-inner"><h2 class="fragment slide-heading">Metaphor Design</h2>
+<p class="fragment content-text" style="">Q2: What is another example of that?</p>
 <p class="fragment content-text" style="">No Conscious Connection</p>
 <p class="fragment content-text" style="">Q1: What is this an example of?</p>
-<p class="fragment content-text" style="">Q2: What is another example of that?</p>
-</div>
-</section>
+</div></section>
 
-<section class="slide slide-section" data-slide="68">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">Making Metaphors Work – 2 </h1></div>
+<section class="slide slide-section" data-slide="68"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">Making Metaphors Work – 2 </h1></div>
 <div class="fragment"><p style="font-size:1.2rem;opacity:0.8;margin-top:0.8em;">Telling Metaphors to Clients</p></div>
-<div class="fragment"><div class="img-placeholder"><span>Visual / Diagram</span></div></div>
-</div>
-</section>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide68_img0.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:500px;" alt="" loading="lazy"></div>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide68_img1.jpg"  style="max-width:100%;height:auto;border-radius:8px;max-height:500px;" alt="" loading="lazy"></div>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide68_img2.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:90px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-title" data-slide="69">
-<div class="slide-inner">
-<div class="fragment"><p class="slide-pre-title" style="color:#9cb8d8;font-size:1.1rem;letter-spacing:2px;text-transform:uppercase;">Proudly welcomes you to...</p></div>
-<div class="fragment"><h1 class="slide-main-title" style="font-size:2.8rem;margin:0.3em 0;">The FasTrak™</h1></div>
+<section class="slide slide-title" data-slide="69"><div class="slide-inner"><div class="fragment"><p class="slide-pre-title">Proudly welcomes you to...</p></div>
+<div class="fragment"><h1 class="slide-main-title">The FasTrak™</h1></div>
 <div class="fragment"><p style="font-size:1.2rem;opacity:0.9;">NLP Coaching | NLP Practitioner Training</p></div>
-<div class="fragment"><p style="color:#5b8ec2;margin-top:1.5em;font-size:1.1rem;">Presented by Brad Greentree</p></div>
-<div class="fragment"><p style="color:#5b8ec2;font-size:0.85rem;margin-top:0.5em;">Transform the Planet</p></div>
-</div>
-</section>
+<div class="fragment" style="margin:0.5em auto;"><img src="images/slide69_img0.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:149px;" alt="" loading="lazy"></div>
+<div class="fragment" style="margin:0.5em auto;"><img src="images/slide69_img1.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:124px;" alt="" loading="lazy"></div>
+<div class="fragment"><p style="color:#5b8ec2;margin-top:1em;font-size:1.1rem;">Presented by <span style="color:#36639C"><strong>Brad </strong></span><span style="color:#36639C"><strong>Greentree</strong></span></p></div>
+<div class="fragment"><p style="color:#5b8ec2;font-size:0.85rem;margin-top:0.3em;">Transform the Planet</p></div></div></section>
 
-<section class="slide slide-section" data-slide="70">
-<div class="slide-inner">
-<div class="fragment"><h2 class="page-ref" style="font-size:2.5rem;opacity:0.8;"><strong>Page 45</strong></h2></div>
-<div class="fragment"><p style="font-size:1rem;opacity:0.5;">Manual Reference</p></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="70"><div class="slide-inner"><div class="fragment"><h2 class="page-ref"><strong>Page 45</strong></h2></div>
+<div class="fragment"><img src="images/slide70_img0.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:127px;" alt="" loading="lazy"></div>
+<div class="fragment"><p style="font-size:1rem;opacity:0.5;">Manual Reference</p></div></div></section>
 
-<section class="slide slide-content" data-slide="71">
-<div class="topbar"></div>
-<div class="slide-inner">
-<h2 class="fragment slide-heading">Meta Model Recovers Deep Structure</h2>
+<section class="slide slide-content" data-slide="71"><div class="topbar"></div><div class="slide-inner"><h2 class="fragment slide-heading">Meta Model Recovers Deep Structure</h2>
 <p class="fragment content-text" style=""><strong>Surface Structure</strong></p>
-<p class="fragment content-text" style=""><strong>Deep Structure</strong></p>
 <p class="fragment content-text" style=""><strong>Ugh</strong></p>
 <p class="fragment content-text" style=""><strong>Specific </strong><strong>Thought</strong></p>
-</div>
-</section>
+<p class="fragment content-text" style=""><strong>Deep Structure</strong></p>
+</div></section>
 
-<section class="slide slide-section" data-slide="72">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">Meta Model Questions</h1></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="72"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">Meta Model Questions</h1></div>
+</div></section>
 
-<section class="slide slide-section" data-slide="73">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">Meta Model Exercise</h1></div>
-<div class="fragment"><div class="img-placeholder"><span>Visual / Diagram</span></div></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="73"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">Meta Model Exercise</h1></div>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide73_img0.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:375px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-section" data-slide="74">
-<div class="slide-inner">
-<div class="fragment"><h2 class="page-ref" style="font-size:2.5rem;opacity:0.8;"><strong>Pages 67 - 73</strong></h2></div>
-<div class="fragment"><p style="font-size:1rem;opacity:0.5;">Manual Reference</p></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="74"><div class="slide-inner"><div class="fragment"><h2 class="page-ref"><strong>Pages 67 - 73</strong></h2></div>
+<div class="fragment"><img src="images/slide74_img0.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:127px;" alt="" loading="lazy"></div>
+<div class="fragment"><p style="font-size:1rem;opacity:0.5;">Manual Reference</p></div></div></section>
 
-<section class="slide slide-content" data-slide="75">
-<div class="topbar"></div>
-<div class="slide-inner">
-<h2 class="fragment slide-heading">Reframing</h2>
+<section class="slide slide-content" data-slide="75"><div class="topbar"></div><div class="slide-inner"><h2 class="fragment slide-heading">Reframing</h2>
 <p class="fragment content-text" style=""><strong>Context</strong></p>
 <p class="fragment content-text" style="">Comparative Deletion</p>
 <p class="fragment content-text" style="font-size:1.4rem;"><strong>Behavior</strong></p>
-</div>
-</section>
+</div></section>
 
-<section class="slide slide-content" data-slide="76">
-<div class="topbar"></div>
-<div class="slide-inner">
-<h2 class="fragment slide-heading">Reframing</h2>
+<section class="slide slide-content" data-slide="76"><div class="topbar"></div><div class="slide-inner"><h2 class="fragment slide-heading">Reframing</h2>
 <p class="fragment content-text" style=""><strong>Meaning (</strong><strong>C&gt;E, </strong><strong>CEq</strong><strong>)</strong></p>
 <p class="fragment content-text" style="font-size:1.4rem;"><strong>Behavior</strong></p>
-</div>
-</section>
+</div></section>
 
-<section class="slide slide-content" data-slide="77">
-<div class="topbar"></div>
-<div class="slide-inner">
-<h2 class="fragment slide-heading">Reframing</h2>
+<section class="slide slide-content" data-slide="77"><div class="topbar"></div><div class="slide-inner"><h2 class="fragment slide-heading">Reframing</h2>
 <p class="fragment content-text" style=""><strong>Context Reframe</strong></p>
 <p class="fragment content-text" style="">Comparative Deletion</p>
 <p class="fragment content-text" style=""><strong>Meaning Reframe</strong></p>
 <p class="fragment content-text" style="">(C&gt;E,CEq)</p>
-</div>
-</section>
+</div></section>
 
-<section class="slide slide-section" data-slide="78">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">Reframing Exercise</h1></div>
-<div class="fragment"><div class="img-placeholder"><span>Visual / Diagram</span></div></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="78"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">Reframing Exercise</h1></div>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide78_img0.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:375px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-section" data-slide="79">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">Reframing</h1></div>
-<div class="fragment"><p style="font-size:1.2rem;opacity:0.8;margin-top:0.8em;">In Master Practitioner, you will learn Sleight of Mouth and Quantum Linguistics – Powerful elegant Reframes that will give you about 20 more reframing options in addition to these 2.</p></div>
-</div>
-</section>
+<section class="slide slide-content" data-slide="79"><div class="topbar"></div><div class="slide-inner"><h2 class="fragment slide-heading">Reframing</h2>
+<p class="fragment content-text" style="">In Master Practitioner, you will learn Sleight of Mouth and Quantum Linguistics – Powerful elegant Reframes that will give you about 20 more reframing options in addition to these 2.</p>
+</div></section>
 
-<section class="slide slide-section" data-slide="80">
-<div class="slide-inner">
-<div class="fragment"><h2 class="page-ref" style="font-size:2.5rem;opacity:0.8;"><strong>Pages 25 – 33, Page 27</strong></h2></div>
-<div class="fragment"><p style="font-size:1rem;opacity:0.5;">Manual Reference</p></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="80"><div class="slide-inner"><div class="fragment"><h2 class="page-ref"><strong>Pages 25 – 33, Page 27</strong></h2></div>
+<div class="fragment"><img src="images/slide80_img0.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:127px;" alt="" loading="lazy"></div>
+<div class="fragment"><p style="font-size:1rem;opacity:0.5;">Manual Reference</p></div></div></section>
 
-<section class="slide slide-content" data-slide="81">
-<div class="topbar"></div>
-<div class="slide-inner">
-<h2 class="fragment slide-heading">Producing Results With Sub Modalities</h2>
+<section class="slide slide-content" data-slide="81"><div class="topbar"></div><div class="slide-inner"><h2 class="fragment slide-heading">Producing Results With Sub Modalities</h2>
 <p class="fragment content-text" style=""><strong>Drivers</strong></p>
 <p class="fragment content-text" style="">Hinted at by “Contrastive Analysis”</p>
 <p class="fragment content-text" style=""><strong>1</strong></p>
 <p class="fragment content-text" style=""><strong>2</strong></p>
-</div>
-</section>
+</div></section>
 
-<section class="slide slide-section" data-slide="82">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">Producing Results With Sub Modalities</h1></div>
+<section class="slide slide-section" data-slide="82"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">Producing Results With Sub Modalities</h1></div>
 <div class="fragment"><p style="font-size:1.2rem;opacity:0.8;margin-top:0.8em;"><strong>Drivers</strong></p></div>
-<div class="fragment"><div class="img-placeholder"><span>Visual / Diagram</span></div></div>
-</div>
-</section>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide82_img0.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:165px;" alt="" loading="lazy"></div>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide82_img1.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:273px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-section" data-slide="83">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">Producing Results with Sub Modalities</h1></div>
+<section class="slide slide-section" data-slide="83"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">Producing Results with Sub Modalities</h1></div>
 <div class="fragment"><p style="font-size:1.2rem;opacity:0.8;margin-top:0.8em;"><strong>Universals</strong></p></div>
-<div class="fragment"><div class="img-placeholder"><span>Visual / Diagram</span></div></div>
-</div>
-</section>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide83_img0.jpg"  style="max-width:100%;height:auto;border-radius:8px;max-height:424px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-content" data-slide="84">
-<div class="topbar"></div>
-<div class="slide-inner">
-<h2 class="fragment slide-heading">Like to Dislike Change (Mapping Across)</h2>
+<section class="slide slide-content" data-slide="84"><div class="topbar"></div><div class="slide-inner"><h2 class="fragment slide-heading">Like to Dislike Change (Mapping Across)</h2>
 <p class="fragment content-text" style="font-size:1.4rem;"><strong>Big Picture</strong></p>
 <p class="fragment content-text" style="">Use for Specific (not general) Things </p>
+<p class="fragment content-text" style="">Elicit SubModalities for #1 &amp; #2</p>
+<p class="fragment content-text" style="">Change the SubModalities of  #1 into #2</p>
+<p class="fragment content-text" style="">Test</p>
 <ul class="content-list">
   <li class="fragment"><strong>1</strong></li>
   <li class="fragment"><strong>2</strong></li>
 </ul>
-<p class="fragment content-text" style="">Elicit SubModalities for #1 &amp; #2</p>
-<p class="fragment content-text" style="">Change the SubModalities of  #1 into #2</p>
-<p class="fragment content-text" style="">Test</p>
-<div class="fragment"><div class="img-placeholder"><span>Visual / Diagram</span></div></div>
-</div>
-</section>
+<div class="fragment" style="text-align:center;margin:0.8em 0;"><img src="images/slide84_img0.jpg"  style="max-width:100%;height:auto;border-radius:8px;max-height:263px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-content" data-slide="85">
-<div class="topbar"></div>
-<div class="slide-inner">
-<h2 class="fragment slide-heading">Like to Dislike Change (Mapping Across)</h2>
+<section class="slide slide-content" data-slide="85"><div class="topbar"></div><div class="slide-inner"><h2 class="fragment slide-heading">Like to Dislike Change (Mapping Across)</h2>
+<p class="fragment content-text" style=""><strong>Change the SMD’s of #1 to #2</strong></p>
+<p class="fragment content-text" style=""><strong>1</strong></p>
+<p class="fragment content-text" style=""><strong>2</strong></p>
 <p class="fragment content-text" style=""><strong>Elicit #1</strong></p>
 <p class="fragment content-text" style=""><strong>Elicit </strong><strong>#2</strong></p>
 <p class="fragment content-text" style=""><strong>Test</strong></p>
-<p class="fragment content-text" style=""><strong>1</strong></p>
-<p class="fragment content-text" style=""><strong>Change the SMD’s of #1 to #2</strong></p>
-<p class="fragment content-text" style=""><strong>2</strong></p>
-</div>
-</section>
+</div></section>
 
-<section class="slide slide-section" data-slide="86">
-<div class="slide-inner">
-<div class="fragment"><h2 class="page-ref" style="font-size:2.5rem;opacity:0.8;"><strong>Page  33</strong></h2></div>
-<div class="fragment"><p style="font-size:1rem;opacity:0.5;">Manual Reference</p></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="86"><div class="slide-inner"><div class="fragment"><h2 class="page-ref"><strong>Page  33</strong></h2></div>
+<div class="fragment"><img src="images/slide86_img0.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:127px;" alt="" loading="lazy"></div>
+<div class="fragment"><p style="font-size:1rem;opacity:0.5;">Manual Reference</p></div></div></section>
 
-<section class="slide slide-content" data-slide="87">
-<div class="topbar"></div>
-<div class="slide-inner">
-<h2 class="fragment slide-heading">Swish Pattern</h2>
-<p class="fragment content-note" style="font-size:0.9rem;opacity:0.8;margin:0.5em 0;">Swish is Most Useful for a Highly Contextualized Minor State or Behavior</p>
+<section class="slide slide-content" data-slide="87"><div class="topbar"></div><div class="slide-inner"><h2 class="fragment slide-heading">Swish Pattern</h2>
+<p class="fragment content-text" style="">Swish is Most Useful for a Highly Contextualized Minor State or Behavior</p>
 <p class="fragment content-text" style="font-size:1.4rem;">Present State</p>
 <p class="fragment content-text" style="font-size:1.4rem;">(Associated)</p>
 <p class="fragment content-text" style="">Desired</p>
 <p class="fragment content-text" style="">State</p>
 <p class="fragment content-text" style="">(Dissociated)</p>
-</div>
-</section>
+</div></section>
 
-<section class="slide slide-section" data-slide="88">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">Remember</h1></div>
-<div class="fragment"><div class="img-placeholder"><span>Visual / Diagram</span></div></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="88"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">Remember</h1></div>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide88_img0.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:500px;" alt="" loading="lazy"></div>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide88_img1.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:43px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-section" data-slide="89">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">Opportunity work</h1></div>
-<div class="fragment"><div class="img-placeholder"><span>Visual / Diagram</span></div></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="89"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">Opportunity work</h1></div>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide89_img0.jpg"  style="max-width:100%;height:auto;border-radius:8px;max-height:500px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-section" data-slide="90">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;"><strong>Anchoring</strong></h1></div>
+<section class="slide slide-section" data-slide="90"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;"><strong>Anchoring</strong></h1></div>
 <div class="fragment"><p style="font-size:1.2rem;opacity:0.8;margin-top:0.8em;"><strong>Pages 46 - 52</strong></p></div>
-</div>
-</section>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide90_img0.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:127px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-content" data-slide="91">
-<div class="topbar"></div>
-<div class="slide-inner">
-<h2 class="fragment slide-heading">Anchoring</h2>
-<p class="fragment content-text" style=""><strong>Time</strong></p>
+<section class="slide slide-content" data-slide="91"><div class="topbar"></div><div class="slide-inner"><h2 class="fragment slide-heading">Anchoring</h2>
 <p class="fragment content-text" style=""><strong>Intensity</strong></p>
-</div>
-</section>
+<p class="fragment content-text" style=""><strong>Time</strong></p>
+</div></section>
 
-<section class="slide slide-section" data-slide="92">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">Stacking Anchors</h1></div>
+<section class="slide slide-section" data-slide="92"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">Stacking Anchors</h1></div>
 <div class="fragment"><p style="font-size:1.2rem;opacity:0.8;margin-top:0.8em;">Using <strong>multiple</strong> states, anchor each one individually to the <strong>SAME</strong> place.</p></div>
-<div class="fragment"><div class="img-placeholder"><span>Visual / Diagram</span></div></div>
-</div>
-</section>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide92_img0.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:341px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-section" data-slide="93">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">Collapse Anchors</h1></div>
-<div class="fragment"><div class="img-placeholder"><span>Visual / Diagram</span></div></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="93"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">Collapse Anchors</h1></div>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide93_img0.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:341px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-section" data-slide="94">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">Collapse Anchors</h1></div>
-<div class="fragment"><div class="img-placeholder"><span>Visual / Diagram</span></div></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="94"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">Collapse Anchors</h1></div>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide94_img0.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:341px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-title" data-slide="95">
-<div class="slide-inner">
-<div class="fragment"><p class="slide-pre-title" style="color:#9cb8d8;font-size:1.1rem;letter-spacing:2px;text-transform:uppercase;">Proudly welcomes you to...</p></div>
-<div class="fragment"><h1 class="slide-main-title" style="font-size:2.8rem;margin:0.3em 0;">The FasTrak™</h1></div>
+<section class="slide slide-title" data-slide="95"><div class="slide-inner"><div class="fragment"><p class="slide-pre-title">Proudly welcomes you to...</p></div>
+<div class="fragment"><h1 class="slide-main-title">The FasTrak™</h1></div>
 <div class="fragment"><p style="font-size:1.2rem;opacity:0.9;">NLP Coaching | NLP Practitioner Training</p></div>
-<div class="fragment"><p style="color:#5b8ec2;margin-top:1.5em;font-size:1.1rem;">Presented by Brad Greentree</p></div>
-<div class="fragment"><p style="color:#5b8ec2;font-size:0.85rem;margin-top:0.5em;">Transform the Planet</p></div>
-</div>
-</section>
+<div class="fragment" style="margin:0.5em auto;"><img src="images/slide95_img0.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:149px;" alt="" loading="lazy"></div>
+<div class="fragment" style="margin:0.5em auto;"><img src="images/slide95_img1.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:124px;" alt="" loading="lazy"></div>
+<div class="fragment"><p style="color:#5b8ec2;margin-top:1em;font-size:1.1rem;">Presented by <span style="color:#36639C"><strong>Brad </strong></span><span style="color:#36639C"><strong>Greentree</strong></span></p></div>
+<div class="fragment"><p style="color:#5b8ec2;font-size:0.85rem;margin-top:0.3em;">Transform the Planet</p></div></div></section>
 
-<section class="slide slide-content" data-slide="96">
-<div class="topbar"></div>
-<div class="slide-inner">
-<h2 class="fragment slide-heading" style="font-size:2.2rem;"><strong>Anchors</strong></h2>
+<section class="slide slide-content" data-slide="96"><div class="topbar"></div><div class="slide-inner"><h2 class="fragment slide-heading" style="font-size:2.2rem;"><strong>Chaining</strong></h2>
+<p class="fragment content-text" style="font-size:1.4rem;"><strong>Anchors</strong></p>
 <p class="fragment content-text" style=""><strong>Page 49</strong></p>
-<p class="fragment content-text" style="font-size:1.4rem;"><strong>Chaining</strong></p>
-</div>
-</section>
+<div class="fragment" style="text-align:center;margin:0.8em 0;"><img src="images/slide96_img0.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:127px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-section" data-slide="97">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">So When Do You Use Chains?</h1></div>
-<div class="fragment"><div class="img-placeholder"><span>Visual / Diagram</span></div></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="97"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">So When Do You Use Chains?</h1></div>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide97_img0.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:500px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-content" data-slide="98">
-<div class="topbar"></div>
-<div class="slide-inner">
-<h2 class="fragment slide-heading">Anchoring</h2>
-<p class="fragment content-text" style="font-size:1.4rem;"><strong>Chaining </strong><strong>Anchors</strong></p>
-<p class="fragment content-text" style=""><strong>Sequential</strong></p>
+<section class="slide slide-content" data-slide="98"><div class="topbar"></div><div class="slide-inner"><h2 class="fragment slide-heading">Anchoring</h2>
 <p class="fragment content-text" style="font-size:1.4rem;"><strong>Collapse Anchors</strong></p>
 <p class="fragment content-text" style=""><strong>Simultaneous</strong></p>
-</div>
-</section>
+<p class="fragment content-text" style="font-size:1.4rem;"><strong>Chaining </strong><strong>Anchors</strong></p>
+<p class="fragment content-text" style=""><strong>Sequential</strong></p>
+</div></section>
 
-<section class="slide slide-section" data-slide="99">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">Chaining Anchors</h1></div>
-<div class="fragment"><div class="img-placeholder"><span>Visual / Diagram</span></div></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="99"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">Chaining Anchors</h1></div>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide99_img0.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:425px;" alt="" loading="lazy"></div>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide99_img1.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:341px;" alt="" loading="lazy"></div>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide99_img2.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:90px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-content" data-slide="100">
-<div class="topbar"></div>
-<div class="slide-inner">
-<h2 class="fragment slide-heading">Chain Design</h2>
+<section class="slide slide-content" data-slide="100"><div class="topbar"></div><div class="slide-inner"><h2 class="fragment slide-heading">Chain Design</h2>
 <ul class="content-list">
   <li class="fragment">Decide the First &amp; Last State</li>
   <li class="fragment">Criteria for Intermediate States</li>
@@ -1009,418 +698,256 @@ html,body{height:100%;overflow:hidden;font-family:'Segoe UI',system-ui,-apple-sy
   <li class="fragment">The State should <strong>NOT</strong> be how they already do it.</li>
   <li class="fragment">Do <strong>NOT</strong> use Major Negative Emotions</li>
 </ul>
-</div>
-</section>
+</div></section>
 
-<section class="slide slide-content" data-slide="101">
-<div class="topbar"></div>
-<div class="slide-inner">
-<h2 class="fragment slide-heading">Chain Design</h2>
+<section class="slide slide-content" data-slide="101"><div class="topbar"></div><div class="slide-inner"><h2 class="fragment slide-heading">Chain Design</h2>
 <p class="fragment content-text" style="">Decide the First &amp; Last State</p>
 <p class="fragment content-text" style="">Examples of  Intermediate States</p>
-</div>
-</section>
+</div></section>
 
-<section class="slide slide-content" data-slide="102">
-<div class="topbar"></div>
-<div class="slide-inner">
-<h2 class="fragment slide-heading">Chaining Anchors</h2>
+<section class="slide slide-content" data-slide="102"><div class="topbar"></div><div class="slide-inner"><h2 class="fragment slide-heading">Chaining Anchors</h2>
 <p class="fragment content-text" style=""><strong>Elicit all states and </strong><strong>anchor 5x each</strong></p>
 <p class="fragment content-text" style=""><strong>Test</strong></p>
 <p class="fragment content-text" style=""><strong>Chain 1 to 2 to 3 to </strong><strong>4</strong></p>
 <p class="fragment content-text" style=""><strong>Test</strong></p>
 <p class="fragment content-text" style=""><strong>          1                           </strong><strong>2 </strong><strong>                              3                            4</strong></p>
-</div>
-</section>
+<div class="fragment" style="text-align:center;margin:0.8em 0;"><img src="images/slide102_img0.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:90px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-section" data-slide="103">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">Chaining Anchors</h1></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="103"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">Chaining Anchors</h1></div>
+</div></section>
 
-<section class="slide slide-section" data-slide="104">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">Opportunity Work</h1></div>
-<div class="fragment"><div class="img-placeholder"><span>Visual / Diagram</span></div></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="104"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">Opportunity Work</h1></div>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide104_img0.jpg"  style="max-width:100%;height:auto;border-radius:8px;max-height:500px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-section" data-slide="105">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">Patanjali and Tad James</h1></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="105"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">Patanjali and Tad James</h1></div>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide105_img0.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:43px;" alt="" loading="lazy"></div>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide105_img1.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:465px;" alt="" loading="lazy"></div>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide105_img2.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:43px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-section" data-slide="106">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;"><strong>5 Step Sales Process </strong></h1></div>
+<section class="slide slide-section" data-slide="106"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;"><strong>5 Step Sales Process </strong></h1></div>
 <div class="fragment"><p style="font-size:1.2rem;opacity:0.8;margin-top:0.8em;">Page 85</p></div>
-</div>
-</section>
+</div></section>
 
-<section class="slide slide-section" data-slide="107">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">5 Step Sales Process </h1></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="107"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">5 Step Sales Process </h1></div>
+</div></section>
 
-<section class="slide slide-section" data-slide="108">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">Establishing Rapport</h1></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="108"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">Establishing Rapport</h1></div>
+</div></section>
 
-<section class="slide slide-section" data-slide="109">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">Match and Mirror</h1></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="109"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">Match and Mirror</h1></div>
+</div></section>
 
-<section class="slide slide-content" data-slide="110">
-<div class="topbar"></div>
-<div class="slide-inner">
-<h2 class="fragment slide-heading">Match and Mirror</h2>
+<section class="slide slide-content" data-slide="110"><div class="topbar"></div><div class="slide-inner"><h2 class="fragment slide-heading">Match and Mirror</h2>
 <p class="fragment content-text" style="font-size:1.4rem;"><strong>Representational system </strong></p>
 <p class="fragment content-text" style="font-size:1.4rem;"><strong>Visual: </strong>see, look, view, appear </p>
 <p class="fragment content-text" style="font-size:1.4rem;"><strong>Auditory: </strong>hear, listen, sound(s), harmonize </p>
 <p class="fragment content-text" style="font-size:1.4rem;"><strong>Kinaesthetic: </strong>feel, touch, get a hold of </p>
 <p class="fragment content-text" style="font-size:1.4rem;"><strong>Unspecified: </strong>sense, experience, understand, think </p>
-</div>
-</section>
+</div></section>
 
-<section class="slide slide-section" data-slide="111">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">Representational System</h1></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="111"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">Representational System</h1></div>
+</div></section>
 
-<section class="slide slide-section" data-slide="112">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">Match and Mirror</h1></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="112"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">Match and Mirror</h1></div>
+</div></section>
 
-<section class="slide slide-section" data-slide="113">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">Ask Questions</h1></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="113"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">Ask Questions</h1></div>
+</div></section>
 
-<section class="slide slide-section" data-slide="114">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">Purpose of Asking Questions</h1></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="114"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">Purpose of Asking Questions</h1></div>
+</div></section>
 
-<section class="slide slide-section" data-slide="115">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">Find a Need</h1></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="115"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">Find a Need</h1></div>
+</div></section>
 
-<section class="slide slide-section" data-slide="116">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">Link the Need to Value</h1></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="116"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">Link the Need to Value</h1></div>
+</div></section>
 
-<section class="slide slide-section" data-slide="117">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">Link the Need to Value</h1></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="117"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">Link the Need to Value</h1></div>
+</div></section>
 
-<section class="slide slide-section" data-slide="118">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">Close</h1></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="118"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">Close</h1></div>
+</div></section>
 
-<section class="slide slide-section" data-slide="119">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">Handle Objections</h1></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="119"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">Handle Objections</h1></div>
+</div></section>
 
-<section class="slide slide-section" data-slide="120">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">Answering Objections</h1></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="120"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">Answering Objections</h1></div>
+</div></section>
 
-<section class="slide slide-section" data-slide="121">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">Handling objections</h1></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="121"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">Handling objections</h1></div>
+</div></section>
 
-<section class="slide slide-section" data-slide="122">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">5 Step Sales Process </h1></div>
-<div class="fragment"><div class="img-placeholder"><span>Visual / Diagram</span></div></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="122"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">5 Step Sales Process </h1></div>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide122_img0.jpg"  style="max-width:100%;height:auto;border-radius:8px;max-height:401px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-section" data-slide="123">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;"><strong>Strategies</strong></h1></div>
+<section class="slide slide-section" data-slide="123"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;"><strong>Strategies</strong></h1></div>
 <div class="fragment"><p style="font-size:1.2rem;opacity:0.8;margin-top:0.8em;"><strong>Pages 53 – 66, (Reference Pages 23 &amp; 24</strong><strong>)</strong></p></div>
-</div>
-</section>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide123_img0.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:127px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-section" data-slide="124">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">Strategies</h1></div>
-<div class="fragment"><p style="font-size:1.2rem;opacity:0.8;margin-top:0.8em;">You could design the greatest strategy, but if you don’t get the <strong>trigger</strong>, the strategy won’t ever get set off!</p></div>
-<div class="fragment"><div class="img-placeholder"><span>Visual / Diagram</span></div></div>
-</div>
-</section>
+<section class="slide slide-content" data-slide="124"><div class="topbar"></div><div class="slide-inner"><h2 class="fragment slide-heading">Strategies</h2>
+<p class="fragment content-text" style="">You could design the greatest strategy, but if you don’t get the <strong>trigger</strong>, the strategy won’t ever get set off!</p>
+<div class="fragment" style="text-align:center;margin:0.8em 0;"><img src="images/slide124_img0.jpg"  style="max-width:100%;height:auto;border-radius:8px;max-height:408px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-content" data-slide="125">
-<div class="topbar"></div>
-<div class="slide-inner">
-<h2 class="fragment slide-heading">Some Types of Strategies</h2>
+<section class="slide slide-content" data-slide="125"><div class="topbar"></div><div class="slide-inner"><h2 class="fragment slide-heading">Some Types of Strategies</h2>
+<p class="fragment content-text" style=""><strong>General Buying Strategies</strong></p>
+<p class="fragment content-text" style=""><strong>Love Strategies</strong></p>
+<p class="fragment content-text" style="">Attraction</p>
+<p class="fragment content-text" style="">Recognizing Attraction</p>
+<p class="fragment content-text" style="">Deep Love </p>
 <p class="fragment content-text" style="">Motivation</p>
 <p class="fragment content-text" style="">Decision</p>
 <p class="fragment content-text" style="">Convincer </p>
 <p class="fragment content-text" style="">Reassurance</p>
-<p class="fragment content-text" style=""><strong>General Buying Strategies</strong></p>
-<p class="fragment content-text" style="">Attraction</p>
-<p class="fragment content-text" style="">Recognizing Attraction</p>
-<p class="fragment content-text" style="">Deep Love </p>
-<p class="fragment content-text" style=""><strong>Love Strategies</strong></p>
-</div>
-</section>
+<div class="fragment" style="text-align:center;margin:0.8em 0;"><img src="images/slide125_img0.jpg"  style="max-width:100%;height:auto;border-radius:8px;max-height:496px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-content" data-slide="126">
-<div class="topbar"></div>
-<div class="slide-inner">
-<h2 class="fragment slide-heading">Eye Patterns</h2>
+<section class="slide slide-content" data-slide="126"><div class="topbar"></div><div class="slide-inner"><h2 class="fragment slide-heading">Eye Patterns</h2>
 <p class="fragment content-text" style=""><strong>Normally Organized Person </strong></p>
 <p class="fragment content-text" style=""><strong>As you Look at </strong><strong>Them</strong></p>
-</div>
-</section>
+</div></section>
 
-<section class="slide slide-section" data-slide="127">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">Detecting Eye Patterns</h1></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="127"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">Detecting Eye Patterns</h1></div>
+</div></section>
 
-<section class="slide slide-section" data-slide="128">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">Auditory Distinctions</h1></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="128"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">Auditory Distinctions</h1></div>
+</div></section>
 
-<section class="slide slide-content" data-slide="129">
-<div class="topbar"></div>
-<div class="slide-inner">
-<h2 class="fragment slide-heading">Eye Patterns</h2>
+<section class="slide slide-content" data-slide="129"><div class="topbar"></div><div class="slide-inner"><h2 class="fragment slide-heading">Eye Patterns</h2>
 <p class="fragment content-text" style=""><strong>Normally Organized Person </strong></p>
 <p class="fragment content-text" style=""><strong>As you Look at </strong><strong>Them</strong></p>
-</div>
-</section>
+</div></section>
 
-<section class="slide slide-section" data-slide="130">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;"></h1></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="130"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;"></h1></div>
+</div></section>
 
-<section class="slide slide-section" data-slide="131">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">Homework</h1></div>
-<div class="fragment"><div class="img-placeholder"><span>Visual / Diagram</span></div></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="131"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">Homework</h1></div>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide131_img0.jpg"  style="max-width:100%;height:auto;border-radius:8px;max-height:500px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-content" data-slide="132">
-<div class="topbar"></div>
-<div class="slide-inner">
-<h2 class="fragment slide-heading">NLP Model of Change</h2>
+<section class="slide slide-content" data-slide="132"><div class="topbar"></div><div class="slide-inner"><h2 class="fragment slide-heading">NLP Model of Change</h2>
 <p class="fragment content-text" style="">Present State</p>
 <p class="fragment content-text" style="">Desired State</p>
-<p class="fragment content-text" style="">Old Model of World</p>
 <p class="fragment content-text" style="">New Model of World</p>
-</div>
-</section>
+<p class="fragment content-text" style="">Old Model of World</p>
+</div></section>
 
-<section class="slide slide-section" data-slide="133">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">Ongoing Support</h1></div>
-<div class="fragment"><div class="img-placeholder"><span>Visual / Diagram</span></div></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="133"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">Ongoing Support</h1></div>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide133_img0.jpg"  style="max-width:100%;height:auto;border-radius:8px;max-height:380px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-title" data-slide="134">
-<div class="slide-inner">
-<div class="fragment"><p class="slide-pre-title" style="color:#9cb8d8;font-size:1.1rem;letter-spacing:2px;text-transform:uppercase;">Proudly welcomes you to...</p></div>
-<div class="fragment"><h1 class="slide-main-title" style="font-size:2.8rem;margin:0.3em 0;">The FasTrak™</h1></div>
+<section class="slide slide-title" data-slide="134"><div class="slide-inner"><div class="fragment"><p class="slide-pre-title">Proudly welcomes you to...</p></div>
+<div class="fragment"><h1 class="slide-main-title">The FasTrak™</h1></div>
 <div class="fragment"><p style="font-size:1.2rem;opacity:0.9;">NLP Coaching | NLP Practitioner Training</p></div>
-<div class="fragment"><p style="color:#5b8ec2;margin-top:1.5em;font-size:1.1rem;">Presented by Brad Greentree</p></div>
-<div class="fragment"><p style="color:#5b8ec2;font-size:0.85rem;margin-top:0.5em;">Transform the Planet</p></div>
-</div>
-</section>
+<div class="fragment" style="margin:0.5em auto;"><img src="images/slide134_img0.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:149px;" alt="" loading="lazy"></div>
+<div class="fragment" style="margin:0.5em auto;"><img src="images/slide134_img1.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:124px;" alt="" loading="lazy"></div>
+<div class="fragment"><p style="color:#5b8ec2;margin-top:1em;font-size:1.1rem;">Presented by <span style="color:#36639C"><strong>Brad </strong></span><span style="color:#36639C"><strong>Greentree</strong></span></p></div>
+<div class="fragment"><p style="color:#5b8ec2;font-size:0.85rem;margin-top:0.3em;">Transform the Planet</p></div></div></section>
 
-<section class="slide slide-section" data-slide="135">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">Reframing</h1></div>
-<div class="fragment"><p style="font-size:1.2rem;opacity:0.8;margin-top:0.8em;">In Master Practitioner, you will learn Sleight of Mouth and Quantum Linguistics – very powerful and elegant reframes that will give you about 20 more reframing options in addition to these two</p></div>
-</div>
-</section>
+<section class="slide slide-content" data-slide="135"><div class="topbar"></div><div class="slide-inner"><h2 class="fragment slide-heading">Reframing</h2>
+<p class="fragment content-text" style="">In Master Practitioner, you will learn Sleight of Mouth and Quantum Linguistics – very powerful and elegant reframes that will give you about 20 more reframing options in addition to these two</p>
+</div></section>
 
-<section class="slide slide-content" data-slide="136">
-<div class="topbar"></div>
-<div class="slide-inner">
-<h2 class="fragment slide-heading">NLP Model of Change</h2>
+<section class="slide slide-content" data-slide="136"><div class="topbar"></div><div class="slide-inner"><h2 class="fragment slide-heading">NLP Model of Change</h2>
 <p class="fragment content-text" style="">Present State</p>
 <p class="fragment content-text" style="">Desired State</p>
-<p class="fragment content-text" style="">Old Model of World</p>
 <p class="fragment content-text" style="">New Model of World</p>
-</div>
-</section>
+<p class="fragment content-text" style="">Old Model of World</p>
+</div></section>
 
-<section class="slide slide-section" data-slide="137">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">Parts</h1></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="137"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">Parts</h1></div>
+</div></section>
 
-<section class="slide slide-section" data-slide="138">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">Parts Integration</h1></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="138"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">Parts Integration</h1></div>
+</div></section>
 
-<section class="slide slide-content" data-slide="139">
-<div class="topbar"></div>
-<div class="slide-inner">
-<h2 class="fragment slide-heading">Parts Integration</h2>
+<section class="slide slide-content" data-slide="139"><div class="topbar"></div><div class="slide-inner"><h2 class="fragment slide-heading">Parts Integration</h2>
 <p class="fragment content-text" style="">1. Identify the conflict and the parts involved</p>
 <p class="fragment content-text" style="">It is a part when it is:</p>
 <p class="fragment content-text" style="">Conflicted – OR – Part Time</p>
 <p class="fragment content-text" style="">It is a Limiting Decision or Limiting Belief when it is:</p>
 <p class="fragment content-text" style="">Congruent – AND – Full Time</p>
-</div>
-</section>
+</div></section>
 
-<section class="slide slide-content" data-slide="140">
-<div class="topbar"></div>
-<div class="slide-inner">
-<h2 class="fragment slide-heading">Parts Integration</h2>
-<p class="fragment content-note" style="font-size:0.9rem;opacity:0.8;margin:0.5em 0;">Identify the conflict and the parts involved</p>
-<p class="fragment content-note" style="font-size:0.9rem;opacity:0.8;margin:0.5em 0;">Have the Part which represents the unwanted state or behavior come out on the hand first</p>
+<section class="slide slide-content" data-slide="140"><div class="topbar"></div><div class="slide-inner"><h2 class="fragment slide-heading">Parts Integration</h2>
+<p class="fragment content-text" style="">Identify the conflict and the parts involved</p>
+<p class="fragment content-text" style="">Have the Part which represents the unwanted state or behavior come out on the hand first</p>
 <p class="fragment content-text" style="">Make sure that the Client has a V-A-K</p>
-<p class="fragment content-note" style="font-size:0.9rem;opacity:0.8;margin:0.5em 0;">Elicit the “Opposite Number” or the “Flip Side of the Coin” to come out on the other hand</p>
-<p class="fragment content-note" style="font-size:0.9rem;opacity:0.8;margin:0.5em 0;">Make sure that the Client has a V-A-K image</p>
+<p class="fragment content-text" style="">Elicit the “Opposite Number” or the “Flip Side of the Coin” to come out on the other hand</p>
+<p class="fragment content-text" style="">Make sure that the Client has a V-A-K image</p>
 <p class="fragment content-text" style="">Separate intention from behavior</p>
-<p class="fragment content-note" style="font-size:0.9rem;opacity:0.8;margin:0.5em 0;">Reframe each part so that they realize that they actually have the same intention by chunking up — ask, “What is the intention ...” or “For what purpose ...”</p>
-</div>
-</section>
+<p class="fragment content-text" style="">Reframe each part so that they realize that they actually have the same intention by chunking up — ask, “What is the intention ...” or “For what purpose ...”</p>
+</div></section>
 
-<section class="slide slide-content" data-slide="141">
-<div class="topbar"></div>
-<div class="slide-inner">
-<h2 class="fragment slide-heading">Chunk-up Beyond the Boundaries</h2>
+<section class="slide slide-content" data-slide="141"><div class="topbar"></div><div class="slide-inner"><h2 class="fragment slide-heading">Chunk-up Beyond the Boundaries</h2>
+<p class="fragment content-text" style="">Boundary</p>
 <p class="fragment content-text" style="">Freedom</p>
 <p class="fragment content-text" style="">Safety</p>
 <p class="fragment content-text" style="">Protection </p>
-<p class="fragment content-text" style="">Boundary</p>
-</div>
-</section>
+</div></section>
 
-<section class="slide slide-content" data-slide="142">
-<div class="topbar"></div>
-<div class="slide-inner">
-<h2 class="fragment slide-heading">Keep the Client Associated</h2>
+<section class="slide slide-content" data-slide="142"><div class="topbar"></div><div class="slide-inner"><h2 class="fragment slide-heading">Keep the Client Associated</h2>
+<p class="fragment content-text" style="">World Peace</p>
 <p class="fragment content-text" style="">Safety</p>
 <p class="fragment content-text" style="">Protection </p>
-<p class="fragment content-text" style="">World Peace</p>
-<p class="fragment content-note" style="font-size:0.9rem;opacity:0.8;margin:0.5em 0;">Ask: <em>“What will that </em><em>do </em><em>for you, what will </em><em>it make </em><em>you feel?”</em></p>
-</div>
-</section>
+<p class="fragment content-note">Ask: <em>“What will that </em><em>do </em><em>for you, what will </em><em>it make </em><em>you feel?”</em></p>
+</div></section>
 
-<section class="slide slide-content" data-slide="143">
-<div class="topbar"></div>
-<div class="slide-inner">
-<h2 class="fragment slide-heading">Parts Integration</h2>
+<section class="slide slide-content" data-slide="143"><div class="topbar"></div><div class="slide-inner"><h2 class="fragment slide-heading">Parts Integration</h2>
 <ul class="content-list">
   <li class="fragment"><strong>6</strong></li>
 </ul>
 <p class="fragment content-text" style="">Separate intention from behavior (cont.)</p>
-<p class="fragment content-note" style="font-size:0.9rem;opacity:0.8;margin:0.5em 0;">Have the parts notice they were once part of a greater whole.</p>
-<p class="fragment content-note" style="font-size:0.9rem;opacity:0.8;margin:0.5em 0;">Ask for other parts that were also once part of the larger whole to join in the integration.   (when the hands come together point it out)</p>
-<p class="fragment content-note" style="font-size:0.9rem;opacity:0.8;margin:0.5em 0;">What resources or attributes does each part have that the other part would like to have?</p>
+<p class="fragment content-text" style="">Have the parts notice they were once part of a greater whole.</p>
+<p class="fragment content-text" style="">Ask for other parts that were also once part of the larger whole to join in the integration.   (when the hands come together point it out)</p>
+<p class="fragment content-text" style="">What resources or attributes does each part have that the other part would like to have?</p>
 <p class="fragment content-text" style="">Bring hands together / have images merge</p>
-<p class="fragment content-note" style="font-size:0.9rem;opacity:0.8;margin:0.5em 0;">Take the integrated part inside and have it merge into the wholeness inside</p>
+<p class="fragment content-text" style="">Take the integrated part inside and have it merge into the wholeness inside</p>
 <p class="fragment content-text" style="">Test &amp; future pace.</p>
-<p class="fragment content-note" style="font-size:0.9rem;opacity:0.8;margin:0.5em 0;">“A part can only be a part because  the intention is not yet the intention of the whole.”       <em>Tad James, 2012</em></p>
-</div>
-</section>
+<p class="fragment content-note">“A part can only be a part because  the intention is not yet the intention of the whole.”       <em>Tad James, 2012</em></p>
+</div></section>
 
-<section class="slide slide-section" data-slide="144">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">Join the ABNLP</h1></div>
-<div class="fragment"><div class="img-placeholder"><span>Visual / Diagram</span></div></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="144"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">Join the ABNLP</h1></div>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide144_img0.gif"  style="max-width:100%;height:auto;border-radius:8px;max-height:155px;" alt="" loading="lazy"></div>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide144_img1.jpg"  style="max-width:100%;height:auto;border-radius:8px;max-height:394px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-section" data-slide="145">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">Ongoing Support</h1></div>
-<div class="fragment"><div class="img-placeholder"><span>Visual / Diagram</span></div></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="145"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">Ongoing Support</h1></div>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide145_img0.jpg"  style="max-width:100%;height:auto;border-radius:8px;max-height:380px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-content" data-slide="146">
-<div class="topbar"></div>
-<div class="slide-inner">
-<h2 class="fragment slide-heading">NLP Model of Change</h2>
+<section class="slide slide-content" data-slide="146"><div class="topbar"></div><div class="slide-inner"><h2 class="fragment slide-heading">NLP Model of Change</h2>
 <p class="fragment content-text" style="">Present State</p>
 <p class="fragment content-text" style="">Desired State</p>
-<p class="fragment content-text" style="">Old Model of World</p>
 <p class="fragment content-text" style="">New Model of World</p>
-</div>
-</section>
+<p class="fragment content-text" style="">Old Model of World</p>
+</div></section>
 
-<section class="slide slide-end" data-slide="147">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:4rem;">END</h1></div>
-<div class="fragment"><p style="font-size:1.2rem;opacity:0.7;">Thank you for attending the FasTrak™ NLP Practitioner Training</p></div>
-</div>
-</section>
+<section class="slide slide-end" data-slide="147"><div class="slide-inner"><div class="fragment"><h1 style="font-size:4rem;">END</h1></div>
+<div class="fragment"><img src="images/slide147_img0.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:127px;" alt="" loading="lazy"></div>
+<div class="fragment"><p style="font-size:1.2rem;opacity:0.7;">Thank you for attending the FasTrak™ NLP Practitioner Training</p></div></div></section>
 
-<section class="slide slide-section" data-slide="148">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">Parts Integration</h1></div>
+<section class="slide slide-section" data-slide="148"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">Parts Integration</h1></div>
 <div class="fragment"><p style="font-size:1.2rem;opacity:0.8;margin-top:0.8em;"><strong>If the hands do not come together automatically</strong><strong>:</strong></p></div>
-</div>
-</section>
+</div></section>
 
-<section class="slide slide-section" data-slide="149">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">SMD’s Belief Change Script</h1></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="149"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">SMD’s Belief Change Script</h1></div>
+</div></section>
 
-<section class="slide slide-section" data-slide="150">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">SMD’s Belief Change Script</h1></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="150"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">SMD’s Belief Change Script</h1></div>
+</div></section>
 
-<section class="slide slide-section" data-slide="151">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;">SMD’s Belief Change</h1></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="151"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;">SMD’s Belief Change</h1></div>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide151_img0.jpg"  style="max-width:100%;height:auto;border-radius:8px;max-height:500px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-content" data-slide="152">
-<div class="topbar"></div>
-<div class="slide-inner">
-<h2 class="fragment slide-heading">SMD’s Belief Change</h2>
+<section class="slide slide-content" data-slide="152"><div class="topbar"></div><div class="slide-inner"><h2 class="fragment slide-heading">SMD’s Belief Change</h2>
 <p class="fragment content-text" style="">Unwanted Belief</p>
 <p class="fragment content-text" style="">Belief No Longer true</p>
 <p class="fragment content-text" style="">Absolutely True</p>
@@ -1431,125 +958,90 @@ html,body{height:100%;overflow:hidden;font-family:'Segoe UI',system-ui,-apple-sy
 <tr><td>A</td><td></td><td></td><td></td><td></td></tr>
 <tr><td>K</td><td></td><td></td><td></td><td></td></tr>
 </table></div>
-</div>
-</section>
+</div></section>
 
-<section class="slide slide-section" data-slide="153">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;"></h1></div>
-<div class="fragment"><div class="img-placeholder"><span>Visual / Diagram</span></div></div>
-</div>
-</section>
+<section class="slide slide-section" data-slide="153"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;"></h1></div>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide153_img0.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:500px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-content" data-slide="154">
-<div class="topbar"></div>
-<div class="slide-inner">
-<h2 class="fragment slide-heading">Neuro Transmitter</h2>
+<section class="slide slide-content" data-slide="154"><div class="topbar"></div><div class="slide-inner"><h2 class="fragment slide-heading">Neuro Transmitter</h2>
 <p class="fragment content-text" style=""><strong>Diagram of 2 Neurons</strong></p>
-<p class="fragment content-text" style=""><strong>Synaptic Gap</strong></p>
 <p class="fragment content-text" style="">Neuro Transmitter bathes every cell in the body!</p>
-<div class="fragment"><div class="img-placeholder"><span>Visual / Diagram</span></div></div>
-</div>
-</section>
+<p class="fragment content-text" style=""><strong>Synaptic Gap</strong></p>
+<div class="fragment" style="text-align:center;margin:0.8em 0;"><img src="images/slide154_img0.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:283px;" alt="" loading="lazy"></div>
+<div class="fragment" style="text-align:center;margin:0.8em 0;"><img src="images/slide154_img1.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:283px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-content" data-slide="155">
-<div class="topbar"></div>
-<div class="slide-inner">
-<h2 class="fragment slide-heading">Group Rapport</h2>
+<section class="slide slide-content" data-slide="155"><div class="topbar"></div><div class="slide-inner"><h2 class="fragment slide-heading">Group Rapport</h2>
 <p class="fragment content-text" style=""><strong>BIA-1</strong></p>
 <p class="fragment content-text" style=""><strong>BIA-2</strong></p>
 <p class="fragment content-text" style=""><strong>Us-2</strong></p>
 <p class="fragment content-text" style=""><strong>A</strong><strong>D</strong><strong>  Don</strong></p>
 <p class="fragment content-text" style=""><strong>Tad</strong></p>
 <p class="fragment content-text" style=""><strong>Us-1</strong></p>
-</div>
-</section>
+</div></section>
 
-<section class="slide slide-content" data-slide="156">
-<div class="topbar"></div>
-<div class="slide-inner">
-<h2 class="fragment slide-heading">Group Rapport Exercise</h2>
+<section class="slide slide-content" data-slide="156"><div class="topbar"></div><div class="slide-inner"><h2 class="fragment slide-heading">Group Rapport Exercise</h2>
 <p class="fragment content-text" style=""><strong>1</strong></p>
-<p class="fragment content-text" style=""><strong>Speaker</strong></p>
 <p class="fragment content-text" style=""><strong>2</strong></p>
+<p class="fragment content-text" style=""><strong>Speaker</strong></p>
 <p class="fragment content-text" style=""><strong>1</strong></p>
-</div>
-</section>
+</div></section>
 
-<section class="slide slide-content" data-slide="157">
-<div class="topbar"></div>
-<div class="slide-inner">
-<h2 class="fragment slide-heading">Group Rapport</h2>
+<section class="slide slide-content" data-slide="157"><div class="topbar"></div><div class="slide-inner"><h2 class="fragment slide-heading">Group Rapport</h2>
 <p class="fragment content-text" style=""><strong>BIA-1</strong></p>
 <p class="fragment content-text" style=""><strong>BIA-2</strong></p>
 <p class="fragment content-text" style=""><strong>Us-2</strong></p>
 <p class="fragment content-text" style=""><strong>A</strong><strong>D</strong><strong>  Don</strong></p>
 <p class="fragment content-text" style=""><strong>Tad</strong></p>
 <p class="fragment content-text" style=""><strong>Us-1</strong></p>
-</div>
-</section>
+</div></section>
 
-<section class="slide slide-content" data-slide="158">
-<div class="topbar"></div>
-<div class="slide-inner">
-<h2 class="fragment slide-heading">Covert Anchoring</h2>
+<section class="slide slide-content" data-slide="158"><div class="topbar"></div><div class="slide-inner"><h2 class="fragment slide-heading">Covert Anchoring</h2>
 <p class="fragment content-text" style=""><strong>First: Rapport</strong></p>
 <p class="fragment content-text" style="font-size:1.4rem;"><strong>Condition Anchors</strong></p>
 <p class="fragment content-text" style=""><strong>Knows Answers</strong></p>
-<p class="fragment content-text" style=""><strong>Not Know Answers</strong></p>
 <p class="fragment content-text" style="font-size:1.4rem;"><strong>Influence</strong></p>
-<div class="fragment"><div class="img-placeholder"><span>Visual / Diagram</span></div></div>
-</div>
-</section>
+<p class="fragment content-text" style=""><strong>Not Know Answers</strong></p>
+<div class="fragment" style="text-align:center;margin:0.8em 0;"><img src="images/slide158_img0.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:130px;" alt="" loading="lazy"></div>
+<div class="fragment" style="text-align:center;margin:0.8em 0;"><img src="images/slide158_img1.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:136px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-section" data-slide="159">
-<div class="slide-inner">
-<div class="fragment"><h1 style="font-size:2.8rem;"><strong>Outcome Definition</strong></h1></div>
+<section class="slide slide-section" data-slide="159"><div class="slide-inner"><div class="fragment"><h1 style="font-size:2.8rem;"><strong>Outcome Definition</strong></h1></div>
 <div class="fragment"><p style="font-size:1.2rem;opacity:0.8;margin-top:0.8em;"><strong>Pages 10 &amp; 29</strong></p></div>
-</div>
-</section>
+<div class="fragment" style="margin:1em auto;text-align:center;"><img src="images/slide159_img0.png"  style="max-width:100%;height:auto;border-radius:8px;max-height:127px;" alt="" loading="lazy"></div>
+</div></section>
 
-<section class="slide slide-content" data-slide="160">
-<div class="topbar"></div>
-<div class="slide-inner">
-<h2 class="fragment slide-heading">Do Our Questions Affect SMD&#x27;s?</h2>
+<section class="slide slide-content" data-slide="160"><div class="topbar"></div><div class="slide-inner"><h2 class="fragment slide-heading">Do Our Questions Affect SMD&#x27;s?</h2>
 <p class="fragment content-text" style=""><strong>A: (The Client) </strong><strong>States Outcome</strong></p>
 <p class="fragment content-text" style=""><strong>B</strong>: (Asks Client)<strong> </strong><strong>“Think of </strong><strong>your outcome</strong><strong>”</strong></p>
 <p class="fragment content-text" style=""><strong>C</strong>: (Asks Client)  <strong> </strong><strong>“</strong><strong>When you think </strong><strong>of that</strong><strong>, do you have a </strong><strong>picture</strong><strong>?” (Elicit </strong><strong>the SMD’s</strong><strong>)</strong></p>
 <p class="fragment content-text" style=""><strong>B</strong>:  Asks questions from <strong>Keys to Achievable Outcome</strong> (Client does NOT answer)</p>
 <p class="fragment content-text" style=""><strong>C</strong>: <strong>“How has the Picture Changed?” </strong>(Client answers)</p>
 <p class="fragment content-text" style=""><strong>Repeat </strong><strong>4 </strong><strong>&amp; </strong><strong>5</strong><strong> ‘till done.</strong></p>
-</div>
-</section>
+</div></section>
 </div>
 
 <nav class="nav-bar">
-  <button onclick="prevAction()">&larr; Prev</button>
-  <span class="slide-counter" id="slideCounter">1 / 160</span>
-  <button onclick="nextAction()">&rarr; Next</button>
+<button onclick="prevAction()">&larr; Prev</button>
+<span class="slide-counter" id="slideCounter">1 / 160</span>
+<button onclick="nextAction()">&rarr; Next</button>
 </nav>
-
 <button class="suggest-btn" id="suggestBtn" onclick="openModal()">Suggest Edit</button>
 <div class="swipe-hint" id="swipeHint">Click or press &rarr; to reveal content</div>
 
 <div class="modal-overlay" id="modalOverlay">
-  <div class="modal">
-    <button class="close-x" onclick="closeModal()">&times;</button>
-    <h3>Suggest an Edit</h3>
-    <label>Slide</label>
-    <input type="text" id="sugSlide" readonly>
-    <label>Original Text (optional)</label>
-    <input type="text" id="sugOriginal" placeholder="Text to change...">
-    <label>Your Suggestion</label>
-    <textarea id="sugSuggestion" placeholder="What should it say instead?"></textarea>
-    <label>Your Name</label>
-    <input type="text" id="sugName" placeholder="Anonymous">
-    <div class="modal-actions">
-      <button class="btn-cancel" onclick="closeModal()">Cancel</button>
-      <button class="btn-submit" onclick="submitSuggestion()">Submit</button>
-    </div>
-  </div>
-</div>
+<div class="modal">
+<button class="close-x" onclick="closeModal()">&times;</button>
+<h3>Suggest an Edit</h3>
+<label>Slide</label><input type="text" id="sugSlide" readonly>
+<label>Original Text (optional)</label><input type="text" id="sugOriginal" placeholder="Text to change...">
+<label>Your Suggestion</label><textarea id="sugSuggestion" placeholder="What should it say instead?"></textarea>
+<label>Your Name</label><input type="text" id="sugName" placeholder="Anonymous">
+<div class="modal-actions">
+<button class="btn-cancel" onclick="closeModal()">Cancel</button>
+<button class="btn-submit" onclick="submitSuggestion()">Submit</button>
+</div></div></div>
 <div class="toast" id="toast">Thanks! Suggestion submitted.</div>
 
 <script>
@@ -1557,133 +1049,74 @@ const SUGGEST_URL="https://script.google.com/macros/s/AKfycbwIR0RfKpz9-hNzE2qrFy
 const allSlides=document.querySelectorAll('.slide');
 const totalSlides=allSlides.length;
 let current=0;
-let fragmentIndex={};// slide index -> current fragment position
+let fragmentIndex={};
 
-function getFragments(slideIdx){
-  return allSlides[slideIdx].querySelectorAll('.fragment');
+function getFragments(idx){return allSlides[idx].querySelectorAll('.fragment')}
+
+function initSlide(idx,showAll){
+const frags=getFragments(idx);
+if(showAll){frags.forEach(f=>{f.classList.add('visible','instant');setTimeout(()=>f.classList.remove('instant'),50)});fragmentIndex[idx]=frags.length}
+else{frags.forEach(f=>f.classList.remove('visible'));fragmentIndex[idx]=0}
 }
 
-function initSlide(idx, showAll){
-  const frags=getFragments(idx);
-  if(showAll){
-    frags.forEach(f=>{f.classList.add('visible','instant');setTimeout(()=>f.classList.remove('instant'),50)});
-    fragmentIndex[idx]=frags.length;
-  } else {
-    frags.forEach(f=>f.classList.remove('visible'));
-    fragmentIndex[idx]=0;
-  }
-}
-
-function showSlide(idx, direction){
-  allSlides.forEach((s,i)=>{
-    s.classList.remove('active','prev');
-    if(i<idx) s.classList.add('prev');
-  });
-  allSlides[idx].classList.add('active');
-  current=idx;
-  document.getElementById('slideCounter').textContent=(idx+1)+' / '+totalSlides;
-  document.getElementById('progressBar').style.width=((idx+1)/totalSlides*100)+'%';
-  document.getElementById('sugSlide').value='Slide '+(idx+1);
-  
-  // Show hint on first slide
-  if(idx===0 && !sessionStorage.getItem('hintShown')){
-    const h=document.getElementById('swipeHint');
-    h.classList.add('show');
-    setTimeout(()=>{h.classList.remove('show');sessionStorage.setItem('hintShown','1')},3000);
-  }
+function showSlide(idx){
+allSlides.forEach((s,i)=>{s.classList.remove('active','prev');if(i<idx)s.classList.add('prev')});
+allSlides[idx].classList.add('active');
+current=idx;
+document.getElementById('slideCounter').textContent=(idx+1)+' / '+totalSlides;
+document.getElementById('progressBar').style.width=((idx+1)/totalSlides*100)+'%';
+document.getElementById('sugSlide').value='Slide '+(idx+1);
+if(idx===0&&!sessionStorage.getItem('hintShown')){const h=document.getElementById('swipeHint');h.classList.add('show');setTimeout(()=>{h.classList.remove('show');sessionStorage.setItem('hintShown','1')},3000)}
 }
 
 function nextAction(){
-  const frags=getFragments(current);
-  const fi=fragmentIndex[current]||0;
-  
-  if(fi<frags.length){
-    // Reveal next fragment
-    frags[fi].classList.add('visible');
-    fragmentIndex[current]=fi+1;
-  } else {
-    // All fragments shown, go to next slide
-    if(current<totalSlides-1){
-      initSlide(current+1, false);
-      showSlide(current+1, 'next');
-      // Auto-show first fragment after short delay
-      setTimeout(()=>{
-        const nf=getFragments(current);
-        if(nf.length>0){
-          nf[0].classList.add('visible');
-          fragmentIndex[current]=1;
-        }
-      },100);
-    }
-  }
+const frags=getFragments(current);
+const fi=fragmentIndex[current]||0;
+if(fi<frags.length){frags[fi].classList.add('visible');fragmentIndex[current]=fi+1}
+else if(current<totalSlides-1){initSlide(current+1,false);showSlide(current+1);setTimeout(()=>{const nf=getFragments(current);if(nf.length){nf[0].classList.add('visible');fragmentIndex[current]=1}},100)}
 }
 
 function prevAction(){
-  const fi=fragmentIndex[current]||0;
-  
-  if(fi>1){
-    // Hide last visible fragment
-    const frags=getFragments(current);
-    frags[fi-1].classList.remove('visible');
-    fragmentIndex[current]=fi-1;
-  } else if(current>0){
-    // Go to previous slide with all fragments shown
-    initSlide(current-1, true);
-    showSlide(current-1, 'prev');
-  }
+const fi=fragmentIndex[current]||0;
+if(fi>1){const frags=getFragments(current);frags[fi-1].classList.remove('visible');fragmentIndex[current]=fi-1}
+else if(current>0){initSlide(current-1,true);showSlide(current-1)}
 }
 
-// Keyboard navigation
 document.addEventListener('keydown',e=>{
-  if(document.getElementById('modalOverlay').classList.contains('open'))return;
-  if(e.key==='ArrowRight'||e.key===' '||e.key==='Enter'){e.preventDefault();nextAction()}
-  if(e.key==='ArrowLeft'||e.key==='Backspace'){e.preventDefault();prevAction()}
-  if(e.key==='Home'){e.preventDefault();initSlide(0,false);showSlide(0,'prev');const f=getFragments(0);if(f.length){f[0].classList.add('visible');fragmentIndex[0]=1}}
-  if(e.key==='End'){e.preventDefault();initSlide(totalSlides-1,true);showSlide(totalSlides-1,'next')}
+if(document.getElementById('modalOverlay').classList.contains('open'))return;
+if(e.key==='ArrowRight'||e.key===' '||e.key==='Enter'){e.preventDefault();nextAction()}
+if(e.key==='ArrowLeft'||e.key==='Backspace'){e.preventDefault();prevAction()}
+if(e.key==='Home'){e.preventDefault();initSlide(0,false);showSlide(0);const f=getFragments(0);if(f.length){f[0].classList.add('visible');fragmentIndex[0]=1}}
+if(e.key==='End'){e.preventDefault();initSlide(totalSlides-1,true);showSlide(totalSlides-1)}
 });
 
-// Touch/swipe
 let touchStartX=0,touchStartY=0;
 document.addEventListener('touchstart',e=>{touchStartX=e.touches[0].clientX;touchStartY=e.touches[0].clientY});
 document.addEventListener('touchend',e=>{
-  if(document.getElementById('modalOverlay').classList.contains('open'))return;
-  const dx=e.changedTouches[0].clientX-touchStartX;
-  const dy=e.changedTouches[0].clientY-touchStartY;
-  if(Math.abs(dx)>Math.abs(dy)&&Math.abs(dx)>40){
-    if(dx<0)nextAction();else prevAction();
-  }
+if(document.getElementById('modalOverlay').classList.contains('open'))return;
+const dx=e.changedTouches[0].clientX-touchStartX;
+const dy=e.changedTouches[0].clientY-touchStartY;
+if(Math.abs(dx)>Math.abs(dy)&&Math.abs(dx)>40){if(dx<0)nextAction();else prevAction()}
 });
 
-// Click to advance (on slide area)
 document.getElementById('slidesContainer').addEventListener('click',e=>{
-  if(e.target.closest('.nav-bar,.suggest-btn,.modal-overlay,a,button'))return;
-  nextAction();
+if(e.target.closest('.nav-bar,.suggest-btn,.modal-overlay,a,button'))return;
+nextAction();
 });
 
-// Suggest edit modal
 function openModal(){document.getElementById('modalOverlay').classList.add('open')}
 function closeModal(){document.getElementById('modalOverlay').classList.remove('open')}
 document.getElementById('modalOverlay').addEventListener('click',e=>{if(e.target===e.currentTarget)closeModal()});
 
 function submitSuggestion(){
-  const data={
-    slide:document.getElementById('sugSlide').value,
-    original:document.getElementById('sugOriginal').value,
-    suggestion:document.getElementById('sugSuggestion').value,
-    name:document.getElementById('sugName').value||'Anonymous'
-  };
-  fetch(SUGGEST_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
-  closeModal();
-  document.getElementById('sugOriginal').value='';
-  document.getElementById('sugSuggestion').value='';
-  const t=document.getElementById('toast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500);
+const data={slide:document.getElementById('sugSlide').value,original:document.getElementById('sugOriginal').value,suggestion:document.getElementById('sugSuggestion').value,name:document.getElementById('sugName').value||'Anonymous'};
+fetch(SUGGEST_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
+closeModal();document.getElementById('sugOriginal').value='';document.getElementById('sugSuggestion').value='';
+const t=document.getElementById('toast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500);
 }
 
-// Initialize
-showSlide(0,'next');
-initSlide(0,false);
-const firstFrags=getFragments(0);
-if(firstFrags.length){firstFrags[0].classList.add('visible');fragmentIndex[0]=1;}
+showSlide(0);initSlide(0,false);
+const ff=getFragments(0);if(ff.length){ff[0].classList.add('visible');fragmentIndex[0]=1}
 </script>
 </body>
 </html>
