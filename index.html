@@ -211,6 +211,48 @@ body:hover #navbar { opacity: 1; }
   color: #aaa; font-size: 13px;
   font-variant-numeric: tabular-nums;
   min-width: 60px; text-align: center;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+#slideCounter:hover {
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+}
+
+/* Slide jump overlay */
+#jumpOverlay {
+  display: none;
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+}
+#jumpOverlay.open { display: flex; }
+#jumpBox {
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px 28px;
+  width: 300px; max-width: 90vw;
+  box-shadow: 0 12px 48px rgba(0,0,0,0.3);
+  animation: modalIn 0.2s ease;
+  text-align: center;
+}
+#jumpBox h3 {
+  margin: 0 0 14px; font-size: 16px; color: #333;
+}
+#jumpInput {
+  width: 100%; border: 2px solid #1976d2;
+  border-radius: 8px; padding: 10px 14px;
+  font-size: 22px; font-family: inherit;
+  text-align: center; outline: none;
+  font-variant-numeric: tabular-nums;
+}
+#jumpInput:focus { border-color: #0d47a1; }
+#jumpHint {
+  margin-top: 10px; font-size: 12px; color: #888;
 }
 
 /* ── Suggest Edit button ── */
@@ -337,6 +379,13 @@ body:hover #navbar { opacity: 1; }
   </div>
 </div>
 <div id="toast"></div>
+<div id="jumpOverlay">
+  <div id="jumpBox">
+    <h3>Go to Slide</h3>
+    <input type="number" id="jumpInput" min="1" placeholder="Slide number...">
+    <div id="jumpHint">Press Enter to jump, Esc to cancel</div>
+  </div>
+</div>
 <div id="slideCanvas">
 <section class="slide" data-slide="1" data-clicks='[]' style="background:linear-gradient(135deg,#0c1829 0%,#1a2744 40%,#0f1f3a 100%)">
   <!-- Pre-title -->
@@ -2566,6 +2615,36 @@ body:hover #navbar { opacity: 1; }
       ? ((currentSlide / (totalSlides - 1)) * 100).toFixed(1) + '%'
       : '0%';
     document.documentElement.style.setProperty('--progress', pct);
+    /* Save position to localStorage */
+    try {
+      localStorage.setItem('pres-nlp-slide', currentSlide);
+      localStorage.setItem('pres-nlp-click', clickIndex);
+    } catch(e) {}
+  }
+
+  /* ─── Slide jump ─── */
+  function openJump() {
+    var overlay = document.getElementById('jumpOverlay');
+    var input = document.getElementById('jumpInput');
+    if (!overlay || !input) return;
+    overlay.classList.add('open');
+    input.value = '';
+    input.setAttribute('max', totalSlides);
+    input.placeholder = '1 – ' + totalSlides;
+    input.focus();
+  }
+  function closeJump() {
+    var overlay = document.getElementById('jumpOverlay');
+    if (overlay) overlay.classList.remove('open');
+  }
+  function doJump() {
+    var input = document.getElementById('jumpInput');
+    if (!input) return;
+    var n = parseInt(input.value, 10);
+    if (n >= 1 && n <= totalSlides) {
+      closeJump();
+      showSlide(n - 1, true);
+    }
   }
 
   /* ─── Touch / swipe ─── */
@@ -2590,9 +2669,11 @@ body:hover #navbar { opacity: 1; }
 
   /* ─── Keyboard ─── */
   function onKeyDown(e) {
-    /* Don't intercept if modal is open or focus is in an input */
+    /* Don't intercept if modal or jump overlay is open, or focus is in an input */
     if (document.getElementById('modalOverlay') &&
         document.getElementById('modalOverlay').classList.contains('open')) return;
+    if (document.getElementById('jumpOverlay') &&
+        document.getElementById('jumpOverlay').classList.contains('open')) return;
     if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
 
     switch (e.key) {
@@ -2604,6 +2685,10 @@ body:hover #navbar { opacity: 1; }
         e.preventDefault(); showSlide(0, false); break;
       case 'End':
         e.preventDefault(); showSlide(totalSlides - 1, true); break;
+      case 'g': case 'G':
+        e.preventDefault(); openJump(); break;
+      case 'Escape':
+        closeJump(); break;
     }
   }
 
@@ -2686,11 +2771,59 @@ body:hover #navbar { opacity: 1; }
     computeScale();
     window.addEventListener('resize', computeScale);
 
-    /* Show first slide */
-    if (totalSlides > 0) showSlide(0, false);
+    /* Restore saved position or show first slide */
+    var savedSlide = 0;
+    var savedClick = 0;
+    try {
+      var ss = localStorage.getItem('pres-nlp-slide');
+      var sc = localStorage.getItem('pres-nlp-click');
+      if (ss !== null) savedSlide = Math.min(parseInt(ss,10) || 0, totalSlides - 1);
+      if (sc !== null) savedClick = parseInt(sc,10) || 0;
+    } catch(e) {}
+
+    if (totalSlides > 0) {
+      if (savedSlide > 0 || savedClick > 0) {
+        showSlide(savedSlide, false);
+        /* Replay clicks to restore position */
+        var slideEl = slides[savedSlide];
+        var groups = getClickGroups(slideEl);
+        var target = Math.min(savedClick, groups.length);
+        for (var g = 0; g < target; g++) {
+          playGroup(slideEl, g, true);
+        }
+        clickIndex = target;
+        updateUI();
+      } else {
+        showSlide(0, false);
+      }
+    }
 
     /* Events */
     document.addEventListener('keydown', onKeyDown);
+
+    /* Slide counter click -> open jump */
+    if (counterEl) {
+      counterEl.addEventListener('click', function(e) {
+        e.stopPropagation();
+        openJump();
+      });
+    }
+
+    /* Jump overlay events */
+    var jumpOverlay = document.getElementById('jumpOverlay');
+    var jumpInput = document.getElementById('jumpInput');
+    if (jumpOverlay) {
+      jumpOverlay.addEventListener('click', function(e) {
+        if (e.target === jumpOverlay) closeJump();
+      });
+    }
+    if (jumpInput) {
+      jumpInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') { e.preventDefault(); doJump(); }
+        if (e.key === 'Escape') { e.preventDefault(); closeJump(); }
+        e.stopPropagation(); /* prevent slide navigation while typing */
+      });
+    }
     canvas.addEventListener('touchstart', onTouchStart, { passive: true });
     canvas.addEventListener('touchend', onTouchEnd, { passive: true });
     canvas.addEventListener('click', function(e) {
