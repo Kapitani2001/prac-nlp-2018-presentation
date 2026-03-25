@@ -1414,28 +1414,133 @@ body:hover #navbar { opacity: 1; }
   </div>
 </section>
 
-<section class="slide" data-slide="22" data-clicks='[[{"spid": "intr", "cls": "entr", "delay": 0, "filter": "fade", "motion": "", "dur": "600"}]]' style="background:#111;overflow:hidden">
+<section class="slide" data-slide="22" data-clicks='[[{"spid": "interrupt", "cls": "entr", "delay": 0, "filter": "dissolve", "motion": "", "dur": "300"}]]' style="background:#0c1829;overflow:hidden">
+  <style>
+    .pattern-bar {
+      width: calc(40pt * var(--scale));
+      height: calc(8pt * var(--scale));
+      background: #36639C;
+      border-radius: 4px;
+      animation: patternPulse 1.2s ease-in-out infinite;
+    }
+    .pattern-bar:nth-child(2) { animation-delay: 0.15s; }
+    .pattern-bar:nth-child(3) { animation-delay: 0.3s; }
+    .pattern-bar:nth-child(4) { animation-delay: 0.45s; }
+    .pattern-bar:nth-child(5) { animation-delay: 0.6s; }
+    .pattern-bar:nth-child(6) { animation-delay: 0.75s; }
+    .pattern-bar:nth-child(7) { animation-delay: 0.9s; }
+    .pattern-bar:nth-child(8) { animation-delay: 1.05s; }
+    @keyframes patternPulse {
+      0%, 100% { opacity: 0.4; transform: scaleX(0.7); }
+      50% { opacity: 1; transform: scaleX(1); }
+    }
+    /* After interrupt: bars freeze and crack */
+    .pattern-broken .pattern-bar {
+      animation: none !important;
+      opacity: 0.15 !important;
+      transform: scaleX(0.5) !important;
+      transition: all 0.6s ease;
+    }
+    .pattern-broken .pattern-bar:nth-child(4),
+    .pattern-broken .pattern-bar:nth-child(5) {
+      opacity: 0 !important;
+      transform: scaleX(0) translateY(10px) !important;
+    }
+    .crack-line {
+      position: absolute;
+      width: 4px;
+      height: 0;
+      background: #AB292E;
+      left: 50%;
+      top: 10%;
+      transform: translateX(-50%);
+      transition: height 0.4s ease;
+      border-radius: 2px;
+      box-shadow: 0 0 12px rgba(171,41,46,0.6);
+    }
+    .pattern-broken .crack-line {
+      height: 80%;
+    }
+  </style>
+
+  <!-- Background image subtle -->
   <div style="position:absolute;inset:0">
-    <img src="images/slide22_img0.jpg" style="width:100%;height:100%;object-fit:cover;opacity:0.3" loading="lazy">
-    <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,0,0,0.6),rgba(0,0,0,0.4))"></div>
+    <img src="images/slide22_img0.jpg" style="width:100%;height:100%;object-fit:cover;opacity:0.15" loading="lazy">
+    <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(12,24,41,0.85),rgba(12,24,41,0.7))"></div>
   </div>
-  <div style="position:absolute;left:6%;top:6%;width:88%;z-index:2">
-    <p><span style="font-size:calc(24.0pt * var(--scale));color:#fff"><b>Pattern Interrupt</b></span></p>
+
+  <!-- Title -->
+  <div style="position:absolute;left:6%;top:5%;width:88%;z-index:3">
+    <p><span style="font-size:calc(26.0pt * var(--scale));color:#fff"><b>Pattern Interrupt</b></span></p>
   </div>
-  <!-- Behavior flow -->
-  <div style="position:absolute;left:6%;top:25%;width:45%;z-index:2">
-    <div style="background:#36639C;border-radius:10px;padding:calc(10pt * var(--scale)) calc(14pt * var(--scale));text-align:center">
-      <span style="font-size:calc(16.0pt * var(--scale));color:#fff"><b>Behavior</b></span>
-      <p style="margin-top:calc(4pt * var(--scale))"><span style="font-size:calc(10.0pt * var(--scale));color:rgba(255,255,255,0.6)">A repeating pattern or habit</span></p>
+
+  <!-- Behavior label -->
+  <div style="position:absolute;left:6%;top:16%;width:35%;z-index:3">
+    <div style="background:rgba(54,99,156,0.2);border:1px solid rgba(54,99,156,0.3);border-radius:8px;padding:calc(6pt * var(--scale)) calc(10pt * var(--scale));text-align:center">
+      <span style="font-size:calc(14.0pt * var(--scale));color:#5b8ec2"><b>Behavior Pattern</b></span>
     </div>
   </div>
-  <!-- Interrupt card -->
-  <div class="shape anim-hidden" data-spid="intr" style="position:absolute;left:6%;top:48%;width:45%;z-index:2;opacity:0;visibility:hidden">
-    <div style="background:#AB292E;border-radius:10px;padding:calc(10pt * var(--scale)) calc(14pt * var(--scale));text-align:center;box-shadow:0 4px 16px rgba(171,41,46,0.3)">
-      <span style="font-size:calc(18.0pt * var(--scale));color:#fff"><b>INTERRUPT</b></span>
-      <p style="margin-top:calc(6pt * var(--scale))"><span style="font-size:calc(11.0pt * var(--scale));color:rgba(255,255,255,0.8)">(Becomes part of the pattern)</span></p>
+
+  <!-- Animated pattern bars (the repeating behavior) -->
+  <div id="patternContainer22" style="position:absolute;left:10%;top:28%;width:calc(44pt * var(--scale));z-index:2;display:flex;flex-direction:column;gap:calc(4pt * var(--scale));align-items:center">
+    <div class="pattern-bar"></div>
+    <div class="pattern-bar"></div>
+    <div class="pattern-bar"></div>
+    <div class="pattern-bar"></div>
+    <div class="pattern-bar"></div>
+    <div class="pattern-bar"></div>
+    <div class="pattern-bar"></div>
+    <div class="pattern-bar"></div>
+    <div class="crack-line"></div>
+  </div>
+
+  <!-- Right side: explanation text (always visible) -->
+  <div style="position:absolute;left:38%;top:28%;width:55%;z-index:3">
+    <div style="border-left:3px solid #36639C;padding-left:calc(12pt * var(--scale));margin-bottom:calc(10pt * var(--scale))">
+      <p><span style="font-size:calc(13.0pt * var(--scale));color:rgba(255,255,255,0.8);line-height:1.6">A behavior pattern repeats automatically — the same sequence, the same response, over and over.</span></p>
     </div>
   </div>
+
+  <!-- INTERRUPT reveal (click) -->
+  <div class="shape anim-hidden" data-spid="interrupt" style="position:absolute;left:38%;top:50%;width:55%;z-index:3;opacity:0;visibility:hidden">
+    <div style="background:#AB292E;border-radius:10px;padding:calc(12pt * var(--scale)) calc(16pt * var(--scale));box-shadow:0 4px 24px rgba(171,41,46,0.4)">
+      <p style="margin-bottom:calc(6pt * var(--scale))"><span style="font-size:calc(22.0pt * var(--scale));color:#fff"><b>INTERRUPT!</b></span></p>
+      <p><span style="font-size:calc(12.0pt * var(--scale));color:rgba(255,255,255,0.85);line-height:1.5">Break the pattern. Insert something unexpected. The behavior stops — and the interrupt becomes part of a new pattern.</span></p>
+    </div>
+  </div>
+
+  <!-- JS to trigger the pattern break when interrupt is revealed -->
+  <script>
+  (function() {
+    var observer = new MutationObserver(function(mutations) {
+      mutations.forEach(function(m) {
+        if (m.type === 'attributes') {
+          var el = m.target;
+          if (el.dataset && el.dataset.spid === 'interrupt') {
+            var vis = window.getComputedStyle(el).visibility;
+            var container = document.getElementById('patternContainer22');
+            if (container) {
+              if (vis === 'visible' && parseFloat(window.getComputedStyle(el).opacity) > 0.5) {
+                container.classList.add('pattern-broken');
+              } else {
+                container.classList.remove('pattern-broken');
+              }
+            }
+          }
+        }
+      });
+    });
+    // Observe all slides for attribute changes
+    setTimeout(function() {
+      var slide = document.querySelector('[data-slide="22"]');
+      if (slide) {
+        slide.querySelectorAll('[data-spid]').forEach(function(el) {
+          observer.observe(el, { attributes: true, attributeFilter: ['style', 'class'] });
+        });
+      }
+    }, 500);
+  })();
+  </script>
 </section>
 
 <section class="slide" data-slide="23" data-clicks='[[{"spid": "criteria", "cls": "entr", "delay": 0, "filter": "fade", "motion": "", "dur": "600"}]]' style="background:#111;overflow:hidden">
