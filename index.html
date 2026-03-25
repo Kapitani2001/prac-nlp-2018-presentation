@@ -1163,27 +1163,27 @@ body:hover #navbar { opacity: 1; }
   </div>
 
   <!-- Scale bar -->
-  <div style="position:absolute;left:8%;top:50%;width:84%;height:calc(4pt * var(--scale));background:linear-gradient(90deg,#d0dbe8 0%,#0060A2 100%);border-radius:3px"></div>
+  <div style="position:absolute;left:8%;top:50%;width:84%;height:calc(4pt * var(--scale));background:linear-gradient(90deg,#d0dbe8 0%,#36639C 60%,#0060A2 100%);border-radius:3px"></div>
 
   <!-- 0 label -->
   <div style="position:absolute;left:8%;top:54%"><span style="font-size:calc(16.0pt * var(--scale));color:#999"><b>0</b></span></div>
   <!-- 100 label -->
   <div style="position:absolute;right:8%;top:54%"><span style="font-size:calc(16.0pt * var(--scale));color:#999"><b>100</b></span></div>
 
-  <!-- Passing — ABOVE the line, near the 80 mark (right side) -->
-  <div class="shape anim-hidden" data-spid="passing" style="position:absolute;left:72%;top:30%;width:18%;text-align:center;opacity:0;visibility:hidden">
-    <div style="background:#f7f9fc;border:2px solid #0060A2;border-radius:10px;padding:calc(8pt * var(--scale)) calc(10pt * var(--scale))">
-      <p><span style="font-size:calc(18.0pt * var(--scale));color:#0060A2"><b>Passing</b></span></p>
+  <!-- Passing — above the line, at ~75% mark -->
+  <div class="shape anim-hidden" data-spid="passing" style="position:absolute;left:65%;top:28%;width:18%;text-align:center;opacity:0;visibility:hidden">
+    <div style="background:#f7f9fc;border:2px solid #36639C;border-radius:10px;padding:calc(8pt * var(--scale)) calc(10pt * var(--scale))">
+      <p><span style="font-size:calc(18.0pt * var(--scale));color:#36639C"><b>Passing</b></span></p>
     </div>
-    <div style="width:2px;height:calc(16pt * var(--scale));background:#0060A2;margin:calc(2pt * var(--scale)) auto 0"></div>
+    <div style="width:2px;height:calc(16pt * var(--scale));background:#36639C;margin:calc(2pt * var(--scale)) auto 0"></div>
   </div>
 
-  <!-- Excellence — BELOW the line, near the middle -->
-  <div class="shape anim-hidden" data-spid="excellence" style="position:absolute;left:42%;top:58%;width:18%;text-align:center;opacity:0;visibility:hidden">
-    <div style="width:2px;height:calc(16pt * var(--scale));background:#36639C;margin:0 auto calc(2pt * var(--scale))"></div>
-    <div style="background:linear-gradient(135deg,#0060A2,#36639C);border-radius:10px;padding:calc(8pt * var(--scale)) calc(10pt * var(--scale));box-shadow:0 3px 12px rgba(0,96,162,0.3)">
+  <!-- Excellence — above the line, at ~90% mark, HIGHER than passing -->
+  <div class="shape anim-hidden" data-spid="excellence" style="position:absolute;left:80%;top:28%;width:18%;text-align:center;opacity:0;visibility:hidden">
+    <div style="background:linear-gradient(135deg,#0060A2,#1a2744);border-radius:10px;padding:calc(8pt * var(--scale)) calc(10pt * var(--scale));box-shadow:0 3px 16px rgba(0,96,162,0.35)">
       <p><span style="font-size:calc(18.0pt * var(--scale));color:#fff"><b>Excellence</b></span></p>
     </div>
+    <div style="width:2px;height:calc(16pt * var(--scale));background:#0060A2;margin:calc(2pt * var(--scale)) auto 0"></div>
   </div>
 </section>
 
@@ -1329,7 +1329,7 @@ body:hover #navbar { opacity: 1; }
   </div>
 </section>
 
-<section class="slide" data-slide="20" data-clicks='[[{"spid":"msg","cls":"entr","delay":0,"filter":"fade","motion":"","dur":"800"}]]'>
+<section class="slide" data-slide="20" data-clicks='[[{"spid":"msg","cls":"entr","delay":0,"filter":"dissolve","motion":"","dur":"300"}]]'>
   <!-- Full-bleed scenic background -->
   <div style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:0">
     <img src="images/slide20_img0.jpg" style="width:100%;height:100%;object-fit:cover" loading="lazy">
