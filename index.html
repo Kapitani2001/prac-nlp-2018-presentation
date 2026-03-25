@@ -491,53 +491,53 @@ body:hover #navbar { opacity: 1; }
     <p><span style="font-size:calc(26.0pt * var(--scale));color:#1a2744"><b>Empowerment</b></span></p>
   </div>
 
-  <!-- STARTING STATE: Cause > Effect (visible from start) -->
-  <!-- Cause box — left side -->
-  <div class="shape" data-spid="23" style="position:absolute;left:12%;top:22%;width:22%;min-height:10%;background:#0060A2;border-radius:10px;display:flex;align-items:center;justify-content:center;padding:calc(8pt * var(--scale)) calc(12pt * var(--scale))">
-    <p><span style="font-size:calc(28.0pt * var(--scale));color:#fff"><b>Cause</b></span></p>
+  <!-- === STARTING STATE === -->
+  <!-- Cause box (blue, stays visible throughout) -->
+  <div class="shape" data-spid="23" style="position:absolute;left:14%;top:22%;width:22%;min-height:10%;background:#0060A2;border-radius:10px;display:flex;align-items:center;justify-content:center;padding:calc(8pt * var(--scale)) calc(12pt * var(--scale));z-index:1">
+    <p><span style="font-size:calc(26.0pt * var(--scale));color:#fff"><b>Cause</b></span></p>
   </div>
 
-  <!-- Arrow > -->
-  <div class="shape" data-spid="37" style="position:absolute;left:36%;top:23%;width:6%;min-height:8%;display:flex;align-items:center;justify-content:center">
-    <p><span style="font-size:calc(32.0pt * var(--scale));color:#0060A2"><b>▸</b></span></p>
+  <!-- Arrow -->
+  <div class="shape" data-spid="37" style="position:absolute;left:38%;top:23%;width:6%;min-height:8%;display:flex;align-items:center;justify-content:center;z-index:1">
+    <p><span style="font-size:calc(28.0pt * var(--scale));color:#0060A2"><b>▸</b></span></p>
   </div>
 
-  <!-- Effect box — right side (will be pushed out on click 2) -->
-  <div class="shape" data-spid="36" style="position:absolute;left:44%;top:22%;width:22%;min-height:10%;background:#0060A2;border-radius:10px;display:flex;align-items:center;justify-content:center;padding:calc(8pt * var(--scale)) calc(12pt * var(--scale))">
-    <p><span style="font-size:calc(28.0pt * var(--scale));color:#fff"><b>Effect</b></span></p>
+  <!-- Effect box (blue, will exit on click 2) -->
+  <div class="shape" data-spid="36" style="position:absolute;left:46%;top:22%;width:22%;min-height:10%;background:#0060A2;border-radius:10px;display:flex;align-items:center;justify-content:center;padding:calc(8pt * var(--scale)) calc(12pt * var(--scale));z-index:1">
+    <p><span style="font-size:calc(26.0pt * var(--scale));color:#fff"><b>Effect</b></span></p>
   </div>
 
-  <!-- Non-animated Effect label (just the word, no box — visible always) -->
-  <div class="shape" data-spid="26" style="position:absolute;left:44%;top:22%;width:22%;min-height:10%;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none">
-    <p><span style="font-size:calc(28.0pt * var(--scale));color:#0060A2"><b>Effect</b></span></p>
+  <!-- === CLICK 0: "Reasons" fades in, slides to right-center === -->
+  <!-- Starts at same position as Effect, motion path moves it to ~(57%, 42%) -->
+  <div class="shape anim-hidden" data-spid="35" style="position:absolute;left:46%;top:22%;width:24%;min-height:10%;background:#353D40;border-radius:10px;display:flex;align-items:center;justify-content:center;padding:calc(8pt * var(--scale)) calc(12pt * var(--scale));opacity:0;visibility:hidden;z-index:3">
+    <p><span style="font-size:calc(22.0pt * var(--scale));color:#fff"><b>Reasons</b></span></p>
   </div>
 
-  <!-- CLICK 0: "Reasons" appears and slides down-right (dark gray) -->
-  <div class="shape anim-hidden" data-spid="35" style="position:absolute;left:44%;top:22%;width:24%;min-height:10%;background:#353D40;border-radius:10px;display:flex;align-items:center;justify-content:center;padding:calc(8pt * var(--scale)) calc(12pt * var(--scale));opacity:0;visibility:hidden;z-index:2">
-    <p><span style="font-size:calc(24.0pt * var(--scale));color:#fff"><b>Reasons</b></span></p>
+  <!-- === CLICK 1: "Results" fades in, slides to left-center + "vs." appears === -->
+  <!-- Starts at same position as Cause, motion path moves it to ~(2%, 42%) -->
+  <div class="shape anim-hidden" data-spid="39" style="position:absolute;left:14%;top:22%;width:24%;min-height:10%;background:#353D40;border-radius:10px;display:flex;align-items:center;justify-content:center;padding:calc(8pt * var(--scale)) calc(12pt * var(--scale));opacity:0;visibility:hidden;z-index:3">
+    <p><span style="font-size:calc(22.0pt * var(--scale));color:#fff"><b>Results</b></span></p>
   </div>
 
-  <!-- CLICK 1: "Results" appears and slides down-left + "vs." appears -->
-  <div class="shape anim-hidden" data-spid="39" style="position:absolute;left:12%;top:22%;width:24%;min-height:10%;background:#353D40;border-radius:10px;display:flex;align-items:center;justify-content:center;padding:calc(8pt * var(--scale)) calc(12pt * var(--scale));opacity:0;visibility:hidden;z-index:2">
-    <p><span style="font-size:calc(24.0pt * var(--scale));color:#fff"><b>Results</b></span></p>
+  <!-- "vs." centered between the two final positions -->
+  <div class="shape anim-hidden" data-spid="38" style="position:absolute;left:36%;top:44%;width:10%;min-height:6%;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;z-index:4">
+    <p><span style="font-size:calc(24.0pt * var(--scale));color:#999;font-style:italic"><b>vs.</b></span></p>
   </div>
 
-  <!-- "vs." label -->
-  <div class="shape anim-hidden" data-spid="38" style="position:absolute;left:38%;top:42%;width:24%;min-height:8%;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden">
-    <p><span style="font-size:calc(22.0pt * var(--scale));color:#888;font-style:italic"><b>vs.</b></span></p>
-  </div>
-
-  <!-- CLICK 2: "= Empowerment" big reveal -->
-  <div class="shape anim-hidden" data-spid="40" style="position:absolute;left:10%;top:56%;width:80%;min-height:12%;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden">
+  <!-- === CLICK 2: "= Empowerment" appears (Effect & Reasons exit) === -->
+  <div class="shape anim-hidden" data-spid="40" style="position:absolute;left:10%;top:62%;width:80%;min-height:12%;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;z-index:4">
     <div style="background:linear-gradient(135deg,#0060A2,#36639C);border-radius:12px;padding:calc(10pt * var(--scale)) calc(24pt * var(--scale));box-shadow:0 4px 20px rgba(0,96,162,0.3)">
-      <span style="font-size:calc(32.0pt * var(--scale));color:#fff"><b>= Empowerment</b></span>
+      <span style="font-size:calc(30.0pt * var(--scale));color:#fff"><b>= Empowerment</b></span>
     </div>
   </div>
 
-  <!-- CLICK 3: "Which Side Are You On?" call to action -->
-  <div class="shape anim-hidden" data-spid="20" style="position:absolute;left:10%;top:76%;width:80%;min-height:10%;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden">
+  <!-- === CLICK 3: Call to action === -->
+  <div class="shape anim-hidden" data-spid="20" style="position:absolute;left:10%;top:80%;width:80%;min-height:8%;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;z-index:4">
     <p><span style="font-size:calc(22.0pt * var(--scale));color:#1a2744"><b>Which Side Are You On?</b></span></p>
   </div>
+
+  <!-- Hidden duplicate for spid 26 (non-animated Effect) -->
+  <div class="shape" data-spid="26" style="display:none"></div>
 </section>
 
 <section class="slide" data-slide="5" data-clicks='[[{&quot;spid&quot;: &quot;102402&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;fade&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}], [{&quot;spid&quot;: &quot;7&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;fade&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}], [{&quot;spid&quot;: &quot;9&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;wipe(down)&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;11&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;wipe(down)&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;12&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;wipe(down)&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}], [{&quot;spid&quot;: &quot;3&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;wipe(right)&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}], [{&quot;spid&quot;: &quot;15&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;fade&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;17&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;fade&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;16&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;fade&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;21&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;fade&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;22&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;fade&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;23&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;fade&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;24&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;fade&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;25&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;fade&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;26&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;fade&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;27&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;fade&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;28&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;fade&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;29&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;fade&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;30&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;fade&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;31&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;fade&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;32&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;fade&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;33&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;fade&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;34&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;fade&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;35&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;fade&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;36&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;fade&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;37&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;fade&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;38&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;fade&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;39&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;fade&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;40&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;fade&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;41&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;fade&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;42&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;fade&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;43&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;fade&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;44&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;fade&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;45&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;fade&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;46&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;fade&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;47&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;fade&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;48&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;fade&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;49&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;fade&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;50&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;fade&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;18&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;fade&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;19&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;fade&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;16&quot;, &quot;cls&quot;: &quot;emph&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;17&quot;, &quot;cls&quot;: &quot;emph&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;18&quot;, &quot;cls&quot;: &quot;emph&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;19&quot;, &quot;cls&quot;: &quot;emph&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;21&quot;, &quot;cls&quot;: &quot;emph&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;22&quot;, &quot;cls&quot;: &quot;emph&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;23&quot;, &quot;cls&quot;: &quot;emph&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;24&quot;, &quot;cls&quot;: &quot;emph&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;25&quot;, &quot;cls&quot;: &quot;emph&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;26&quot;, &quot;cls&quot;: &quot;emph&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;27&quot;, &quot;cls&quot;: &quot;emph&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;28&quot;, &quot;cls&quot;: &quot;emph&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;29&quot;, &quot;cls&quot;: &quot;emph&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;30&quot;, &quot;cls&quot;: &quot;emph&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;31&quot;, &quot;cls&quot;: &quot;emph&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;32&quot;, &quot;cls&quot;: &quot;emph&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;33&quot;, &quot;cls&quot;: &quot;emph&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;34&quot;, &quot;cls&quot;: &quot;emph&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;35&quot;, &quot;cls&quot;: &quot;emph&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;36&quot;, &quot;cls&quot;: &quot;emph&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;37&quot;, &quot;cls&quot;: &quot;emph&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;38&quot;, &quot;cls&quot;: &quot;emph&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;39&quot;, &quot;cls&quot;: &quot;emph&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;40&quot;, &quot;cls&quot;: &quot;emph&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;41&quot;, &quot;cls&quot;: &quot;emph&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;42&quot;, &quot;cls&quot;: &quot;emph&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;43&quot;, &quot;cls&quot;: &quot;emph&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;44&quot;, &quot;cls&quot;: &quot;emph&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;45&quot;, &quot;cls&quot;: &quot;emph&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;46&quot;, &quot;cls&quot;: &quot;emph&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;47&quot;, &quot;cls&quot;: &quot;emph&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;48&quot;, &quot;cls&quot;: &quot;emph&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;49&quot;, &quot;cls&quot;: &quot;emph&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;50&quot;, &quot;cls&quot;: &quot;emph&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}], [{&quot;spid&quot;: &quot;51&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;wipe(down)&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}], [{&quot;spid&quot;: &quot;4&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;fade&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}], [{&quot;spid&quot;: &quot;4&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;wipe(left)&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}], [{&quot;spid&quot;: &quot;4&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;wipe(left)&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}], [{&quot;spid&quot;: &quot;4&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;wipe(left)&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}], [{&quot;spid&quot;: &quot;102403&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;wipe(down)&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}], [{&quot;spid&quot;: &quot;56&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;wipe(up)&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;60&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;wipe(down)&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;62&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;fade&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}], [{&quot;spid&quot;: &quot;65&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}], [{&quot;spid&quot;: &quot;66&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;wipe(left)&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}], [{&quot;spid&quot;: &quot;67&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;fade&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}], [{&quot;spid&quot;: &quot;69&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;wipe(down)&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;70&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;wipe(down)&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;71&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;wipe(down)&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}]]'>
@@ -2407,28 +2407,33 @@ body:hover #navbar { opacity: 1; }
   function applyMotion(el, step, slideEl, instant) {
     if (!step.motion) return;
     const tokens = step.motion.trim().split(/\s+/);
-    let endX = 0, endY = 0;
-    /* Parse SVG-like path: M x1 y1 L x2 y2 ... take the last pair */
+    let startX = 0, startY = 0, endX = 0, endY = 0;
+    /* Parse SVG-like path: M x1 y1 L x2 y2 */
     for (let i = 0; i < tokens.length; i++) {
-      if ((tokens[i] === 'L' || tokens[i] === 'M') && i + 2 < tokens.length) {
-        endX = parseFloat(tokens[i + 1]);
-        endY = parseFloat(tokens[i + 2]);
+      if (tokens[i] === 'M' && i + 2 < tokens.length) {
+        startX = parseFloat(tokens[i + 1]) || 0;
+        startY = parseFloat(tokens[i + 2]) || 0;
+      }
+      if (tokens[i] === 'L' && i + 2 < tokens.length) {
+        endX = parseFloat(tokens[i + 1]) || 0;
+        endY = parseFloat(tokens[i + 2]) || 0;
       }
     }
-    /* Values are fractions of slide dimensions */
+    /* Use delta from M to L (not absolute L values) */
+    const dx = endX - startX;
+    const dy = endY - startY;
     const sw = slideEl.offsetWidth || 720;
     const sh = slideEl.offsetHeight || 540;
-    const px = endX * sw;
-    const py = endY * sh;
 
-    /* Accumulate motion transforms */
-    el._motionX = (el._motionX || 0) + px;
-    el._motionY = (el._motionY || 0) + py;
+    /* Accumulate delta motion transforms */
+    el._motionX = (el._motionX || 0) + dx * sw;
+    el._motionY = (el._motionY || 0) + dy * sh;
 
     const tx = el._motionX.toFixed(2) + 'px';
     const ty = el._motionY.toFixed(2) + 'px';
 
     if (instant) {
+      el.style.transition = 'none';
       el.style.transform = 'translate(' + tx + ',' + ty + ')';
     } else {
       const dur = (parseInt(step.dur, 10) || 500) / 1000;
@@ -2493,10 +2498,18 @@ body:hover #navbar { opacity: 1; }
       /* Reset and replay up to clickIndex - 1 */
       const slideEl = slides[currentSlide];
       resetSlideAnimations(slideEl);
-      clickIndex--;
-      for (let g = 0; g < clickIndex; g++) {
+      const target = clickIndex - 1;
+      clickIndex = 0;
+      for (let g = 0; g < target; g++) {
         playGroup(slideEl, g, true);
       }
+      clickIndex = target;
+      /* Clear transition:none left from instant replays */
+      setTimeout(function() {
+        slideEl.querySelectorAll('.shape').forEach(function(el) {
+          if (el.style.transition === 'none') el.style.transition = '';
+        });
+      }, 20);
       updateUI();
     } else {
       /* Previous slide, fully revealed */
