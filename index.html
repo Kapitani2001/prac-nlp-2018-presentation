@@ -482,7 +482,7 @@ body:hover #navbar { opacity: 1; }
   </div>
 </section>
 
-<section class="slide" data-slide="4" data-clicks='[[{&quot;spid&quot;: &quot;35&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;fade&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;35&quot;, &quot;cls&quot;: &quot;path&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;&quot;, &quot;motion&quot;: &quot;M 2.77778E-6 6.35838E-7 L 0.12934 0.19907 &quot;, &quot;dur&quot;: &quot;500&quot;}], [{&quot;spid&quot;: &quot;39&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;fade&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;39&quot;, &quot;cls&quot;: &quot;path&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;&quot;, &quot;motion&quot;: &quot;M 1.38889E-6 2.22222E-6 L -0.12274 0.20023 &quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;38&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;fade&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}], [{&quot;spid&quot;: &quot;36&quot;, &quot;cls&quot;: &quot;path&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;&quot;, &quot;motion&quot;: &quot;M -0.03194 -0.00093 L -0.23681 0.00301 &quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;36&quot;, &quot;cls&quot;: &quot;exit&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;fade&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;39&quot;, &quot;cls&quot;: &quot;emph&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;35&quot;, &quot;cls&quot;: &quot;exit&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;fade&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;40&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;fade&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}], [{&quot;spid&quot;: &quot;20&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;fade&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}]]'>
+<section class="slide" data-slide="4" data-clicks='[[{"spid": "35", "cls": "entr", "delay": 0, "filter": "fade", "motion": "", "dur": "500"}, {"spid": "35", "cls": "path", "delay": 0, "filter": "", "motion": "M 2.77778E-6 6.35838E-7 L 0.12934 0.19907 ", "dur": "1000"}], [{"spid": "39", "cls": "entr", "delay": 0, "filter": "fade", "motion": "", "dur": "500"}, {"spid": "39", "cls": "path", "delay": 0, "filter": "", "motion": "M 1.38889E-6 2.22222E-6 L -0.12274 0.20023 ", "dur": "1000"}, {"spid": "38", "cls": "entr", "delay": 800, "filter": "fade", "motion": "", "dur": "500"}], [{"spid": "36", "cls": "path", "delay": 0, "filter": "", "motion": "M -0.03194 -0.00093 L -0.23681 0.00301 ", "dur": "500"}, {"spid": "36", "cls": "exit", "delay": 0, "filter": "fade", "motion": "", "dur": "500"}, {"spid": "39", "cls": "emph", "delay": 0, "filter": "", "motion": "", "dur": "500"}, {"spid": "35", "cls": "exit", "delay": 0, "filter": "fade", "motion": "", "dur": "500"}, {"spid": "40", "cls": "entr", "delay": 500, "filter": "fade", "motion": "", "dur": "500"}], [{"spid": "20", "cls": "entr", "delay": 0, "filter": "fade", "motion": "", "dur": "500"}]]'>
   <!-- Top accent -->
   <div style="position:absolute;top:0;left:0;width:100%;height:5px;background:linear-gradient(90deg,#0060A2,#36639C)"></div>
 
@@ -498,34 +498,35 @@ body:hover #navbar { opacity: 1; }
   <div class="shape" data-spid="37" style="position:absolute;left:38%;top:23%;width:6%;min-height:8%;display:flex;align-items:center;justify-content:center;z-index:1">
     <p><span style="font-size:calc(28.0pt * var(--scale));color:#0060A2"><b>&#9656;</b></span></p>
   </div>
+  <!-- Effect (will slide left + fade on click 2) -->
   <div class="shape" data-spid="36" style="position:absolute;left:46%;top:22%;width:22%;min-height:10%;background:#0060A2;border-radius:10px;display:flex;align-items:center;justify-content:center;padding:calc(8pt * var(--scale)) calc(12pt * var(--scale));z-index:1">
     <p><span style="font-size:calc(26.0pt * var(--scale));color:#fff"><b>Effect</b></span></p>
   </div>
   <div class="shape" data-spid="26" style="display:none"></div>
 
-  <!-- === CLICK 0: Reasons fades in at Effect position, then slides to final (59%, 42%) === -->
+  <!-- Reasons: starts at Effect position (46%,22%), slides to (59%,42%) -->
   <div class="shape anim-hidden" data-spid="35" style="position:absolute;left:46%;top:22%;width:24%;min-height:10%;background:#353D40;border-radius:10px;display:flex;align-items:center;justify-content:center;padding:calc(8pt * var(--scale)) calc(12pt * var(--scale));opacity:0;visibility:hidden;z-index:3">
     <p><span style="font-size:calc(22.0pt * var(--scale));color:#fff"><b>Reasons</b></span></p>
   </div>
 
-  <!-- === CLICK 1: Results fades in at Cause position, slides to final (2%, 42%) + vs. appears === -->
+  <!-- Results: starts at Cause position (14%,22%), slides to (2%,42%) -->
   <div class="shape anim-hidden" data-spid="39" style="position:absolute;left:14%;top:22%;width:24%;min-height:10%;background:#353D40;border-radius:10px;display:flex;align-items:center;justify-content:center;padding:calc(8pt * var(--scale)) calc(12pt * var(--scale));opacity:0;visibility:hidden;z-index:3">
     <p><span style="font-size:calc(22.0pt * var(--scale));color:#fff"><b>Results</b></span></p>
   </div>
 
-  <!-- vs. positioned at the FINAL vertical level of Results/Reasons (42%), centered between them -->
-  <div class="shape anim-hidden" data-spid="38" style="position:absolute;left:36%;top:42%;width:10%;min-height:8%;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;z-index:4">
-    <p><span style="font-size:calc(24.0pt * var(--scale));color:#888;font-style:italic"><b>vs.</b></span></p>
+  <!-- vs.: centered between Results final (right edge ~26%) and Reasons final (left edge ~59%) at top:42% -->
+  <div class="shape anim-hidden" data-spid="38" style="position:absolute;left:38.3%;top:42%;width:8%;min-height:6%;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;z-index:4">
+    <p><span style="font-size:calc(22.0pt * var(--scale));color:#999;font-style:italic"><b>vs.</b></span></p>
   </div>
 
-  <!-- === CLICK 2: = Empowerment (Effect exits, Reasons fades, Results emphasis) === -->
+  <!-- = Empowerment -->
   <div class="shape anim-hidden" data-spid="40" style="position:absolute;left:10%;top:62%;width:80%;min-height:12%;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;z-index:4">
     <div style="background:linear-gradient(135deg,#0060A2,#36639C);border-radius:12px;padding:calc(10pt * var(--scale)) calc(24pt * var(--scale));box-shadow:0 4px 20px rgba(0,96,162,0.3)">
       <span style="font-size:calc(30.0pt * var(--scale));color:#fff"><b>= Empowerment</b></span>
     </div>
   </div>
 
-  <!-- === CLICK 3: Call to action === -->
+  <!-- Which Side Are You On? -->
   <div class="shape anim-hidden" data-spid="20" style="position:absolute;left:10%;top:80%;width:80%;min-height:8%;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;z-index:4">
     <p><span style="font-size:calc(22.0pt * var(--scale));color:#1a2744"><b>Which Side Are You On?</b></span></p>
   </div>
@@ -2370,6 +2371,15 @@ body:hover #navbar { opacity: 1; }
           applyMotion(el, step, slideEl, instant);
           return;
         }
+
+        /* Lock in visible state after entrance animation ends */
+        function lockVisible() {
+          el.style.opacity = '1';
+          el.style.animation = '';
+          el.style.clipPath = '';
+          el.removeEventListener('animationend', lockVisible);
+        }
+        el.addEventListener('animationend', lockVisible);
 
         const filter = (step.filter || '').toLowerCase();
         if (filter === 'fade') {
