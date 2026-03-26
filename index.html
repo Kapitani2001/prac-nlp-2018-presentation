@@ -1889,140 +1889,199 @@ body:hover #navbar { opacity: 1; }
 
 <section class="slide" data-slide="29" data-clicks='[[{"spid": "foveal", "cls": "entr", "delay": 0, "filter": "fade", "motion": "", "dur": "700"}], [{"spid": "peripheral", "cls": "entr", "delay": 0, "filter": "dissolve", "motion": "", "dur": "500"}]]' style="background:linear-gradient(135deg,#0c1829 0%,#1a2744 50%,#0f1f3a 100%);overflow:hidden">
   <style>
-    /* Foveal: narrow cone of vision */
-    .vision-cone {
+    /* Head shape — top-down view (oval) */
+    .head-oval {
       position: absolute;
-      left: 50%; top: 50%;
+      left: 50%; top: 42%;
       transform: translate(-50%, -50%);
-      border-radius: 50%;
-      transition: all 1.5s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .foveal-cone {
       width: calc(60pt * var(--scale));
-      height: calc(60pt * var(--scale));
-      background: radial-gradient(circle, rgba(255,200,50,0.35) 0%, rgba(255,200,50,0.1) 60%, transparent 100%);
-      box-shadow: 0 0 calc(20pt * var(--scale)) rgba(255,200,50,0.2);
-    }
-    /* Peripheral: wide field of vision */
-    .peripheral-active .foveal-cone {
-      width: calc(220pt * var(--scale));
-      height: calc(180pt * var(--scale));
-      background: radial-gradient(circle, rgba(91,142,194,0.3) 0%, rgba(91,142,194,0.15) 40%, rgba(91,142,194,0.05) 70%, transparent 100%);
-      box-shadow: 0 0 calc(60pt * var(--scale)) rgba(91,142,194,0.15);
-    }
-    /* Eye icon */
-    .eye-shape {
-      position: absolute;
-      left: 50%; top: 50%;
-      transform: translate(-50%, -50%);
-      width: calc(24pt * var(--scale));
-      height: calc(24pt * var(--scale));
+      height: calc(70pt * var(--scale));
       border-radius: 50%;
-      background: #fff;
-      z-index: 5;
-      box-shadow: 0 0 calc(8pt * var(--scale)) rgba(255,255,255,0.5);
+      background: radial-gradient(circle at 50% 40%, #4a5568, #2d3748);
+      border: 2px solid #5b8ec2;
+      z-index: 10;
     }
-    .eye-pupil {
+    /* Eyes on the head */
+    .head-eye {
       position: absolute;
-      left: 50%; top: 50%;
-      transform: translate(-50%, -50%);
+      top: 38%;
       width: calc(10pt * var(--scale));
-      height: calc(10pt * var(--scale));
+      height: calc(6pt * var(--scale));
+      background: #fff;
       border-radius: 50%;
-      background: #1a2744;
-      z-index: 6;
-      transition: all 1.5s ease;
+      z-index: 11;
     }
-    .peripheral-active .eye-pupil {
-      width: calc(14pt * var(--scale));
-      height: calc(14pt * var(--scale));
-    }
-    /* Rays for peripheral */
-    .vision-rays {
+    .head-eye.left-eye { left: 25%; }
+    .head-eye.right-eye { right: 25%; }
+    /* Nose hint */
+    .head-nose {
       position: absolute;
-      left: 50%; top: 50%;
-      transform: translate(-50%, -50%);
-      width: calc(280pt * var(--scale));
-      height: calc(220pt * var(--scale));
+      left: 50%; top: 55%;
+      transform: translateX(-50%);
+      width: calc(4pt * var(--scale));
+      height: calc(6pt * var(--scale));
+      border-radius: 0 0 50% 50%;
+      background: #5a6577;
+      z-index: 11;
+    }
+
+    /* Foveal vision lines — narrow, straight ahead */
+    .foveal-lines {
+      position: absolute;
+      left: 50%; top: 10%;
+      transform: translateX(-50%);
+      width: calc(30pt * var(--scale));
+      height: calc(80pt * var(--scale));
+      z-index: 5;
       opacity: 0;
-      transition: opacity 1.5s ease;
+      transition: opacity 0.7s ease;
     }
-    .peripheral-active .vision-rays {
-      opacity: 1;
-    }
-    .ray {
+    .foveal-lines.show { opacity: 1; }
+    .fov-line {
       position: absolute;
-      background: linear-gradient(90deg, transparent, rgba(91,142,194,0.12), transparent);
-      height: 1px;
-      width: 100%;
-      left: 0;
-      top: 50%;
+      bottom: 0;
+      height: 100%;
+      width: 2px;
+      background: linear-gradient(0deg, transparent 0%, #ffc832 30%, #ffc832 70%, transparent 100%);
     }
-    .ray:nth-child(1) { transform: rotate(0deg); }
-    .ray:nth-child(2) { transform: rotate(30deg); }
-    .ray:nth-child(3) { transform: rotate(60deg); }
-    .ray:nth-child(4) { transform: rotate(90deg); }
-    .ray:nth-child(5) { transform: rotate(120deg); }
-    .ray:nth-child(6) { transform: rotate(150deg); }
+    .fov-line:nth-child(1) { left: 35%; }
+    .fov-line:nth-child(2) { left: 50%; transform: translateX(-50%); }
+    .fov-line:nth-child(3) { right: 35%; }
+    /* Foveal cone shape */
+    .fov-cone {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: calc(15pt * var(--scale)) solid transparent;
+      border-right: calc(15pt * var(--scale)) solid transparent;
+      border-bottom: calc(80pt * var(--scale)) solid rgba(255,200,50,0.1);
+    }
+
+    /* Peripheral vision lines — wide, spreading out */
+    .peripheral-lines {
+      position: absolute;
+      left: 50%; top: 5%;
+      transform: translateX(-50%);
+      width: calc(250pt * var(--scale));
+      height: calc(100pt * var(--scale));
+      z-index: 4;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+    .peripheral-lines.show { opacity: 1; }
+    .per-line {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      height: 100%;
+      width: 2px;
+      background: linear-gradient(0deg, transparent 0%, #5b8ec2 20%, #5b8ec2 60%, transparent 100%);
+      transform-origin: bottom center;
+    }
+    .per-line:nth-child(1) { transform: rotate(-70deg); }
+    .per-line:nth-child(2) { transform: rotate(-50deg); }
+    .per-line:nth-child(3) { transform: rotate(-30deg); }
+    .per-line:nth-child(4) { transform: rotate(-10deg); }
+    .per-line:nth-child(5) { transform: rotate(10deg); }
+    .per-line:nth-child(6) { transform: rotate(30deg); }
+    .per-line:nth-child(7) { transform: rotate(50deg); }
+    .per-line:nth-child(8) { transform: rotate(70deg); }
+    /* Wide cone fill */
+    .per-cone {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: calc(120pt * var(--scale)) solid transparent;
+      border-right: calc(120pt * var(--scale)) solid transparent;
+      border-bottom: calc(100pt * var(--scale)) solid rgba(91,142,194,0.06);
+    }
   </style>
 
   <!-- Title -->
-  <div style="position:absolute;left:5%;top:4%;width:90%;text-align:center;z-index:10">
+  <div style="position:absolute;left:5%;top:3%;width:90%;text-align:center;z-index:20">
     <p><span style="font-size:calc(24.0pt * var(--scale));color:#fff"><b>The Learning State</b></span></p>
   </div>
 
-  <!-- Central eye visualization -->
-  <div id="visionContainer29" style="position:absolute;left:20%;top:15%;width:60%;height:55%;z-index:2">
-    <!-- Vision cone (starts narrow/foveal, expands to peripheral) -->
-    <div class="vision-cone foveal-cone"></div>
-    <!-- Rays (peripheral only) -->
-    <div class="vision-rays">
-      <div class="ray"></div>
-      <div class="ray"></div>
-      <div class="ray"></div>
-      <div class="ray"></div>
-      <div class="ray"></div>
-      <div class="ray"></div>
+  <!-- Head (top-down view) — always visible in center-bottom area -->
+  <div style="position:absolute;left:0;top:0;width:100%;height:100%;z-index:8">
+    <div class="head-oval">
+      <div class="head-eye left-eye"></div>
+      <div class="head-eye right-eye"></div>
+      <div class="head-nose"></div>
     </div>
-    <!-- Eye -->
-    <div class="eye-shape"></div>
-    <div class="eye-pupil"></div>
+  </div>
+
+  <!-- Foveal vision lines (narrow, ahead of the head) -->
+  <div id="fovealLines29" class="foveal-lines">
+    <div class="fov-cone"></div>
+    <div class="fov-line"></div>
+    <div class="fov-line"></div>
+    <div class="fov-line"></div>
+  </div>
+
+  <!-- Peripheral vision lines (wide, spreading) -->
+  <div id="peripheralLines29" class="peripheral-lines">
+    <div class="per-cone"></div>
+    <div class="per-line"></div>
+    <div class="per-line"></div>
+    <div class="per-line"></div>
+    <div class="per-line"></div>
+    <div class="per-line"></div>
+    <div class="per-line"></div>
+    <div class="per-line"></div>
+    <div class="per-line"></div>
   </div>
 
   <!-- Click 1: Foveal label -->
-  <div class="shape anim-hidden" data-spid="foveal" style="position:absolute;left:5%;top:72%;width:40%;z-index:10;opacity:0;visibility:hidden">
-    <div style="background:rgba(255,200,50,0.12);border:1px solid rgba(255,200,50,0.3);border-radius:12px;padding:calc(10pt * var(--scale)) calc(14pt * var(--scale));text-align:center">
-      <p style="margin-bottom:calc(4pt * var(--scale))"><span style="font-size:calc(18.0pt * var(--scale));color:#ffc832"><b>Foveal Vision</b></span></p>
-      <p><span style="font-size:calc(10.0pt * var(--scale));color:rgba(255,255,255,0.6);line-height:1.5">Narrow focus &#8226; Tunnel vision<br>Detail-oriented &#8226; Stress response</span></p>
+  <div class="shape anim-hidden" data-spid="foveal" style="position:absolute;left:5%;top:78%;width:40%;z-index:20;opacity:0;visibility:hidden">
+    <div style="background:rgba(255,200,50,0.1);border:1px solid rgba(255,200,50,0.3);border-radius:12px;padding:calc(8pt * var(--scale)) calc(12pt * var(--scale));text-align:center">
+      <p style="margin-bottom:calc(3pt * var(--scale))"><span style="font-size:calc(16.0pt * var(--scale));color:#ffc832"><b>Foveal Vision</b></span></p>
+      <p><span style="font-size:calc(9.0pt * var(--scale));color:rgba(255,255,255,0.55);line-height:1.5">Narrow focus &#8226; Tunnel vision<br>Detail-oriented &#8226; Stress state</span></p>
     </div>
   </div>
 
   <!-- Click 2: Peripheral label -->
-  <div class="shape anim-hidden" data-spid="peripheral" style="position:absolute;left:55%;top:72%;width:40%;z-index:10;opacity:0;visibility:hidden">
-    <div style="background:rgba(91,142,194,0.12);border:1px solid rgba(91,142,194,0.3);border-radius:12px;padding:calc(10pt * var(--scale)) calc(14pt * var(--scale));text-align:center">
-      <p style="margin-bottom:calc(4pt * var(--scale))"><span style="font-size:calc(18.0pt * var(--scale));color:#5b8ec2"><b>Peripheral Vision</b></span></p>
-      <p><span style="font-size:calc(10.0pt * var(--scale));color:rgba(255,255,255,0.6);line-height:1.5">Wide awareness &#8226; Relaxed state<br>The Learning State &#8226; Open to change</span></p>
+  <div class="shape anim-hidden" data-spid="peripheral" style="position:absolute;left:55%;top:78%;width:40%;z-index:20;opacity:0;visibility:hidden">
+    <div style="background:rgba(91,142,194,0.1);border:1px solid rgba(91,142,194,0.3);border-radius:12px;padding:calc(8pt * var(--scale)) calc(12pt * var(--scale));text-align:center">
+      <p style="margin-bottom:calc(3pt * var(--scale))"><span style="font-size:calc(16.0pt * var(--scale));color:#5b8ec2"><b>Peripheral Vision</b></span></p>
+      <p><span style="font-size:calc(9.0pt * var(--scale));color:rgba(255,255,255,0.55);line-height:1.5">Wide awareness &#8226; Relaxed<br>The Learning State &#8226; Open to change</span></p>
     </div>
   </div>
 
-  <!-- JS: expand vision when peripheral appears -->
+  <!-- JS: show/hide vision lines based on clicks -->
   <script>
   (function() {
     setTimeout(function() {
       var slide = document.querySelector('[data-slide="29"]');
       if (!slide) return;
+      var fovEl = slide.querySelector('[data-spid="foveal"]');
       var perEl = slide.querySelector('[data-spid="peripheral"]');
-      var container = document.getElementById('visionContainer29');
-      if (!perEl || !container) return;
+      var fovLines = document.getElementById('fovealLines29');
+      var perLines = document.getElementById('peripheralLines29');
+      if (!fovEl || !perEl || !fovLines || !perLines) return;
+
       var obs = new MutationObserver(function() {
-        var vis = window.getComputedStyle(perEl).visibility;
-        var op = parseFloat(window.getComputedStyle(perEl).opacity);
-        if (vis === 'visible' && op > 0.3) {
-          container.classList.add('peripheral-active');
+        var fovVis = window.getComputedStyle(fovEl).visibility === 'visible' && parseFloat(window.getComputedStyle(fovEl).opacity) > 0.3;
+        var perVis = window.getComputedStyle(perEl).visibility === 'visible' && parseFloat(window.getComputedStyle(perEl).opacity) > 0.3;
+        
+        if (fovVis) {
+          fovLines.classList.add('show');
         } else {
-          container.classList.remove('peripheral-active');
+          fovLines.classList.remove('show');
+        }
+        if (perVis) {
+          perLines.classList.add('show');
+        } else {
+          perLines.classList.remove('show');
         }
       });
+      obs.observe(fovEl, { attributes: true, attributeFilter: ['style','class'] });
       obs.observe(perEl, { attributes: true, attributeFilter: ['style','class'] });
     }, 600);
   })();
