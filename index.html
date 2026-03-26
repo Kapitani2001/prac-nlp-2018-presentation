@@ -1889,38 +1889,91 @@ body:hover #navbar { opacity: 1; }
 
 <section class="slide" data-slide="29" data-clicks='[[{"spid": "foveal", "cls": "entr", "delay": 0, "filter": "fade", "motion": "", "dur": "700"}], [{"spid": "peripheral", "cls": "entr", "delay": 0, "filter": "dissolve", "motion": "", "dur": "500"}]]' style="background:linear-gradient(135deg,#0c1829 0%,#1a2744 50%,#0f1f3a 100%);overflow:hidden">
   <style>
-    /* Foveal lines — narrow, from head upward */
+    /* Foveal lines — narrow, pulsing fast (stress) */
     .fov-line29 {
       position: absolute;
       bottom: 0;
       left: 50%;
       height: 100%;
       width: 2px;
-      background: linear-gradient(0deg, transparent 10%, rgba(255,200,50,0.6) 40%, rgba(255,200,50,0.3) 80%, transparent 100%);
+      background: linear-gradient(0deg, transparent 10%, rgba(255,200,50,0.7) 40%, rgba(255,200,50,0.3) 80%, transparent 100%);
       transform-origin: bottom center;
+      animation: fovPulse 0.8s ease-in-out infinite;
     }
-    .fov-line29:nth-child(1) { transform: rotate(-5deg); }
-    .fov-line29:nth-child(2) { transform: rotate(0deg); }
-    .fov-line29:nth-child(3) { transform: rotate(5deg); }
+    .fov-line29:nth-child(2) { transform: rotate(-5deg); }
+    .fov-line29:nth-child(3) { transform: rotate(0deg); animation-delay: 0.15s; }
+    .fov-line29:nth-child(4) { transform: rotate(5deg); animation-delay: 0.3s; }
+    @keyframes fovPulse {
+      0%, 100% { opacity: 0.4; height: 85%; }
+      50% { opacity: 1; height: 100%; }
+    }
+    /* Foveal glow dot at origin */
+    .fov-glow29 {
+      position: absolute;
+      bottom: -4px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(10pt * var(--scale));
+      height: calc(10pt * var(--scale));
+      border-radius: 50%;
+      background: rgba(255,200,50,0.8);
+      box-shadow: 0 0 calc(12pt * var(--scale)) rgba(255,200,50,0.6);
+      animation: glowPulse 0.8s ease-in-out infinite;
+    }
+    @keyframes glowPulse {
+      0%, 100% { transform: translateX(-50%) scale(0.8); opacity: 0.5; }
+      50% { transform: translateX(-50%) scale(1.2); opacity: 1; }
+    }
 
-    /* Peripheral lines — wide spread from head */
+    /* Peripheral lines — wide, flowing smooth (relaxed) */
     .per-line29 {
       position: absolute;
       bottom: 0;
       left: 50%;
-      height: 100%;
+      height: 0%;
       width: 2px;
-      background: linear-gradient(0deg, transparent 10%, rgba(91,142,194,0.5) 35%, rgba(91,142,194,0.2) 75%, transparent 100%);
+      background: linear-gradient(0deg, transparent 5%, rgba(91,142,194,0.5) 30%, rgba(91,142,194,0.2) 70%, transparent 100%);
       transform-origin: bottom center;
+      animation: perGrow 1.5s ease-out forwards;
     }
-    .per-line29:nth-child(1) { transform: rotate(-80deg); }
-    .per-line29:nth-child(2) { transform: rotate(-60deg); }
-    .per-line29:nth-child(3) { transform: rotate(-40deg); }
-    .per-line29:nth-child(4) { transform: rotate(-20deg); }
-    .per-line29:nth-child(5) { transform: rotate(20deg); }
-    .per-line29:nth-child(6) { transform: rotate(40deg); }
-    .per-line29:nth-child(7) { transform: rotate(60deg); }
-    .per-line29:nth-child(8) { transform: rotate(80deg); }
+    .per-line29:nth-child(2) { transform: rotate(-80deg); animation-delay: 0s; }
+    .per-line29:nth-child(3) { transform: rotate(-60deg); animation-delay: 0.1s; }
+    .per-line29:nth-child(4) { transform: rotate(-40deg); animation-delay: 0.2s; }
+    .per-line29:nth-child(5) { transform: rotate(-20deg); animation-delay: 0.3s; }
+    .per-line29:nth-child(6) { transform: rotate(20deg); animation-delay: 0.3s; }
+    .per-line29:nth-child(7) { transform: rotate(40deg); animation-delay: 0.2s; }
+    .per-line29:nth-child(8) { transform: rotate(60deg); animation-delay: 0.1s; }
+    .per-line29:nth-child(9) { transform: rotate(80deg); animation-delay: 0s; }
+    @keyframes perGrow {
+      0% { height: 0%; opacity: 0; }
+      100% { height: 100%; opacity: 1; }
+    }
+    /* After growing, peripheral lines breathe slowly */
+    .per-line29.breathing {
+      animation: perBreathe 3s ease-in-out infinite;
+      height: 100%;
+    }
+    @keyframes perBreathe {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 0.8; }
+    }
+    /* Peripheral glow dot */
+    .per-glow29 {
+      position: absolute;
+      bottom: -4px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(14pt * var(--scale));
+      height: calc(14pt * var(--scale));
+      border-radius: 50%;
+      background: rgba(91,142,194,0.7);
+      box-shadow: 0 0 calc(20pt * var(--scale)) rgba(91,142,194,0.5), 0 0 calc(40pt * var(--scale)) rgba(91,142,194,0.2);
+      animation: perGlowPulse 3s ease-in-out infinite;
+    }
+    @keyframes perGlowPulse {
+      0%, 100% { transform: translateX(-50%) scale(0.9); opacity: 0.5; }
+      50% { transform: translateX(-50%) scale(1.3); opacity: 0.9; }
+    }
   </style>
 
   <!-- Title -->
@@ -1937,6 +1990,7 @@ body:hover #navbar { opacity: 1; }
   <!-- Foveal lines (narrow, yellow) — shown on click 1 -->
   <div class="shape anim-hidden" data-spid="foveal" style="position:absolute;left:20%;top:5%;width:60%;height:60%;z-index:5;opacity:0;visibility:hidden">
     <div style="position:relative;width:100%;height:100%">
+      <div class="fov-glow29"></div>
       <div class="fov-line29"></div>
       <div class="fov-line29"></div>
       <div class="fov-line29"></div>
@@ -1953,6 +2007,7 @@ body:hover #navbar { opacity: 1; }
   <!-- Peripheral lines (wide, blue) — shown on click 2 -->
   <div class="shape anim-hidden" data-spid="peripheral" style="position:absolute;left:5%;top:5%;width:90%;height:60%;z-index:4;opacity:0;visibility:hidden">
     <div style="position:relative;width:100%;height:100%">
+      <div class="per-glow29"></div>
       <div class="per-line29"></div>
       <div class="per-line29"></div>
       <div class="per-line29"></div>
