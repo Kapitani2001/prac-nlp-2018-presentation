@@ -1748,15 +1748,52 @@ body:hover #navbar { opacity: 1; }
   </div>
 </section>
 
-<section class="slide" data-slide="27" data-clicks='[[{&quot;spid&quot;: &quot;5&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;fade&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;104450&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;wipe(down)&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}], [{&quot;spid&quot;: &quot;35&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;fade&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;104452&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;wipe(down)&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}], [{&quot;spid&quot;: &quot;40&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;fade&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;104451&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;wipe(down)&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}]]'>
-  <div class="shape anim-hidden" data-spid="104451" style="position:absolute;left:74.36%;top:51.40%;width:15.10%;height:20.14%;opacity:0;visibility:hidden"><img src="images/slide27_img2.png" style="width:100%;height:100%;object-fit:contain" loading="lazy"></div>
-  <div class="shape anim-hidden" data-spid="104452" style="position:absolute;left:42.62%;top:50.76%;width:15.10%;height:20.14%;opacity:0;visibility:hidden"><img src="images/slide27_img1.png" style="width:100%;height:100%;object-fit:contain" loading="lazy"></div>
-  <div class="shape anim-hidden" data-spid="104450" style="position:absolute;left:10.31%;top:49.56%;width:15.56%;height:20.75%;opacity:0;visibility:hidden"><img src="images/slide27_img0.png" style="width:100%;height:100%;object-fit:contain" loading="lazy"></div>
-  <div class="shape" data-spid="2" style="position:absolute;left:5.17%;top:4.00%;width:90.00%;min-height:6.73%"><p>All…</p></div>
-  <div class="shape anim-hidden" data-spid="5" style="position:absolute;left:3.61%;top:27.20%;width:28.96%;min-height:6.28%;opacity:0;visibility:hidden"><p><span style="font-size:calc(28.0pt * var(--scale))"><b>Learning</b></span></p></div>
-  <div class="shape anim-hidden" data-spid="35" style="position:absolute;left:35.52%;top:27.20%;width:28.96%;min-height:6.28%;opacity:0;visibility:hidden"><p><span style="font-size:calc(28.0pt * var(--scale))"><b>Behavior</b></span></p></div>
-  <div class="shape anim-hidden" data-spid="40" style="position:absolute;left:67.43%;top:27.20%;width:28.96%;min-height:6.28%;opacity:0;visibility:hidden"><p><span style="font-size:calc(28.0pt * var(--scale))"><b>Change</b></span></p></div>
-  <div class="shape" data-spid="27" style="position:absolute;left:5.17%;top:77.66%;width:90.00%;min-height:6.73%;background:#36639C;border-radius:6px;padding:2% 3%;color:#fff"><p>… is Unconscious</p></div>
+<section class="slide" data-slide="27" data-clicks='[[{"spid": "c1", "cls": "entr", "delay": 0, "filter": "fade", "motion": "", "dur": "700"}], [{"spid": "c2", "cls": "entr", "delay": 0, "filter": "fade", "motion": "", "dur": "700"}], [{"spid": "c3", "cls": "entr", "delay": 0, "filter": "fade", "motion": "", "dur": "700"}]]' style="background:linear-gradient(135deg,#0c1829 0%,#1a2744 50%,#0f1f3a 100%)">
+
+  <!-- "All..." at top -->
+  <div style="position:absolute;left:5%;top:8%;width:90%;text-align:center;z-index:2">
+    <p><span style="font-size:calc(32.0pt * var(--scale));color:rgba(255,255,255,0.4);font-style:italic">All...</span></p>
+  </div>
+
+  <!-- Three cards side by side -->
+  <div style="position:absolute;left:5%;top:22%;width:90%;height:52%;z-index:2;display:flex;gap:3%;align-items:stretch">
+
+    <!-- Card 1: Learning -->
+    <div class="shape anim-hidden" data-spid="c1" style="flex:1;opacity:0;visibility:hidden">
+      <div style="background:rgba(255,255,255,0.06);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(91,142,194,0.2);border-radius:14px;padding:calc(16pt * var(--scale));height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:calc(10pt * var(--scale))">
+        <div style="width:calc(50pt * var(--scale));height:calc(50pt * var(--scale));border-radius:50%;background:rgba(0,96,162,0.2);display:flex;align-items:center;justify-content:center">
+          <img src="images/slide27_img0.png" style="width:60%;height:60%;object-fit:contain">
+        </div>
+        <p><span style="font-size:calc(22.0pt * var(--scale));color:#fff"><b>Learning</b></span></p>
+      </div>
+    </div>
+
+    <!-- Card 2: Behavior -->
+    <div class="shape anim-hidden" data-spid="c2" style="flex:1;opacity:0;visibility:hidden">
+      <div style="background:rgba(255,255,255,0.06);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(91,142,194,0.2);border-radius:14px;padding:calc(16pt * var(--scale));height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:calc(10pt * var(--scale))">
+        <div style="width:calc(50pt * var(--scale));height:calc(50pt * var(--scale));border-radius:50%;background:rgba(54,99,156,0.2);display:flex;align-items:center;justify-content:center">
+          <img src="images/slide27_img1.png" style="width:60%;height:60%;object-fit:contain">
+        </div>
+        <p><span style="font-size:calc(22.0pt * var(--scale));color:#fff"><b>Behavior</b></span></p>
+      </div>
+    </div>
+
+    <!-- Card 3: Change -->
+    <div class="shape anim-hidden" data-spid="c3" style="flex:1;opacity:0;visibility:hidden">
+      <div style="background:rgba(255,255,255,0.06);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(91,142,194,0.2);border-radius:14px;padding:calc(16pt * var(--scale));height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:calc(10pt * var(--scale))">
+        <div style="width:calc(50pt * var(--scale));height:calc(50pt * var(--scale));border-radius:50%;background:rgba(26,39,68,0.4);display:flex;align-items:center;justify-content:center">
+          <img src="images/slide27_img2.png" style="width:60%;height:60%;object-fit:contain">
+        </div>
+        <p><span style="font-size:calc(22.0pt * var(--scale));color:#fff"><b>Change</b></span></p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- "...is Unconscious" at bottom -->
+  <div style="position:absolute;left:5%;top:80%;width:90%;text-align:center;z-index:2">
+    <p><span style="font-size:calc(32.0pt * var(--scale));color:rgba(255,255,255,0.4);font-style:italic">...is Unconscious</span></p>
+  </div>
 </section>
 
 <section class="slide" data-slide="28" data-clicks='[[{&quot;spid&quot;: &quot;4&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;wheel(2)&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;7&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;wheel(2)&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;9&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;wheel(2)&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;10&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;wheel(2)&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;11&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;wheel(2)&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;13&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;wheel(2)&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;33&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;wheel(2)&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;14&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;wheel(2)&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}]]'>
