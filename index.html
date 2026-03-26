@@ -1787,17 +1787,96 @@ body:hover #navbar { opacity: 1; }
   </div>
 </section>
 
-<section class="slide" data-slide="28" data-clicks='[[{&quot;spid&quot;: &quot;4&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;wheel(2)&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;7&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;wheel(2)&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;9&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;wheel(2)&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;10&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;wheel(2)&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;11&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;wheel(2)&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;13&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;wheel(2)&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;33&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;wheel(2)&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;14&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;wheel(2)&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}]]'>
-  <div class="shape" data-spid="5122" style="position:absolute;left:63.36%;top:0.00%;width:36.64%;height:93.66%"><img src="images/slide28_img0.png" style="width:100%;height:100%;object-fit:contain" loading="lazy"></div>
-  <div class="shape" data-spid="2" style="position:absolute;left:5.00%;top:4.00%;width:90.00%;min-height:6.73%"><p>Conscious Unconscious Integration</p></div>
-  <div class="shape anim-hidden" data-spid="4" style="position:absolute;left:14.99%;top:19.17%;width:46.20%;min-height:62.22%;background:#36639C;border-radius:6px;padding:2% 3%;color:#fff;opacity:0;visibility:hidden"></div>
-  <div class="shape anim-hidden" data-spid="7" style="position:absolute;left:12.65%;top:45.20%;width:13.13%;min-height:5.08%;background:#36639C;border-radius:6px;padding:2% 3%;color:#fff;opacity:0;visibility:hidden"></div>
-  <div class="shape anim-hidden" data-spid="9" style="position:absolute;left:50.23%;top:45.20%;width:13.13%;min-height:5.08%;background:#36639C;border-radius:6px;padding:2% 3%;color:#fff;opacity:0;visibility:hidden"></div>
-  <div class="shape anim-hidden" data-spid="10" style="position:absolute;left:12.65%;top:50.98%;width:13.13%;min-height:5.08%;background:#D13F46;border-radius:6px;padding:2% 3%;color:#fff;opacity:0;visibility:hidden"></div>
-  <div class="shape anim-hidden" data-spid="11" style="position:absolute;left:50.23%;top:50.98%;width:13.13%;min-height:5.08%;background:#D13F46;border-radius:6px;padding:2% 3%;color:#fff;opacity:0;visibility:hidden"></div>
-  <div class="shape anim-hidden" data-spid="13" style="position:absolute;left:26.25%;top:25.46%;width:23.98%;min-height:16.20%;background:#36639C;border-radius:6px;padding:2% 3%;color:#fff;opacity:0;visibility:hidden"><p><span style="font-size:calc(28.0pt * var(--scale))">Conscious Mind</span></p></div>
-  <div class="shape anim-hidden" data-spid="33" style="position:absolute;left:15.02%;top:54.44%;width:46.20%;min-height:26.94%;background:#D13F46;border-radius:6px;padding:2% 3%;color:#fff;opacity:0;visibility:hidden"></div>
-  <div class="shape anim-hidden" data-spid="14" style="position:absolute;left:23.56%;top:56.43%;width:28.93%;min-height:20.10%;background:#36639C;border-radius:6px;padding:2% 3%;color:#fff;opacity:0;visibility:hidden"><p><span style="font-size:calc(28.0pt * var(--scale))">Unconscious Mind</span></p></div>
+<section class="slide" data-slide="28" data-clicks='[[{"spid": "conscious", "cls": "entr", "delay": 0, "filter": "fade", "motion": "", "dur": "700"}], [{"spid": "unconscious", "cls": "entr", "delay": 0, "filter": "fade", "motion": "", "dur": "700"}], [{"spid": "integrate", "cls": "entr", "delay": 0, "filter": "dissolve", "motion": "", "dur": "500"}]]' style="background:linear-gradient(135deg,#0c1829 0%,#1a2744 50%,#0f1f3a 100%);overflow:hidden">
+  <style>
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 20px rgba(91,142,194,0.2); }
+      50% { box-shadow: 0 0 40px rgba(91,142,194,0.4); }
+    }
+    .integrate-active .conscious-half {
+      animation: mergeRight 1.5s ease forwards;
+    }
+    .integrate-active .unconscious-half {
+      animation: mergeLeft 1.5s ease forwards;
+    }
+    @keyframes mergeRight {
+      to { transform: translateX(calc(8pt * var(--scale))); }
+    }
+    @keyframes mergeLeft {
+      to { transform: translateX(calc(-8pt * var(--scale))); }
+    }
+    .integrate-active .merge-glow {
+      animation: glowUp 1.5s ease 0.8s forwards;
+    }
+    @keyframes glowUp {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+
+  <!-- Title -->
+  <div style="position:absolute;left:5%;top:4%;width:90%;text-align:center;z-index:3">
+    <p><span style="font-size:calc(24.0pt * var(--scale));color:#fff"><b>Conscious Unconscious Integration</b></span></p>
+  </div>
+
+  <!-- Central diagram image -->
+  <div style="position:absolute;left:36%;top:14%;width:28%;height:72%;z-index:1">
+    <img src="images/slide28_img0.png" style="width:100%;height:100%;object-fit:contain;opacity:0.6" loading="lazy">
+  </div>
+
+  <!-- Click 1: Conscious Mind — left side -->
+  <div class="shape anim-hidden" data-spid="conscious" style="position:absolute;left:4%;top:18%;width:30%;height:65%;z-index:2;opacity:0;visibility:hidden">
+    <div class="conscious-half" style="background:rgba(54,99,156,0.15);border:2px solid #36639C;border-radius:14px;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:calc(12pt * var(--scale))">
+      <div style="width:calc(40pt * var(--scale));height:calc(40pt * var(--scale));border-radius:50%;background:#36639C;display:flex;align-items:center;justify-content:center;margin-bottom:calc(10pt * var(--scale))">
+        <span style="font-size:calc(20.0pt * var(--scale));color:#fff">&#9681;</span>
+      </div>
+      <p style="margin-bottom:calc(6pt * var(--scale))"><span style="font-size:calc(18.0pt * var(--scale));color:#fff"><b>Conscious Mind</b></span></p>
+      <div style="width:60%;height:2px;background:rgba(54,99,156,0.4);margin:calc(6pt * var(--scale)) 0"></div>
+      <p style="text-align:center;margin-top:calc(6pt * var(--scale))"><span style="font-size:calc(10.0pt * var(--scale));color:rgba(255,255,255,0.5);line-height:1.5">Logical<br>Analytical<br>Rational<br>~5-9 bits/sec</span></p>
+    </div>
+  </div>
+
+  <!-- Click 2: Unconscious Mind — right side -->
+  <div class="shape anim-hidden" data-spid="unconscious" style="position:absolute;left:66%;top:18%;width:30%;height:65%;z-index:2;opacity:0;visibility:hidden">
+    <div class="unconscious-half" style="background:rgba(209,63,70,0.12);border:2px solid #D13F46;border-radius:14px;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:calc(12pt * var(--scale))">
+      <div style="width:calc(40pt * var(--scale));height:calc(40pt * var(--scale));border-radius:50%;background:#D13F46;display:flex;align-items:center;justify-content:center;margin-bottom:calc(10pt * var(--scale))">
+        <span style="font-size:calc(20.0pt * var(--scale));color:#fff">&#9680;</span>
+      </div>
+      <p style="margin-bottom:calc(6pt * var(--scale))"><span style="font-size:calc(18.0pt * var(--scale));color:#fff"><b>Unconscious Mind</b></span></p>
+      <div style="width:60%;height:2px;background:rgba(209,63,70,0.4);margin:calc(6pt * var(--scale)) 0"></div>
+      <p style="text-align:center;margin-top:calc(6pt * var(--scale))"><span style="font-size:calc(10.0pt * var(--scale));color:rgba(255,255,255,0.5);line-height:1.5">Intuitive<br>Emotional<br>Creative<br>~11M bits/sec</span></p>
+    </div>
+  </div>
+
+  <!-- Click 3: Integration — center overlay that merges them -->
+  <div class="shape anim-hidden" data-spid="integrate" style="position:absolute;left:25%;top:88%;width:50%;z-index:4;opacity:0;visibility:hidden">
+    <div style="background:linear-gradient(90deg,#36639C,#8B45A6,#D13F46);border-radius:12px;padding:calc(10pt * var(--scale)) calc(16pt * var(--scale));text-align:center;box-shadow:0 4px 24px rgba(139,69,166,0.35)">
+      <p><span style="font-size:calc(16.0pt * var(--scale));color:#fff"><b>Integration</b></span></p>
+      <p style="margin-top:calc(3pt * var(--scale))"><span style="font-size:calc(9.0pt * var(--scale));color:rgba(255,255,255,0.7)">When both work together, lasting change happens</span></p>
+    </div>
+  </div>
+
+  <!-- JS: trigger merge animation when integrate appears -->
+  <script>
+  (function() {
+    setTimeout(function() {
+      var slide = document.querySelector('[data-slide="28"]');
+      if (!slide) return;
+      var intEl = slide.querySelector('[data-spid="integrate"]');
+      if (!intEl) return;
+      var obs = new MutationObserver(function() {
+        var vis = window.getComputedStyle(intEl).visibility;
+        var op = parseFloat(window.getComputedStyle(intEl).opacity);
+        if (vis === 'visible' && op > 0.3) {
+          slide.classList.add('integrate-active');
+        } else {
+          slide.classList.remove('integrate-active');
+        }
+      });
+      obs.observe(intEl, { attributes: true, attributeFilter: ['style','class'] });
+    }, 600);
+  })();
+  </script>
 </section>
 
 <section class="slide" data-slide="29" data-clicks='[[{&quot;spid&quot;: &quot;24&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;strips(upRight)&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;27&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;strips(upLeft)&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;10&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;fade&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}]]'>
