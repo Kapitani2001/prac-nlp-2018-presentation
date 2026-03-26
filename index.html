@@ -2334,82 +2334,78 @@ body:hover #navbar { opacity: 1; }
 
 <section class="slide" data-slide="32" data-clicks='[]' style="background:linear-gradient(135deg,#0c1829 0%,#1a2744 50%,#0f1f3a 100%);overflow:hidden">
   <style>
+    .sa-dot32 {
+      position: absolute;
+      border-radius: 50%;
+      animation: saDrift 8s ease-in-out infinite;
+    }
+    @keyframes saDrift {
+      0% { transform: translate(0, 0); opacity: 0.3; }
+      25% { transform: translate(15px, -20px); opacity: 0.7; }
+      50% { transform: translate(-10px, -35px); opacity: 1; }
+      75% { transform: translate(20px, -15px); opacity: 0.5; }
+      100% { transform: translate(0, 0); opacity: 0.3; }
+    }
+    .sa-dot32.d2 { animation-name: saDrift2; animation-duration: 10s; }
+    @keyframes saDrift2 {
+      0% { transform: translate(0, 0); opacity: 0.2; }
+      30% { transform: translate(-20px, 15px); opacity: 0.8; }
+      60% { transform: translate(10px, 25px); opacity: 0.4; }
+      100% { transform: translate(0, 0); opacity: 0.2; }
+    }
+    .sa-dot32.d3 { animation-name: saDrift3; animation-duration: 7s; }
+    @keyframes saDrift3 {
+      0% { transform: translate(0, 0) scale(1); opacity: 0.4; }
+      40% { transform: translate(25px, -10px) scale(1.3); opacity: 0.9; }
+      70% { transform: translate(-15px, 20px) scale(0.8); opacity: 0.3; }
+      100% { transform: translate(0, 0) scale(1); opacity: 0.4; }
+    }
     .sa-ring32 {
       position: absolute;
       left: 50%; top: 50%;
       transform: translate(-50%, -50%);
       border-radius: 50%;
-      border: 1px solid rgba(91,142,194,0.08);
+      border: 1px solid rgba(91,142,194,0.06);
     }
-    .sa-ring32:nth-child(1) { width: 25%; height: 33%; }
-    .sa-ring32:nth-child(2) { width: 45%; height: 60%; }
-    .sa-ring32:nth-child(3) { width: 65%; height: 87%; }
-    .sa-ring32:nth-child(4) { width: 85%; height: 113%; border-color: rgba(91,142,194,0.04); }
-    .sa-float32 {
-      position: absolute;
-      border-radius: 50%;
-      animation: saFloat 6s ease-in-out infinite;
-    }
-    @keyframes saFloat {
-      0%, 100% { transform: translateY(0); opacity: 0.5; }
-      50% { transform: translateY(-8px); opacity: 0.9; }
-    }
+    .sa-ring32:nth-child(1) { width: 30%; height: 40%; }
+    .sa-ring32:nth-child(2) { width: 55%; height: 73%; }
+    .sa-ring32:nth-child(3) { width: 80%; height: 107%; border-color: rgba(91,142,194,0.03); }
   </style>
 
-  <!-- Concentric rings for depth -->
+  <!-- Concentric rings -->
   <div style="position:absolute;inset:0;z-index:0">
-    <div class="sa-ring32"></div>
     <div class="sa-ring32"></div>
     <div class="sa-ring32"></div>
     <div class="sa-ring32"></div>
   </div>
 
-  <!-- Floating accent dots -->
-  <div class="sa-float32" style="left:15%;top:25%;width:calc(6pt * var(--scale));height:calc(6pt * var(--scale));background:#5b8ec2;animation-delay:0s"></div>
-  <div class="sa-float32" style="left:80%;top:35%;width:calc(4pt * var(--scale));height:calc(4pt * var(--scale));background:#0060A2;animation-delay:1.5s"></div>
-  <div class="sa-float32" style="left:25%;top:70%;width:calc(5pt * var(--scale));height:calc(5pt * var(--scale));background:#36639C;animation-delay:3s"></div>
-  <div class="sa-float32" style="left:72%;top:72%;width:calc(4pt * var(--scale));height:calc(4pt * var(--scale));background:#5b8ec2;animation-delay:4.5s"></div>
-  <div class="sa-float32" style="left:50%;top:18%;width:calc(3pt * var(--scale));height:calc(3pt * var(--scale));background:#0060A2;animation-delay:2s"></div>
+  <!-- Animated floating dots scattered across the slide -->
+  <div class="sa-dot32" style="left:8%;top:15%;width:calc(7pt * var(--scale));height:calc(7pt * var(--scale));background:#5b8ec2;animation-delay:0s"></div>
+  <div class="sa-dot32 d2" style="left:85%;top:20%;width:calc(5pt * var(--scale));height:calc(5pt * var(--scale));background:#0060A2;animation-delay:1s"></div>
+  <div class="sa-dot32 d3" style="left:20%;top:65%;width:calc(6pt * var(--scale));height:calc(6pt * var(--scale));background:#36639C;animation-delay:2.5s"></div>
+  <div class="sa-dot32" style="left:75%;top:70%;width:calc(5pt * var(--scale));height:calc(5pt * var(--scale));background:#5b8ec2;animation-delay:4s"></div>
+  <div class="sa-dot32 d2" style="left:45%;top:12%;width:calc(4pt * var(--scale));height:calc(4pt * var(--scale));background:#0060A2;animation-delay:1.5s"></div>
+  <div class="sa-dot32 d3" style="left:60%;top:80%;width:calc(6pt * var(--scale));height:calc(6pt * var(--scale));background:#36639C;animation-delay:3s"></div>
+  <div class="sa-dot32" style="left:12%;top:42%;width:calc(4pt * var(--scale));height:calc(4pt * var(--scale));background:#5b8ec2;animation-delay:5s"></div>
+  <div class="sa-dot32 d2" style="left:90%;top:50%;width:calc(5pt * var(--scale));height:calc(5pt * var(--scale));background:#0060A2;animation-delay:0.5s"></div>
+  <div class="sa-dot32 d3" style="left:35%;top:85%;width:calc(4pt * var(--scale));height:calc(4pt * var(--scale));background:#36639C;animation-delay:3.5s"></div>
+  <div class="sa-dot32" style="left:55%;top:28%;width:calc(5pt * var(--scale));height:calc(5pt * var(--scale));background:#5b8ec2;animation-delay:2s"></div>
 
   <!-- Accent line above title -->
   <div style="position:absolute;left:50%;top:30%;transform:translateX(-50%);width:calc(50pt * var(--scale));height:3px;background:linear-gradient(90deg,transparent,#5b8ec2,transparent);border-radius:2px;z-index:5"></div>
 
   <!-- Title -->
-  <div style="position:absolute;left:10%;top:34%;width:80%;text-align:center;z-index:5">
+  <div style="position:absolute;left:10%;top:35%;width:80%;text-align:center;z-index:5">
     <p><span style="font-size:calc(38.0pt * var(--scale));color:#fff;letter-spacing:3px"><b>Sensory Acuity</b></span></p>
   </div>
 
   <!-- Subtitle -->
-  <div style="position:absolute;left:15%;top:50%;width:70%;text-align:center;z-index:5">
-    <p><span style="font-size:calc(13.0pt * var(--scale));color:rgba(255,255,255,0.45);line-height:1.6">The ability to notice and interpret<br>subtle changes in another person</span></p>
+  <div style="position:absolute;left:15%;top:52%;width:70%;text-align:center;z-index:5">
+    <p><span style="font-size:calc(13.0pt * var(--scale));color:rgba(255,255,255,0.4);line-height:1.6">The ability to notice and interpret<br>subtle changes in another person</span></p>
   </div>
 
-  <!-- Five observation points in a subtle row -->
-  <div style="position:absolute;left:10%;top:66%;width:80%;z-index:5;display:flex;justify-content:center;gap:calc(14pt * var(--scale))">
-    <div style="text-align:center">
-      <div style="width:calc(8pt * var(--scale));height:calc(8pt * var(--scale));border-radius:50%;background:#5b8ec2;margin:0 auto calc(4pt * var(--scale));opacity:0.6"></div>
-      <span style="font-size:calc(8.0pt * var(--scale));color:rgba(255,255,255,0.35)">Skin Color</span>
-    </div>
-    <div style="text-align:center">
-      <div style="width:calc(8pt * var(--scale));height:calc(8pt * var(--scale));border-radius:50%;background:#36639C;margin:0 auto calc(4pt * var(--scale));opacity:0.6"></div>
-      <span style="font-size:calc(8.0pt * var(--scale));color:rgba(255,255,255,0.35)">Skin Tonus</span>
-    </div>
-    <div style="text-align:center">
-      <div style="width:calc(8pt * var(--scale));height:calc(8pt * var(--scale));border-radius:50%;background:#0060A2;margin:0 auto calc(4pt * var(--scale));opacity:0.6"></div>
-      <span style="font-size:calc(8.0pt * var(--scale));color:rgba(255,255,255,0.35)">Breathing</span>
-    </div>
-    <div style="text-align:center">
-      <div style="width:calc(8pt * var(--scale));height:calc(8pt * var(--scale));border-radius:50%;background:#5b8ec2;margin:0 auto calc(4pt * var(--scale));opacity:0.6"></div>
-      <span style="font-size:calc(8.0pt * var(--scale));color:rgba(255,255,255,0.35)">Lower Lip</span>
-    </div>
-    <div style="text-align:center">
-      <div style="width:calc(8pt * var(--scale));height:calc(8pt * var(--scale));border-radius:50%;background:#36639C;margin:0 auto calc(4pt * var(--scale));opacity:0.6"></div>
-      <span style="font-size:calc(8.0pt * var(--scale));color:rgba(255,255,255,0.35)">Eyes</span>
-    </div>
-  </div>
-
-  <!-- Bottom line accent -->
-  <div style="position:absolute;left:50%;top:78%;transform:translateX(-50%);width:calc(50pt * var(--scale));height:3px;background:linear-gradient(90deg,transparent,#5b8ec2,transparent);border-radius:2px;z-index:5"></div>
+  <!-- Bottom accent line -->
+  <div style="position:absolute;left:50%;top:68%;transform:translateX(-50%);width:calc(50pt * var(--scale));height:3px;background:linear-gradient(90deg,transparent,#5b8ec2,transparent);border-radius:2px;z-index:5"></div>
 
   <!-- Page ref -->
   <div style="position:absolute;left:50%;bottom:5%;transform:translateX(-50%);z-index:5">
