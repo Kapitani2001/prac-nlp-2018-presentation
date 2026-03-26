@@ -1794,21 +1794,23 @@ body:hover #navbar { opacity: 1; }
       border-radius: 50%;
       transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    /* When integration triggers, circles move inward to overlap */
+    /* When integration triggers, both circles move to center and become one */
     .ci-merged .ci-left {
-      transform: translateX(18%) !important;
+      left: 22.5% !important;
+      opacity: 0.7;
     }
     .ci-merged .ci-right {
-      transform: translateX(-18%) !important;
+      right: 22.5% !important;
+      opacity: 0.7;
     }
     .ci-merged .ci-overlap {
       opacity: 1 !important;
-      transform: scale(1) !important;
+      transform: scale(1.2) !important;
     }
     .ci-merged .ci-left-inner,
     .ci-merged .ci-right-inner {
-      opacity: 0.5;
-      transition: opacity 1s ease 0.6s;
+      opacity: 0.3;
+      transition: opacity 1s ease 0.4s;
     }
   </style>
 
