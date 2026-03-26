@@ -1887,13 +1887,146 @@ body:hover #navbar { opacity: 1; }
   </script>
 </section>
 
-<section class="slide" data-slide="29" data-clicks='[[{&quot;spid&quot;: &quot;24&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;strips(upRight)&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;27&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;strips(upLeft)&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;10&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;fade&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}]]'>
-  <div class="shape" data-spid="2" style="position:absolute;left:5.00%;top:4.00%;width:90.00%;min-height:6.73%"><p>The Learning State</p></div>
-  <div class="shape" data-spid="8" style="position:absolute;left:0.17%;top:86.39%;width:27.28%;height:9.37%"><img src="images/slide29_img1.png" style="width:100%;height:100%;object-fit:contain" loading="lazy"></div>
-  <div class="shape" data-spid="15" style="position:absolute;left:43.62%;top:67.68%;width:13.58%;height:20.56%"><img src="images/slide29_img0.png" style="width:100%;height:100%;object-fit:contain" loading="lazy"></div>
-  <div class="shape" data-spid="5" style="position:absolute;left:44.26%;top:32.78%;width:12.29%;min-height:16.39%;background:#36639C;border-radius:6px;padding:2% 3%;color:#fff"></div>
-  <div class="shape" data-spid="17" style="position:absolute;left:44.26%;top:38.35%;width:11.90%;min-height:4.49%"><p><b>Foveal</b></p></div>
-  <div class="shape anim-hidden" data-spid="10" style="position:absolute;left:16.28%;top:17.25%;width:67.87%;min-height:4.49%;opacity:0;visibility:hidden"><p><b>Peripheral Vision</b></p></div>
+<section class="slide" data-slide="29" data-clicks='[[{"spid": "foveal", "cls": "entr", "delay": 0, "filter": "fade", "motion": "", "dur": "700"}], [{"spid": "peripheral", "cls": "entr", "delay": 0, "filter": "dissolve", "motion": "", "dur": "500"}]]' style="background:linear-gradient(135deg,#0c1829 0%,#1a2744 50%,#0f1f3a 100%);overflow:hidden">
+  <style>
+    /* Foveal: narrow cone of vision */
+    .vision-cone {
+      position: absolute;
+      left: 50%; top: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      transition: all 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .foveal-cone {
+      width: calc(60pt * var(--scale));
+      height: calc(60pt * var(--scale));
+      background: radial-gradient(circle, rgba(255,200,50,0.35) 0%, rgba(255,200,50,0.1) 60%, transparent 100%);
+      box-shadow: 0 0 calc(20pt * var(--scale)) rgba(255,200,50,0.2);
+    }
+    /* Peripheral: wide field of vision */
+    .peripheral-active .foveal-cone {
+      width: calc(220pt * var(--scale));
+      height: calc(180pt * var(--scale));
+      background: radial-gradient(circle, rgba(91,142,194,0.3) 0%, rgba(91,142,194,0.15) 40%, rgba(91,142,194,0.05) 70%, transparent 100%);
+      box-shadow: 0 0 calc(60pt * var(--scale)) rgba(91,142,194,0.15);
+    }
+    /* Eye icon */
+    .eye-shape {
+      position: absolute;
+      left: 50%; top: 50%;
+      transform: translate(-50%, -50%);
+      width: calc(24pt * var(--scale));
+      height: calc(24pt * var(--scale));
+      border-radius: 50%;
+      background: #fff;
+      z-index: 5;
+      box-shadow: 0 0 calc(8pt * var(--scale)) rgba(255,255,255,0.5);
+    }
+    .eye-pupil {
+      position: absolute;
+      left: 50%; top: 50%;
+      transform: translate(-50%, -50%);
+      width: calc(10pt * var(--scale));
+      height: calc(10pt * var(--scale));
+      border-radius: 50%;
+      background: #1a2744;
+      z-index: 6;
+      transition: all 1.5s ease;
+    }
+    .peripheral-active .eye-pupil {
+      width: calc(14pt * var(--scale));
+      height: calc(14pt * var(--scale));
+    }
+    /* Rays for peripheral */
+    .vision-rays {
+      position: absolute;
+      left: 50%; top: 50%;
+      transform: translate(-50%, -50%);
+      width: calc(280pt * var(--scale));
+      height: calc(220pt * var(--scale));
+      opacity: 0;
+      transition: opacity 1.5s ease;
+    }
+    .peripheral-active .vision-rays {
+      opacity: 1;
+    }
+    .ray {
+      position: absolute;
+      background: linear-gradient(90deg, transparent, rgba(91,142,194,0.12), transparent);
+      height: 1px;
+      width: 100%;
+      left: 0;
+      top: 50%;
+    }
+    .ray:nth-child(1) { transform: rotate(0deg); }
+    .ray:nth-child(2) { transform: rotate(30deg); }
+    .ray:nth-child(3) { transform: rotate(60deg); }
+    .ray:nth-child(4) { transform: rotate(90deg); }
+    .ray:nth-child(5) { transform: rotate(120deg); }
+    .ray:nth-child(6) { transform: rotate(150deg); }
+  </style>
+
+  <!-- Title -->
+  <div style="position:absolute;left:5%;top:4%;width:90%;text-align:center;z-index:10">
+    <p><span style="font-size:calc(24.0pt * var(--scale));color:#fff"><b>The Learning State</b></span></p>
+  </div>
+
+  <!-- Central eye visualization -->
+  <div id="visionContainer29" style="position:absolute;left:20%;top:15%;width:60%;height:55%;z-index:2">
+    <!-- Vision cone (starts narrow/foveal, expands to peripheral) -->
+    <div class="vision-cone foveal-cone"></div>
+    <!-- Rays (peripheral only) -->
+    <div class="vision-rays">
+      <div class="ray"></div>
+      <div class="ray"></div>
+      <div class="ray"></div>
+      <div class="ray"></div>
+      <div class="ray"></div>
+      <div class="ray"></div>
+    </div>
+    <!-- Eye -->
+    <div class="eye-shape"></div>
+    <div class="eye-pupil"></div>
+  </div>
+
+  <!-- Click 1: Foveal label -->
+  <div class="shape anim-hidden" data-spid="foveal" style="position:absolute;left:5%;top:72%;width:40%;z-index:10;opacity:0;visibility:hidden">
+    <div style="background:rgba(255,200,50,0.12);border:1px solid rgba(255,200,50,0.3);border-radius:12px;padding:calc(10pt * var(--scale)) calc(14pt * var(--scale));text-align:center">
+      <p style="margin-bottom:calc(4pt * var(--scale))"><span style="font-size:calc(18.0pt * var(--scale));color:#ffc832"><b>Foveal Vision</b></span></p>
+      <p><span style="font-size:calc(10.0pt * var(--scale));color:rgba(255,255,255,0.6);line-height:1.5">Narrow focus &#8226; Tunnel vision<br>Detail-oriented &#8226; Stress response</span></p>
+    </div>
+  </div>
+
+  <!-- Click 2: Peripheral label -->
+  <div class="shape anim-hidden" data-spid="peripheral" style="position:absolute;left:55%;top:72%;width:40%;z-index:10;opacity:0;visibility:hidden">
+    <div style="background:rgba(91,142,194,0.12);border:1px solid rgba(91,142,194,0.3);border-radius:12px;padding:calc(10pt * var(--scale)) calc(14pt * var(--scale));text-align:center">
+      <p style="margin-bottom:calc(4pt * var(--scale))"><span style="font-size:calc(18.0pt * var(--scale));color:#5b8ec2"><b>Peripheral Vision</b></span></p>
+      <p><span style="font-size:calc(10.0pt * var(--scale));color:rgba(255,255,255,0.6);line-height:1.5">Wide awareness &#8226; Relaxed state<br>The Learning State &#8226; Open to change</span></p>
+    </div>
+  </div>
+
+  <!-- JS: expand vision when peripheral appears -->
+  <script>
+  (function() {
+    setTimeout(function() {
+      var slide = document.querySelector('[data-slide="29"]');
+      if (!slide) return;
+      var perEl = slide.querySelector('[data-spid="peripheral"]');
+      var container = document.getElementById('visionContainer29');
+      if (!perEl || !container) return;
+      var obs = new MutationObserver(function() {
+        var vis = window.getComputedStyle(perEl).visibility;
+        var op = parseFloat(window.getComputedStyle(perEl).opacity);
+        if (vis === 'visible' && op > 0.3) {
+          container.classList.add('peripheral-active');
+        } else {
+          container.classList.remove('peripheral-active');
+        }
+      });
+      obs.observe(perEl, { attributes: true, attributeFilter: ['style','class'] });
+    }, 600);
+  })();
+  </script>
 </section>
 
 <section class="slide" data-slide="30" data-clicks='[[{&quot;spid&quot;: &quot;18&quot;, &quot;cls&quot;: &quot;path&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;&quot;, &quot;motion&quot;: &quot;M 2.77778E-7 -2.59259E-6 L 2.77778E-7 -0.03426 &quot;, &quot;dur&quot;: &quot;500&quot;}]]'>
