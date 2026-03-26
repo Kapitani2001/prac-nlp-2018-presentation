@@ -1664,7 +1664,7 @@ body:hover #navbar { opacity: 1; }
   </div>
 </section>
 
-<section class="slide" data-slide="26" data-clicks='[[{"spid":"center","cls":"entr","delay":0,"filter":"fade","motion":"","dur":"600"}],[{"spid":"topics","cls":"entr","delay":0,"filter":"fade","motion":"","dur":"600"}],[{"spid":"left","cls":"entr","delay":0,"filter":"wipe(right)","motion":"","dur":"600"}],[{"spid":"right","cls":"entr","delay":0,"filter":"wipe(left)","motion":"","dur":"600"}]]' style="background:linear-gradient(135deg,#0c1829 0%,#1a2744 50%,#0f1f3a 100%)">
+<section class="slide" data-slide="26" data-clicks='[[{"spid": "center", "cls": "entr", "delay": 0, "filter": "fade", "motion": "", "dur": "600"}], [{"spid": "topics", "cls": "entr", "delay": 0, "filter": "fade", "motion": "", "dur": "600"}], [{"spid": "left", "cls": "entr", "delay": 0, "filter": "wipe(right)", "motion": "", "dur": "600"}, {"spid": "bridge", "cls": "entr", "delay": 300, "filter": "fade", "motion": "", "dur": "500"}, {"spid": "right", "cls": "entr", "delay": 0, "filter": "wipe(left)", "motion": "", "dur": "600"}]]' style="background:linear-gradient(135deg,#0c1829 0%,#1a2744 50%,#0f1f3a 100%)">
 
   <!-- Title -->
   <div style="position:absolute;left:5%;top:4%;width:90%;text-align:center;z-index:3">
@@ -1672,69 +1672,77 @@ body:hover #navbar { opacity: 1; }
   </div>
 
   <!-- Click 1: Central NLP Practitioner label -->
-  <div class="shape anim-hidden" data-spid="center" style="position:absolute;left:30%;top:16%;width:40%;z-index:2;text-align:center;opacity:0;visibility:hidden">
-    <div style="background:linear-gradient(135deg,#0060A2,#36639C);border-radius:12px;padding:calc(10pt * var(--scale)) calc(14pt * var(--scale));box-shadow:0 4px 20px rgba(0,96,162,0.35)">
+  <div class="shape anim-hidden" data-spid="center" style="position:absolute;left:25%;top:14%;width:50%;z-index:2;text-align:center;opacity:0;visibility:hidden">
+    <div style="background:linear-gradient(135deg,#0060A2,#36639C);border-radius:12px;padding:calc(12pt * var(--scale)) calc(16pt * var(--scale));box-shadow:0 4px 20px rgba(0,96,162,0.35)">
       <p style="margin-bottom:calc(2pt * var(--scale))"><span style="font-size:calc(10.0pt * var(--scale));color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:2px">NLP</span></p>
-      <p><span style="font-size:calc(20.0pt * var(--scale));color:#fff"><b>Practitioner</b></span></p>
+      <p><span style="font-size:calc(22.0pt * var(--scale));color:#fff"><b>Practitioner</b></span></p>
       <p style="margin-top:calc(4pt * var(--scale))"><span style="font-size:calc(9.0pt * var(--scale));color:rgba(255,255,255,0.5)">1/4 of the Body of Knowledge</span></p>
     </div>
   </div>
 
-  <!-- Click 2: Core NLP topics (center cluster) -->
-  <div class="shape anim-hidden" data-spid="topics" style="position:absolute;left:22%;top:36%;width:56%;z-index:2;opacity:0;visibility:hidden">
-    <div style="display:flex;flex-wrap:wrap;gap:calc(5pt * var(--scale));justify-content:center">
-      <div style="background:rgba(54,99,156,0.4);border:1px solid rgba(91,142,194,0.3);border-radius:8px;padding:calc(6pt * var(--scale)) calc(10pt * var(--scale))">
-        <span style="font-size:calc(11.0pt * var(--scale));color:#fff">Sub Modalities</span>
+  <!-- Click 2: Core NLP topics (wider, bigger pills) -->
+  <div class="shape anim-hidden" data-spid="topics" style="position:absolute;left:10%;top:34%;width:80%;z-index:2;opacity:0;visibility:hidden">
+    <div style="display:flex;flex-wrap:wrap;gap:calc(6pt * var(--scale));justify-content:center">
+      <div style="background:rgba(54,99,156,0.4);border:1px solid rgba(91,142,194,0.3);border-radius:8px;padding:calc(8pt * var(--scale)) calc(14pt * var(--scale))">
+        <span style="font-size:calc(12.0pt * var(--scale));color:#fff">Sub Modalities</span>
       </div>
-      <div style="background:rgba(54,99,156,0.4);border:1px solid rgba(91,142,194,0.3);border-radius:8px;padding:calc(6pt * var(--scale)) calc(10pt * var(--scale))">
-        <span style="font-size:calc(11.0pt * var(--scale));color:#fff">Anchoring</span>
+      <div style="background:rgba(54,99,156,0.4);border:1px solid rgba(91,142,194,0.3);border-radius:8px;padding:calc(8pt * var(--scale)) calc(14pt * var(--scale))">
+        <span style="font-size:calc(12.0pt * var(--scale));color:#fff">Anchoring</span>
       </div>
-      <div style="background:rgba(54,99,156,0.4);border:1px solid rgba(91,142,194,0.3);border-radius:8px;padding:calc(6pt * var(--scale)) calc(10pt * var(--scale))">
-        <span style="font-size:calc(11.0pt * var(--scale));color:#fff">Strategies</span>
+      <div style="background:rgba(54,99,156,0.4);border:1px solid rgba(91,142,194,0.3);border-radius:8px;padding:calc(8pt * var(--scale)) calc(14pt * var(--scale))">
+        <span style="font-size:calc(12.0pt * var(--scale));color:#fff">Strategies</span>
       </div>
-      <div style="background:rgba(54,99,156,0.4);border:1px solid rgba(91,142,194,0.3);border-radius:8px;padding:calc(6pt * var(--scale)) calc(10pt * var(--scale))">
-        <span style="font-size:calc(11.0pt * var(--scale));color:#fff">Sensory Acuity</span>
+      <div style="background:rgba(54,99,156,0.4);border:1px solid rgba(91,142,194,0.3);border-radius:8px;padding:calc(8pt * var(--scale)) calc(14pt * var(--scale))">
+        <span style="font-size:calc(12.0pt * var(--scale));color:#fff">Sensory Acuity</span>
       </div>
-      <div style="background:rgba(54,99,156,0.4);border:1px solid rgba(91,142,194,0.3);border-radius:8px;padding:calc(6pt * var(--scale)) calc(10pt * var(--scale))">
-        <span style="font-size:calc(11.0pt * var(--scale));color:#fff">Outcomes</span>
+      <div style="background:rgba(54,99,156,0.4);border:1px solid rgba(91,142,194,0.3);border-radius:8px;padding:calc(8pt * var(--scale)) calc(14pt * var(--scale))">
+        <span style="font-size:calc(12.0pt * var(--scale));color:#fff">Outcomes</span>
       </div>
-      <div style="background:rgba(54,99,156,0.4);border:1px solid rgba(91,142,194,0.3);border-radius:8px;padding:calc(6pt * var(--scale)) calc(10pt * var(--scale))">
-        <span style="font-size:calc(11.0pt * var(--scale));color:#fff">Rapport</span>
+      <div style="background:rgba(54,99,156,0.4);border:1px solid rgba(91,142,194,0.3);border-radius:8px;padding:calc(8pt * var(--scale)) calc(14pt * var(--scale))">
+        <span style="font-size:calc(12.0pt * var(--scale));color:#fff">Rapport</span>
       </div>
-      <div style="background:rgba(54,99,156,0.4);border:1px solid rgba(91,142,194,0.3);border-radius:8px;padding:calc(6pt * var(--scale)) calc(10pt * var(--scale))">
-        <span style="font-size:calc(11.0pt * var(--scale));color:#fff">Language</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- Click 3: Left column — internal skills -->
-  <div class="shape anim-hidden" data-spid="left" style="position:absolute;left:3%;top:56%;width:28%;z-index:2;opacity:0;visibility:hidden">
-    <p style="margin-bottom:calc(6pt * var(--scale))"><span style="font-size:calc(9.0pt * var(--scale));color:#5b8ec2;text-transform:uppercase;letter-spacing:1.5px"><b>Internal Skills</b></span></p>
-    <div style="display:flex;flex-direction:column;gap:calc(4pt * var(--scale))">
-      <div style="background:rgba(255,255,255,0.08);border-radius:8px;padding:calc(6pt * var(--scale)) calc(10pt * var(--scale));border-left:3px solid #5b8ec2">
-        <span style="font-size:calc(11.0pt * var(--scale));color:#fff">Changing Internal State</span>
-      </div>
-      <div style="background:rgba(255,255,255,0.08);border-radius:8px;padding:calc(6pt * var(--scale)) calc(10pt * var(--scale));border-left:3px solid #5b8ec2">
-        <span style="font-size:calc(11.0pt * var(--scale));color:#fff">Knowing What You Want</span>
-      </div>
-      <div style="background:rgba(255,255,255,0.08);border-radius:8px;padding:calc(6pt * var(--scale)) calc(10pt * var(--scale));border-left:3px solid #5b8ec2">
-        <span style="font-size:calc(11.0pt * var(--scale));color:#fff">Developing Flexibility</span>
+      <div style="background:rgba(54,99,156,0.4);border:1px solid rgba(91,142,194,0.3);border-radius:8px;padding:calc(8pt * var(--scale)) calc(14pt * var(--scale))">
+        <span style="font-size:calc(12.0pt * var(--scale));color:#fff">Language</span>
       </div>
     </div>
   </div>
 
-  <!-- Click 4: Right column — external skills -->
-  <div class="shape anim-hidden" data-spid="right" style="position:absolute;left:69%;top:56%;width:28%;z-index:2;opacity:0;visibility:hidden">
-    <p style="margin-bottom:calc(6pt * var(--scale))"><span style="font-size:calc(9.0pt * var(--scale));color:#5b8ec2;text-transform:uppercase;letter-spacing:1.5px"><b>External Skills</b></span></p>
-    <div style="display:flex;flex-direction:column;gap:calc(4pt * var(--scale))">
-      <div style="background:rgba(255,255,255,0.08);border-radius:8px;padding:calc(6pt * var(--scale)) calc(10pt * var(--scale));border-left:3px solid #0060A2">
-        <span style="font-size:calc(11.0pt * var(--scale));color:#fff">Changing Internal Process</span>
+  <!-- Click 3: Both columns + center bridge appear together -->
+  <!-- Left: Internal Skills -->
+  <div class="shape anim-hidden" data-spid="left" style="position:absolute;left:3%;top:54%;width:28%;z-index:2;opacity:0;visibility:hidden">
+    <p style="margin-bottom:calc(6pt * var(--scale))"><span style="font-size:calc(10.0pt * var(--scale));color:#5b8ec2;text-transform:uppercase;letter-spacing:1.5px"><b>Internal Skills</b></span></p>
+    <div style="display:flex;flex-direction:column;gap:calc(5pt * var(--scale))">
+      <div style="background:rgba(255,255,255,0.08);border-radius:8px;padding:calc(8pt * var(--scale)) calc(12pt * var(--scale));border-left:3px solid #5b8ec2">
+        <span style="font-size:calc(12.0pt * var(--scale));color:#fff">Changing Internal State</span>
       </div>
-      <div style="background:rgba(255,255,255,0.08);border-radius:8px;padding:calc(6pt * var(--scale)) calc(10pt * var(--scale));border-left:3px solid #0060A2">
-        <span style="font-size:calc(11.0pt * var(--scale));color:#fff">Know If You&#8217;re Getting What You Want</span>
+      <div style="background:rgba(255,255,255,0.08);border-radius:8px;padding:calc(8pt * var(--scale)) calc(12pt * var(--scale));border-left:3px solid #5b8ec2">
+        <span style="font-size:calc(12.0pt * var(--scale));color:#fff">Knowing What You Want</span>
       </div>
-      <div style="background:rgba(255,255,255,0.08);border-radius:8px;padding:calc(6pt * var(--scale)) calc(10pt * var(--scale));border-left:3px solid #0060A2">
-        <span style="font-size:calc(11.0pt * var(--scale));color:#fff">Communicating Effectively</span>
+      <div style="background:rgba(255,255,255,0.08);border-radius:8px;padding:calc(8pt * var(--scale)) calc(12pt * var(--scale));border-left:3px solid #5b8ec2">
+        <span style="font-size:calc(12.0pt * var(--scale));color:#fff">Developing Flexibility</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Center bridge text -->
+  <div class="shape anim-hidden" data-spid="bridge" style="position:absolute;left:34%;top:60%;width:32%;z-index:2;text-align:center;opacity:0;visibility:hidden">
+    <div style="border:1px solid rgba(91,142,194,0.2);border-radius:10px;padding:calc(12pt * var(--scale));background:rgba(0,96,162,0.08)">
+      <p><span style="font-size:calc(11.0pt * var(--scale));color:rgba(255,255,255,0.5);line-height:1.5">These skills work together to create lasting change through NLP</span></p>
+    </div>
+  </div>
+
+  <!-- Right: External Skills -->
+  <div class="shape anim-hidden" data-spid="right" style="position:absolute;left:69%;top:54%;width:28%;z-index:2;opacity:0;visibility:hidden">
+    <p style="margin-bottom:calc(6pt * var(--scale))"><span style="font-size:calc(10.0pt * var(--scale));color:#5b8ec2;text-transform:uppercase;letter-spacing:1.5px"><b>External Skills</b></span></p>
+    <div style="display:flex;flex-direction:column;gap:calc(5pt * var(--scale))">
+      <div style="background:rgba(255,255,255,0.08);border-radius:8px;padding:calc(8pt * var(--scale)) calc(12pt * var(--scale));border-left:3px solid #0060A2">
+        <span style="font-size:calc(12.0pt * var(--scale));color:#fff">Changing Internal Process</span>
+      </div>
+      <div style="background:rgba(255,255,255,0.08);border-radius:8px;padding:calc(8pt * var(--scale)) calc(12pt * var(--scale));border-left:3px solid #0060A2">
+        <span style="font-size:calc(12.0pt * var(--scale));color:#fff">Know If You're Getting What You Want</span>
+      </div>
+      <div style="background:rgba(255,255,255,0.08);border-radius:8px;padding:calc(8pt * var(--scale)) calc(12pt * var(--scale));border-left:3px solid #0060A2">
+        <span style="font-size:calc(12.0pt * var(--scale));color:#fff">Communicating Effectively</span>
       </div>
     </div>
   </div>
