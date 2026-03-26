@@ -2332,131 +2332,88 @@ body:hover #navbar { opacity: 1; }
   </div>
 </section>
 
-<section class="slide" data-slide="32" data-clicks='[[{"spid": "eye", "cls": "entr", "delay": 0, "filter": "fade", "motion": "", "dur": "700"}], [{"spid": "senses", "cls": "entr", "delay": 0, "filter": "fade", "motion": "", "dur": "600"}], [{"spid": "tagline", "cls": "entr", "delay": 0, "filter": "fade", "motion": "", "dur": "600"}]]' style="background:linear-gradient(135deg,#0c1829 0%,#1a2744 50%,#0f1f3a 100%);overflow:hidden">
+<section class="slide" data-slide="32" data-clicks='[]' style="background:linear-gradient(135deg,#0c1829 0%,#1a2744 50%,#0f1f3a 100%);overflow:hidden">
   <style>
-    /* Animated scanning rings */
-    .scan-ring {
+    .sa-ring32 {
       position: absolute;
-      left: 50%; top: 42%;
+      left: 50%; top: 50%;
       transform: translate(-50%, -50%);
       border-radius: 50%;
-      border: 1px solid rgba(91,142,194,0.15);
-      animation: scanExpand 4s ease-in-out infinite;
+      border: 1px solid rgba(91,142,194,0.08);
     }
-    .scan-ring:nth-child(1) { width: calc(80pt * var(--scale)); height: calc(80pt * var(--scale)); animation-delay: 0s; }
-    .scan-ring:nth-child(2) { width: calc(130pt * var(--scale)); height: calc(130pt * var(--scale)); animation-delay: 1s; }
-    .scan-ring:nth-child(3) { width: calc(180pt * var(--scale)); height: calc(180pt * var(--scale)); animation-delay: 2s; }
-    .scan-ring:nth-child(4) { width: calc(230pt * var(--scale)); height: calc(230pt * var(--scale)); animation-delay: 3s; }
-    @keyframes scanExpand {
-      0% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
-      30% { opacity: 0.6; }
-      100% { opacity: 0; transform: translate(-50%, -50%) scale(1.3); }
-    }
-
-    /* Central eye icon */
-    .sa-eye {
+    .sa-ring32:nth-child(1) { width: 25%; height: 33%; }
+    .sa-ring32:nth-child(2) { width: 45%; height: 60%; }
+    .sa-ring32:nth-child(3) { width: 65%; height: 87%; }
+    .sa-ring32:nth-child(4) { width: 85%; height: 113%; border-color: rgba(91,142,194,0.04); }
+    .sa-float32 {
       position: absolute;
-      left: 50%; top: 42%;
-      transform: translate(-50%, -50%);
-      z-index: 5;
-    }
-    .sa-eye-outer {
-      width: calc(60pt * var(--scale));
-      height: calc(34pt * var(--scale));
       border-radius: 50%;
-      background: rgba(91,142,194,0.15);
-      border: 2px solid #5b8ec2;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
+      animation: saFloat 6s ease-in-out infinite;
     }
-    .sa-eye-pupil {
-      width: calc(20pt * var(--scale));
-      height: calc(20pt * var(--scale));
-      border-radius: 50%;
-      background: radial-gradient(circle at 40% 40%, #5b8ec2, #1a2744);
-      box-shadow: 0 0 calc(10pt * var(--scale)) rgba(91,142,194,0.4);
-      animation: pupilScan 3s ease-in-out infinite;
-    }
-    @keyframes pupilScan {
-      0%, 100% { transform: translateX(0); }
-      25% { transform: translateX(calc(6pt * var(--scale))); }
-      75% { transform: translateX(calc(-6pt * var(--scale))); }
-    }
-    .sa-eye-shine {
-      position: absolute;
-      top: 25%; left: 55%;
-      width: calc(5pt * var(--scale));
-      height: calc(5pt * var(--scale));
-      border-radius: 50%;
-      background: rgba(255,255,255,0.7);
+    @keyframes saFloat {
+      0%, 100% { transform: translateY(0); opacity: 0.5; }
+      50% { transform: translateY(-8px); opacity: 0.9; }
     }
   </style>
 
-  <!-- Animated scanning rings (always pulsing) -->
-  <div style="position:absolute;inset:0;z-index:1">
-    <div class="scan-ring"></div>
-    <div class="scan-ring"></div>
-    <div class="scan-ring"></div>
-    <div class="scan-ring"></div>
+  <!-- Concentric rings for depth -->
+  <div style="position:absolute;inset:0;z-index:0">
+    <div class="sa-ring32"></div>
+    <div class="sa-ring32"></div>
+    <div class="sa-ring32"></div>
+    <div class="sa-ring32"></div>
   </div>
 
-  <!-- Small accent line -->
-  <div style="position:absolute;left:50%;top:15%;transform:translateX(-50%);width:calc(40pt * var(--scale));height:3px;background:linear-gradient(90deg,#0060A2,#5b8ec2);border-radius:2px;z-index:10"></div>
+  <!-- Floating accent dots -->
+  <div class="sa-float32" style="left:15%;top:25%;width:calc(6pt * var(--scale));height:calc(6pt * var(--scale));background:#5b8ec2;animation-delay:0s"></div>
+  <div class="sa-float32" style="left:80%;top:35%;width:calc(4pt * var(--scale));height:calc(4pt * var(--scale));background:#0060A2;animation-delay:1.5s"></div>
+  <div class="sa-float32" style="left:25%;top:70%;width:calc(5pt * var(--scale));height:calc(5pt * var(--scale));background:#36639C;animation-delay:3s"></div>
+  <div class="sa-float32" style="left:72%;top:72%;width:calc(4pt * var(--scale));height:calc(4pt * var(--scale));background:#5b8ec2;animation-delay:4.5s"></div>
+  <div class="sa-float32" style="left:50%;top:18%;width:calc(3pt * var(--scale));height:calc(3pt * var(--scale));background:#0060A2;animation-delay:2s"></div>
+
+  <!-- Accent line above title -->
+  <div style="position:absolute;left:50%;top:30%;transform:translateX(-50%);width:calc(50pt * var(--scale));height:3px;background:linear-gradient(90deg,transparent,#5b8ec2,transparent);border-radius:2px;z-index:5"></div>
 
   <!-- Title -->
-  <div style="position:absolute;left:10%;top:18%;width:80%;text-align:center;z-index:10">
-    <p><span style="font-size:calc(34.0pt * var(--scale));color:#fff;letter-spacing:2px"><b>Sensory Acuity</b></span></p>
+  <div style="position:absolute;left:10%;top:34%;width:80%;text-align:center;z-index:5">
+    <p><span style="font-size:calc(38.0pt * var(--scale));color:#fff;letter-spacing:3px"><b>Sensory Acuity</b></span></p>
   </div>
 
-  <!-- Click 1: Animated eye icon appears in center -->
-  <div class="shape anim-hidden" data-spid="eye" style="position:relative;z-index:5;opacity:0;visibility:hidden">
-    <div class="sa-eye">
-      <div class="sa-eye-outer">
-        <div class="sa-eye-pupil"></div>
-        <div class="sa-eye-shine"></div>
-      </div>
+  <!-- Subtitle -->
+  <div style="position:absolute;left:15%;top:50%;width:70%;text-align:center;z-index:5">
+    <p><span style="font-size:calc(13.0pt * var(--scale));color:rgba(255,255,255,0.45);line-height:1.6">The ability to notice and interpret<br>subtle changes in another person</span></p>
+  </div>
+
+  <!-- Five observation points in a subtle row -->
+  <div style="position:absolute;left:10%;top:66%;width:80%;z-index:5;display:flex;justify-content:center;gap:calc(14pt * var(--scale))">
+    <div style="text-align:center">
+      <div style="width:calc(8pt * var(--scale));height:calc(8pt * var(--scale));border-radius:50%;background:#5b8ec2;margin:0 auto calc(4pt * var(--scale));opacity:0.6"></div>
+      <span style="font-size:calc(8.0pt * var(--scale));color:rgba(255,255,255,0.35)">Skin Color</span>
+    </div>
+    <div style="text-align:center">
+      <div style="width:calc(8pt * var(--scale));height:calc(8pt * var(--scale));border-radius:50%;background:#36639C;margin:0 auto calc(4pt * var(--scale));opacity:0.6"></div>
+      <span style="font-size:calc(8.0pt * var(--scale));color:rgba(255,255,255,0.35)">Skin Tonus</span>
+    </div>
+    <div style="text-align:center">
+      <div style="width:calc(8pt * var(--scale));height:calc(8pt * var(--scale));border-radius:50%;background:#0060A2;margin:0 auto calc(4pt * var(--scale));opacity:0.6"></div>
+      <span style="font-size:calc(8.0pt * var(--scale));color:rgba(255,255,255,0.35)">Breathing</span>
+    </div>
+    <div style="text-align:center">
+      <div style="width:calc(8pt * var(--scale));height:calc(8pt * var(--scale));border-radius:50%;background:#5b8ec2;margin:0 auto calc(4pt * var(--scale));opacity:0.6"></div>
+      <span style="font-size:calc(8.0pt * var(--scale));color:rgba(255,255,255,0.35)">Lower Lip</span>
+    </div>
+    <div style="text-align:center">
+      <div style="width:calc(8pt * var(--scale));height:calc(8pt * var(--scale));border-radius:50%;background:#36639C;margin:0 auto calc(4pt * var(--scale));opacity:0.6"></div>
+      <span style="font-size:calc(8.0pt * var(--scale));color:rgba(255,255,255,0.35)">Eyes</span>
     </div>
   </div>
 
-  <!-- Click 2: Five senses indicators around the eye -->
-  <div class="shape anim-hidden" data-spid="senses" style="position:absolute;left:5%;top:60%;width:90%;z-index:10;opacity:0;visibility:hidden">
-    <div style="display:flex;justify-content:center;gap:calc(6pt * var(--scale))">
-      <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(91,142,194,0.2);border-radius:10px;padding:calc(8pt * var(--scale)) calc(10pt * var(--scale));text-align:center;flex:1">
-        <p style="margin-bottom:calc(2pt * var(--scale))"><span style="font-size:calc(16.0pt * var(--scale))">&#128065;</span></p>
-        <p><span style="font-size:calc(9.0pt * var(--scale));color:rgba(255,255,255,0.7)">Skin Color</span></p>
-      </div>
-      <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(91,142,194,0.2);border-radius:10px;padding:calc(8pt * var(--scale)) calc(10pt * var(--scale));text-align:center;flex:1">
-        <p style="margin-bottom:calc(2pt * var(--scale))"><span style="font-size:calc(16.0pt * var(--scale))">&#9995;</span></p>
-        <p><span style="font-size:calc(9.0pt * var(--scale));color:rgba(255,255,255,0.7)">Skin Tonus</span></p>
-      </div>
-      <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(91,142,194,0.2);border-radius:10px;padding:calc(8pt * var(--scale)) calc(10pt * var(--scale));text-align:center;flex:1">
-        <p style="margin-bottom:calc(2pt * var(--scale))"><span style="font-size:calc(16.0pt * var(--scale))">&#127788;</span></p>
-        <p><span style="font-size:calc(9.0pt * var(--scale));color:rgba(255,255,255,0.7)">Breathing</span></p>
-      </div>
-      <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(91,142,194,0.2);border-radius:10px;padding:calc(8pt * var(--scale)) calc(10pt * var(--scale));text-align:center;flex:1">
-        <p style="margin-bottom:calc(2pt * var(--scale))"><span style="font-size:calc(16.0pt * var(--scale))">&#128068;</span></p>
-        <p><span style="font-size:calc(9.0pt * var(--scale));color:rgba(255,255,255,0.7)">Lower Lip</span></p>
-      </div>
-      <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(91,142,194,0.2);border-radius:10px;padding:calc(8pt * var(--scale)) calc(10pt * var(--scale));text-align:center;flex:1">
-        <p style="margin-bottom:calc(2pt * var(--scale))"><span style="font-size:calc(16.0pt * var(--scale))">&#128064;</span></p>
-        <p><span style="font-size:calc(9.0pt * var(--scale));color:rgba(255,255,255,0.7)">Eyes</span></p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Click 3: Tagline -->
-  <div class="shape anim-hidden" data-spid="tagline" style="position:absolute;left:10%;top:82%;width:80%;text-align:center;z-index:10;opacity:0;visibility:hidden">
-    <div style="border-top:1px solid rgba(91,142,194,0.2);padding-top:calc(8pt * var(--scale))">
-      <p><span style="font-size:calc(12.0pt * var(--scale));color:rgba(255,255,255,0.5);font-style:italic">Notice and interpret the subtle changes in another person</span></p>
-    </div>
-  </div>
+  <!-- Bottom line accent -->
+  <div style="position:absolute;left:50%;top:78%;transform:translateX(-50%);width:calc(50pt * var(--scale));height:3px;background:linear-gradient(90deg,transparent,#5b8ec2,transparent);border-radius:2px;z-index:5"></div>
 
   <!-- Page ref -->
-  <div style="position:absolute;right:5%;bottom:4%;z-index:10">
-    <span style="font-size:calc(8.0pt * var(--scale));color:rgba(255,255,255,0.2)">Page 15</span>
+  <div style="position:absolute;left:50%;bottom:5%;transform:translateX(-50%);z-index:5">
+    <span style="font-size:calc(8.0pt * var(--scale));color:rgba(255,255,255,0.2)">Manual Reference — Page 15</span>
   </div>
 </section>
 
