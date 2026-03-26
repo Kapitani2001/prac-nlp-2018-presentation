@@ -2027,9 +2027,136 @@ body:hover #navbar { opacity: 1; }
   </div>
 </section>
 
-<section class="slide" data-slide="30" data-clicks='[[{&quot;spid&quot;: &quot;18&quot;, &quot;cls&quot;: &quot;path&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;&quot;, &quot;motion&quot;: &quot;M 2.77778E-7 -2.59259E-6 L 2.77778E-7 -0.03426 &quot;, &quot;dur&quot;: &quot;500&quot;}]]'>
-  <div class="shape" data-spid="2" style="position:absolute;left:5.00%;top:4.00%;width:90.00%;min-height:6.73%"><p>The Learning State</p></div>
-  <div class="shape" data-spid="3" style="position:absolute;left:28.89%;top:20.74%;width:38.09%;min-height:50.79%;background:#FFC000;border-radius:6px;padding:2% 3%"></div>
+<section class="slide" data-slide="30" data-clicks='[[{"spid": "eyesup", "cls": "entr", "delay": 0, "filter": "dissolve", "motion": "", "dur": "400"}]]' style="background:linear-gradient(135deg,#0c1829 0%,#1a2744 50%,#0f1f3a 100%);overflow:hidden">
+  <style>
+    /* Face circle */
+    .face-circle29 {
+      position: absolute;
+      left: 50%; top: 42%;
+      transform: translate(-50%, -50%);
+      width: calc(160pt * var(--scale));
+      height: calc(160pt * var(--scale));
+      border-radius: 50%;
+      background: #FFC000;
+      box-shadow: 0 6px 30px rgba(255,192,0,0.3);
+      z-index: 5;
+    }
+    /* Eyes */
+    .face-eye29 {
+      position: absolute;
+      width: calc(18pt * var(--scale));
+      height: calc(18pt * var(--scale));
+      border-radius: 50%;
+      background: #1a2744;
+      transition: top 1s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 6;
+    }
+    .face-eye29.left { left: 30%; top: 38%; }
+    .face-eye29.right { right: 30%; top: 38%; }
+    /* Eyes move up */
+    .eyes-up .face-eye29 {
+      top: 22% !important;
+    }
+    /* Smile */
+    .face-smile29 {
+      position: absolute;
+      left: 50%;
+      bottom: 26%;
+      transform: translateX(-50%);
+      width: calc(60pt * var(--scale));
+      height: calc(30pt * var(--scale));
+      border: none;
+      border-bottom: calc(4pt * var(--scale)) solid #1a2744;
+      border-radius: 0 0 50% 50%;
+      z-index: 6;
+    }
+    /* Label below face */
+    .face-label29 {
+      position: absolute;
+      left: 50%; top: 42%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      z-index: 7;
+      transition: opacity 0.6s ease;
+    }
+    /* Arrow indicator for eyes up */
+    .eye-arrows29 {
+      position: absolute;
+      left: 50%;
+      top: 8%;
+      transform: translateX(-50%);
+      z-index: 8;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+    }
+    .eyes-up .eye-arrows29 {
+      opacity: 1;
+      animation: arrowBounce 1.5s ease-in-out infinite;
+    }
+    @keyframes arrowBounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(-8px); }
+    }
+  </style>
+
+  <!-- Title -->
+  <div style="position:absolute;left:5%;top:3%;width:90%;text-align:center;z-index:10">
+    <p><span style="font-size:calc(24.0pt * var(--scale));color:#fff"><b>The Learning State</b></span></p>
+  </div>
+
+  <!-- Face container -->
+  <div id="faceContainer30" style="position:absolute;left:0;top:0;width:100%;height:100%;z-index:5">
+    <div class="face-circle29">
+      <div class="face-eye29 left"></div>
+      <div class="face-eye29 right"></div>
+      <div class="face-smile29"></div>
+    </div>
+
+    <!-- Arrow pointing up (appears when eyes move up) -->
+    <div class="eye-arrows29">
+      <span style="font-size:calc(28.0pt * var(--scale));color:#5b8ec2">&#9650;</span>
+      <p><span style="font-size:calc(10.0pt * var(--scale));color:#5b8ec2">Look Up</span></p>
+    </div>
+  </div>
+
+  <!-- Starting label: Eyes centered = normal state -->
+  <div style="position:absolute;left:10%;top:76%;width:80%;text-align:center;z-index:10">
+    <div style="background:rgba(255,192,0,0.1);border:1px solid rgba(255,192,0,0.3);border-radius:10px;padding:calc(8pt * var(--scale)) calc(14pt * var(--scale))">
+      <p><span style="font-size:calc(14.0pt * var(--scale));color:#FFC000"><b>Eyes centered — Normal state</b></span></p>
+      <p style="margin-top:calc(3pt * var(--scale))"><span style="font-size:calc(9.0pt * var(--scale));color:rgba(255,255,255,0.5)">Foveal focus, narrow attention</span></p>
+    </div>
+  </div>
+
+  <!-- Click 1: Eyes up label + trigger animation -->
+  <div class="shape anim-hidden" data-spid="eyesup" style="position:absolute;left:10%;top:88%;width:80%;text-align:center;z-index:10;opacity:0;visibility:hidden">
+    <div style="background:rgba(91,142,194,0.12);border:1px solid rgba(91,142,194,0.3);border-radius:10px;padding:calc(8pt * var(--scale)) calc(14pt * var(--scale))">
+      <p><span style="font-size:calc(14.0pt * var(--scale));color:#5b8ec2"><b>Eyes up — Peripheral vision activated</b></span></p>
+      <p style="margin-top:calc(3pt * var(--scale))"><span style="font-size:calc(9.0pt * var(--scale));color:rgba(255,255,255,0.5)">Access the Learning State — wide awareness, open to change</span></p>
+    </div>
+  </div>
+
+  <!-- JS: move eyes up when click triggers -->
+  <script>
+  (function() {
+    setTimeout(function() {
+      var slide = document.querySelector('[data-slide="30"]');
+      if (!slide) return;
+      var el = slide.querySelector('[data-spid="eyesup"]');
+      var container = document.getElementById('faceContainer30');
+      if (!el || !container) return;
+      var obs = new MutationObserver(function() {
+        var vis = window.getComputedStyle(el).visibility;
+        var op = parseFloat(window.getComputedStyle(el).opacity);
+        if (vis === 'visible' && op > 0.3) {
+          container.classList.add('eyes-up');
+        } else {
+          container.classList.remove('eyes-up');
+        }
+      });
+      obs.observe(el, { attributes: true, attributeFilter: ['style','class'] });
+    }, 600);
+  })();
+  </script>
 </section>
 
 <section class="slide" data-slide="31" data-clicks='[[{&quot;spid&quot;: &quot;21&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;23&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}], [{&quot;spid&quot;: &quot;25&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;27&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;21&quot;, &quot;cls&quot;: &quot;exit&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;23&quot;, &quot;cls&quot;: &quot;exit&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}], [{&quot;spid&quot;: &quot;29&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;31&quot;, &quot;cls&quot;: &quot;entr&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;25&quot;, &quot;cls&quot;: &quot;exit&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}, {&quot;spid&quot;: &quot;27&quot;, &quot;cls&quot;: &quot;exit&quot;, &quot;delay&quot;: 0, &quot;filter&quot;: &quot;&quot;, &quot;motion&quot;: &quot;&quot;, &quot;dur&quot;: &quot;500&quot;}]]'>
